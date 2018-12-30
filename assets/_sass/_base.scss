@@ -299,3 +299,10 @@ pre {
     background-color: darken($white, 5%);
     font-family: $base-font;
   }
+
+.img-circle {
+	border-radius: 50%;
+	border: 3px solid $white;
+	height: 150px;
+	width: 150px;
+}
