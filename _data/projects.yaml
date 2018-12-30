@@ -1,21 +1,21 @@
 - title: RETSUS
   url: https://retsus.ufrn.br
   image: https://github.com/nymarya/nymarya.github.io/blob/master/images/retsus.png?raw=true
-  completed: false
+  completed: true
 
 - title: SGP
   url:  http://sgp.lais.huol.ufrn.br
   image: https://github.com/nymarya/nymarya.github.io/blob/master/images/sgp.png?raw=true
-  completed: false
+  completed: true
 
 - title: Olho Biônico
-  url: http://taylantatli.me/Ramme
-  image: https://raw.githubusercontent.com/TaylanTatli/Ramme/master/assets/img/screenshot-post.png
-  completed: false
+  url: 
+  image: 
+  completed: true
 
 - title: PRODOC
-  url: http://taylantatli.me/Daisy-Pelican-Theme/
-  image: https://raw.githubusercontent.com/TaylanTatli/Daisy-Pelican-Theme/master/Preview-1.png
-  completed: false
+  url: 
+  image: 
+  completed: true
 
 
