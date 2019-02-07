@@ -140,8 +140,11 @@ canvas {
 }
 
 .home-icon{
-  height: 40px;
-  width: 40px;
+  position: absolute;
+  top: 30px;
+  right: 70px;
+  height: 33px;
+  width: 33px;
   border: 2px solid $gray;
 }
 
