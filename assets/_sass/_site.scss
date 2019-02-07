@@ -294,6 +294,19 @@ canvas {
   text-shadow: none;
 }
 
+.main {
+  max-width: 150px;
+  display: inline-block;
+  height: auto;
+  background-size: 100%;
+  margin: 0 auto;
+  position: relative;
+  font-weight: bold;
+  font-family: "weblysleek_uilight",sans-serif;
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
 .main-info,
 .about-info {
   text-align: center;
