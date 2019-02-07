@@ -300,11 +300,18 @@ canvas {
   height: auto;
   background-size: 100%;
   margin: 0 auto;
-  position: relative;
   font-weight: bold;
   font-family: "weblysleek_uilight",sans-serif;
   text-shadow: none;
   text-transform: uppercase;
+  top: 20px;
+  left: 20px;
+  position: absolute;
+  color: cadetblue;
+}
+
+.main:hover{
+  color: #8E8284;
 }
 
 .main-info,
