@@ -146,6 +146,13 @@ canvas {
   height: 33px;
   width: 33px;
   border: 2px solid $gray;
+  &:hover {
+    border-color: $green;
+    &:before,
+    &:after {
+      border-color: $green;
+    }
+  }
 }
 
 .posts-link,
