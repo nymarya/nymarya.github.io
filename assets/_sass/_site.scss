@@ -86,14 +86,14 @@ canvas {
     }
   }
   &:hover {
-    border-color: $lilas;
+    border-color: $purple;
     &:before {
-      border-color: $lilas;
+      border-color: $purple;
     }
     span {
-      border-color: $lilas;
+      border-color: $purple;
       &:before {
-        border-color: $lilas;
+        border-color: $purple;
       }
     }
   }
@@ -131,10 +131,10 @@ canvas {
     background: $white;
   }
   &:hover {
-    border-color: $lilas;
+    border-color: $purple;
     &:before,
     &:after {
-      border-color: $lilas;
+      border-color: $purple;
     }
   }
 }
@@ -147,10 +147,10 @@ canvas {
   width: 33px;
   border: 2px solid $gray;
   &:hover {
-    border-color: $lilas;
+    border-color: $purple;
     &:before,
     &:after {
-      border-color: $lilas;
+      border-color: $purple;
     }
   }
 }
