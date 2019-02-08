@@ -86,14 +86,14 @@ canvas {
     }
   }
   &:hover {
-    border-color: $green;
+    border-color: $lilas;
     &:before {
-      border-color: $green;
+      border-color: $lilas;
     }
     span {
-      border-color: $green;
+      border-color: $lilas;
       &:before {
-        border-color: $green;
+        border-color: $lilas;
       }
     }
   }
@@ -131,10 +131,10 @@ canvas {
     background: $white;
   }
   &:hover {
-    border-color: $green;
+    border-color: $lilas;
     &:before,
     &:after {
-      border-color: $green;
+      border-color: $lilas;
     }
   }
 }
@@ -142,15 +142,15 @@ canvas {
 .home-icon{
   position: absolute;
   top: 30px;
-  right: 75px;
+  right: 85px;
   height: 33px;
   width: 33px;
   border: 2px solid $gray;
   &:hover {
-    border-color: $green;
+    border-color: $lilas;
     &:before,
     &:after {
-      border-color: $green;
+      border-color: $lilas;
     }
   }
 }
@@ -169,7 +169,7 @@ canvas {
 }
 
 .home-link {
-  right: 75px;
+  right: 85px;
 }
 
 .projects-link {
@@ -395,7 +395,7 @@ canvas {
         left: 0;
         right: 0;
         bottom: 0;
-        background: $green;
+        background: $lilas;
         -webkit-transform: scaleY(0);
         transform: scaleY(0);
         -webkit-transform-origin: 50% 100%;
@@ -462,7 +462,7 @@ canvas {
       -ms-transform: none;
       -o-transform: none;
       transform: none;
-      background: $green;
+      background: $lilas;
       left: 0;
       width: 200px;
     }
@@ -547,7 +547,7 @@ canvas {
       display: inline-block;
       max-width: 75%;
       &:hover span {
-        border-bottom: 1px dotted $green;
+        border-bottom: 1px dotted $lilas;
       }
     }
   }
@@ -606,7 +606,7 @@ canvas {
   }
   a:not(.btn):not(.pagination_pager) {
     color: #399f62;
-    border-bottom: 1px dotted $green;
+    border-bottom: 1px dotted $lilas;
   }
   ul,
   ol {
@@ -643,7 +643,7 @@ canvas {
     font-size: 15px;
   }
   .section-line {
-    color: $green;
+    color: $lilas;
     position: relative;
     display: -webkit-box;
     display: -moz-box;
@@ -665,7 +665,7 @@ canvas {
       margin-left: 10px;
     }
     a {
-      color: $green;
+      color: $lilas;
       &:hover {
         color: #4dbe7a;
       }
@@ -897,7 +897,7 @@ canvas {
       border-radius: 0 4px 4px 0;
     }
     &:hover {
-      background-color: $green;
+      background-color: $lilas;
       color: $white !important;
     }
     &.disabled {
