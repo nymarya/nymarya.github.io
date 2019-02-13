@@ -21,7 +21,9 @@ Vê-se então a utilidade da **inferência estatística**, que baseia-se em, a p
 
 Uma das formas de obter essa resposta é através do **teste de hipótese**, cujo conceito foi forjado por [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: $H_0$, também conhecida como *hipótese nula*; e $H_1$, que recebe o nome de *hipótese alternativa* deve ser complementar à hipótese nula. O funcionamento consiste em testar $H_0$, buscando saber se ela é ou não aceitável e assumindo que $H_0$ é válida.
 
-![blue_screen](/home/mayra/workspace/nymarya.github.io/images/posts/blue_screen.png)
+<figure>
+    <a href="https://nymarya.github.io//images/posts/blue_screen.png"><img src="https://nymarya.github.io//images/posts/blue_screen.png"></a>
+</figure>
 
 Testar uma ideia supondo que ela é verdadeira e ainda por cima sem ter todos os dados? Parece contraditório. 
 
@@ -45,7 +47,9 @@ Existem dois modos de verificar se a hipótese nula deve ser rejeitada, depois d
 
 Vamos supor que ao fazer uma simulação dos usuários, foi obtido histograma abaixo e que ao calcular o _p_-valor, seu valor é de 0.03:
 
-![simulation_site_access](/home/mayra/workspace/nymarya.github.io/images/posts/simulation_site_access.png)
+<figure>
+ <a href="https://nymarya.github.io//images/posts/simulation_site_access.png"><img src="https://nymarya.github.io//images/posts/simulation_site_access.png"></a>
+</figure>
 
 Neste caso, $H_0$ é rejeitado, ou seja, podemos dizer que há evidências de que o percentual médio dos usuários que acessam o sistema possuem graduação é maior do que 60%.
 
