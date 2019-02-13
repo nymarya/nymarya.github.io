@@ -24,7 +24,7 @@ kramdown:
 sass:
   sass_dir:         assets/_sass
   style:            compressed
-
+encoding: "bom|utf-8"
 # Google Analytics
 #google-analytics: UA-XXXXX-Y
 
