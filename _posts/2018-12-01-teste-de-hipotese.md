@@ -13,7 +13,7 @@ tags:
 
 ### Teste de hipótese
 
-Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo *quick sort* tem uma complexidade de O($n^2$) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais comum seria de O(n log n).
+Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo *quick sort* tem uma complexidade de O($$n^2$$) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais comum seria de O(n log n).
 
 No entanto, alguns casos de estudo não são tão previsíveis como um algoritmo conhecido nem é possível fazer uma análise considerando a totalidade dos dados. Imagine descobrir as chances de um candidato ganhar, sabendo que é inviável entrevistar todos os eleitores num período próximo das eleições.
 
