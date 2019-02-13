@@ -19,7 +19,7 @@ No entanto, alguns casos de estudo não são tão previsíveis como um algoritmo
 
 Vê-se então a utilidade da **inferência estatística**, que baseia-se em, a partir de uma amostra, fazer uma afirmação em relação a algum parâmetro (média, por exemplo) envolvendo toda a população. No entanto, ao formular uma hipótese estatística é preciso em posse de algum mecanismo que ofereça certa garantia de que a dedução feita ao analisar uma pequena parte do todo também vale no mundo real.
 
-Uma das formas de obter essa resposta é através do **teste de hipótese**, cujo conceito foi forjado por [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: $H_0$, também conhecida como *hipótese nula*; e $H_1$, que recebe o nome de *hipótese alternativa* deve ser complementar à hipótese nula. O funcionamento consiste em testar $H_0$, buscando saber se ela é ou não aceitável e assumindo que $H_0$ é válida.
+Uma das formas de obter essa resposta é através do **teste de hipótese**, cujo conceito foi forjado por [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: $$H_0$$, também conhecida como *hipótese nula*; e $$H_1$$, que recebe o nome de *hipótese alternativa* deve ser complementar à hipótese nula. O funcionamento consiste em testar $$H_0$$, buscando saber se ela é ou não aceitável e assumindo que $$H_0$$ é válida.
 
 <figure>
     <a href="https://nymarya.github.io//images/posts/blue_screen.png"><img src="https://nymarya.github.io//images/posts/blue_screen.png"></a>
@@ -41,9 +41,9 @@ Enumerados os termos usados, um exemplo ajuda a visualizar melhor como os dois m
 
 Digamos que nós queremos estudar o comportamento de acessos a um site que uma certa equipe é responsável. Depois de algum tempo, com base no retorno obtido das redes sociais, um dos integrantes acha que o percentual de usuário que possuem graduação é em média 60%, com 10 % de desvio padrão. Alguém da mesma equipe discorda, achando que a proporção deve ser maior. 
 
-Para saber quem está mais próximo do resultado real, façamos com que $H_0$ represente a hipótese de que em média 60% dos usuários que acessam o sistema possuem graduação $H_1$, a afirmação que o percentual é maior que 60%.
+Para saber quem está mais próximo do resultado real, façamos com que $$H_0$$ represente a hipótese de que em média 60% dos usuários que acessam o sistema possuem graduação $$H_1$$, a afirmação que o percentual é maior que 60%.
 
-Existem dois modos de verificar se a hipótese nula deve ser rejeitada, depois de escolhido o nível de significância $\alpha$, que geralmente é em torno de 0,05 e 0,1. Uma é usando _p_-valor, onde o _p_-valor menor que o nível de significância implica em rejeitar $H_0$. Outra é calculando a região crítica, ou regra de decisão, que define um intervalo para o parâmetro $\bar X$, no qual $H_0$ será rejeitado. Ao calcular o parâmetro, é testado ele está contido na região crítica e, se for o caso, a tese é rejeitada.
+Existem dois modos de verificar se a hipótese nula deve ser rejeitada, depois de escolhido o nível de significância $\alpha$, que geralmente é em torno de 0,05 e 0,1. Uma é usando _p_-valor, onde o _p_-valor menor que o nível de significância implica em rejeitar $$H_0$$. Outra é calculando a região crítica, ou regra de decisão, que define um intervalo para o parâmetro $$\bar X$$, no qual $$H_0$$ será rejeitado. Ao calcular o parâmetro, é testado ele está contido na região crítica e, se for o caso, a tese é rejeitada.
 
 Vamos supor que ao fazer uma simulação dos usuários, foi obtido histograma abaixo e que ao calcular o _p_-valor, seu valor é de 0.03:
 
@@ -51,7 +51,7 @@ Vamos supor que ao fazer uma simulação dos usuários, foi obtido histograma ab
  <a href="https://nymarya.github.io//images/posts/simulation_site_access.png"><img src="https://nymarya.github.io//images/posts/simulation_site_access.png"></a>
 </figure>
 
-Neste caso, $H_0$ é rejeitado, ou seja, podemos dizer que há evidências de que o percentual médio dos usuários que acessam o sistema possuem graduação é maior do que 60%.
+Neste caso, $$H_0$$ é rejeitado, ou seja, podemos dizer que há evidências de que o percentual médio dos usuários que acessam o sistema possuem graduação é maior do que 60%.
 
 ## Links
 
@@ -62,3 +62,5 @@ Neste caso, $H_0$ é rejeitado, ou seja, podemos dizer que há evidências de qu
 [Verbete sobre hipótese nula](https://en.wikipedia.org/wiki/Null_hypothesis#Goals_of_null_hypothesis_tests)
 
 [Vídeo-aula sobre teste de hipótese do Crash Course Statistics](https://www.youtube.com/watch?v=bf3egy7TQ2Q&t=0s&list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr&index=23)
+
+[Estratégias de demonstração em Dedução Natural](https://sites.google.com/site/sequiturquodlibet/courses/laac/dn-lcp/vi?authuser=0)
