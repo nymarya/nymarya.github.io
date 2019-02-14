@@ -13,13 +13,13 @@ tags:
 
 ### Teste de hipótese
 
-Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo *quick sort* tem uma complexidade de O($$n^2$$) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais comum seria de O(n log n).
+Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo *quick sort* tem uma complexidade de O($$n^2$$) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).
 
 No entanto, alguns casos de estudo não são tão previsíveis como um algoritmo conhecido nem é possível fazer uma análise considerando a totalidade dos dados. Imagine descobrir as chances de um candidato ganhar, sabendo que é inviável entrevistar todos os eleitores num período próximo das eleições.
 
-Vê-se então a utilidade da **inferência estatística**, que baseia-se em, a partir de uma amostra, fazer uma afirmação em relação a algum parâmetro (média, por exemplo) envolvendo toda a população. No entanto, ao formular uma hipótese estatística é preciso em posse de algum mecanismo que ofereça certa garantia de que a dedução feita ao analisar uma pequena parte do todo também vale no mundo real.
+Vê-se então a utilidade da **inferência estatística**, que baseia-se em, a partir de uma amostra, fazer uma afirmação em relação a algum parâmetro (média, por exemplo) envolvendo toda a população. Entretanto, ao formular uma hipótese estatística é preciso estar de posse de algum mecanismo que ofereça certa garantia de que a dedução feita ao analisar uma pequena parte do todo também vale no mundo real.
 
-Uma das formas de obter essa resposta é através do **teste de hipótese**, cujo conceito foi forjado por [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: $$H_0$$, também conhecida como *hipótese nula*; e $$H_1$$, que recebe o nome de *hipótese alternativa* deve ser complementar à hipótese nula. O funcionamento consiste em testar $$H_0$$, buscando saber se ela é ou não aceitável e assumindo que $$H_0$$ é válida.
+Uma das formas de obter essa resposta é através do **teste de hipótese**, cujo conceito foi forjado por [Ronald Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher), considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: $$H_0$$, também conhecida como *hipótese nula*; e $$H_1$$, que recebe o nome de *hipótese alternativa* e preferencialmente deve ser complementar à hipótese nula. O funcionamento consiste em testar $$H_0$$, buscando saber se ela é ou não aceitável e assumindo que $$H_0$$ é válida.
 
 <figure>
     <a href="https://nymarya.github.io//images/posts/blue_screen.png"><img src="https://nymarya.github.io//images/posts/blue_screen.png"></a>
@@ -31,9 +31,11 @@ Testar uma ideia supondo que ela é verdadeira e ainda por cima sem ter todos os
 
 O argumento lógico por trás desse método é o _reductio ao absurdum_. Ao supor uma proposição, é desenvolvido o pensamento até que o resultado seja algo tão absurdo que invalide a suposição inicial.
 
-O método de prova por contradição usa desse argumento. É suposto que um evento B não acontece. A partir desse pressuposto é inferido que um evento A não acontece, donde concluisse que A acontecer implica em B acontecer.
+O método de prova por contradição usa desse argumento. É suposto que um evento B não acontece. A partir desse pressuposto é inferido que um evento A não acontece, donde conclui-se que A acontecer implica em B acontecer.
 
-Para o teste de hipótese, a linha de raciocínio começa assumindo que a hipótese nula é válida. Ao analisar os dados disponíveis é obtido o parâmetro.  Com base em um *nível de significância*, é visto o quão o parâmetro se distancia de um valor razoável de acordo com um modelo, ou seja, se esse valor seria muito raro (um absurdo) de se obter caso a hipótese nula fosse verdade. Se for o caso, é bem provável que nossa tese esteja errada, e podemos dizer que a rejeitamos.
+Para o teste de hipótese, a linha de raciocínio começa assumindo que a hipótese nula é válida (H1 não acontece). Ao analisar os dados disponíveis é obtido o parâmetro.  Com base em um *nível de significância*, é visto o quão o parâmetro se distancia de um valor razoável de acordo com um modelo, ou seja, se esse valor seria muito raro (um absurdo) de se obter caso a hipótese nula fosse verdade (evento C \[aquele parâmetro ser encontrado num mundo representado por aquele modelo\] não acontece). Se for o caso, é bem provável que nossa tese esteja errada, e podemos dizer que a rejeitamos. 
+
+Ao utilizar a conclusão obtida pela prova por contradição, podemos interpretar que o parâmetro ser obtido implica que $$H_1$$ é válida.
 
 ### Atribuindo valor às variáveis
 
