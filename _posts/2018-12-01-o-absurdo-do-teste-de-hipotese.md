@@ -1,21 +1,19 @@
 ---
 layout: post
-title: "Teste de hipótese"
+title: "O absurdo no teste de hipótese"
 categories:
   - Edge Case
 tags:
   - estatistica
   - matematica
-  - prova por contradição
+  - reductio ad absurdum
 ---
-
-## O absurdo no teste de hipótese
-
-### Teste de hipótese
 
 Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo *quick sort* tem uma complexidade de O($$n^2$$) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).
 
 No entanto, alguns casos de estudo não são tão previsíveis como este célebre algoritmo e nem sempre é possível fazer uma análise que englobe a totalidade dos dados. Imagine tentar descobrir as chances de um candidato ganhar uma eleição analisando toda a população ao invés de fazer inferências, como as pesquisas de intenção de voto: a coleta de dados se mostraria não só um processo extremamente custoso financeiramente como demasiado lento para uma análise onde o tempo é crucial.
+
+### Teste de hipótese
 
 Vê-se então a utilidade da **inferência estatística**, que baseia-se em, a partir de uma amostra, estimar algum parâmetro (média, por exemplo) envolvendo toda a população. Entretanto, ao formular uma hipótese estatística é preciso estar de posse de algum mecanismo que ofereça certa garantia de que a dedução feita ao analisar uma pequena parte do todo também vale no mundo real.
 

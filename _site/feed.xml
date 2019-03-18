@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-03-18T10:14:08-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">O absurdo no teste de hipótese</title><link href="http://localhost:4000/o-absurdo-do-teste-de-hipotese/" rel="alternate" type="text/html" title="O absurdo no teste de hipótese" /><published>2018-12-01T00:00:00-02:00</published><updated>2018-12-01T00:00:00-02:00</updated><id>http://localhost:4000/o-absurdo-do-teste-de-hipotese</id><content type="html" xml:base="http://localhost:4000/o-absurdo-do-teste-de-hipotese/">&lt;p&gt;Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo &lt;em&gt;quick sort&lt;/em&gt; tem uma complexidade de O(&lt;script type=&quot;math/tex&quot;&gt;n^2&lt;/script&gt;) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).&lt;/p&gt;
+
+&lt;p&gt;No entanto, alguns casos de estudo não são tão previsíveis como este célebre algoritmo e nem sempre é possível fazer uma análise que englobe a totalidade dos dados. Imagine tentar descobrir as chances de um candidato ganhar uma eleição analisando toda a população ao invés de fazer inferências, como as pesquisas de intenção de voto: a coleta de dados se mostraria não só um processo extremamente custoso financeiramente como demasiado lento para uma análise onde o tempo é crucial.&lt;/p&gt;
+
+&lt;h3 id=&quot;teste-de-hipótese&quot;&gt;Teste de hipótese&lt;/h3&gt;
+
+&lt;p&gt;Vê-se então a utilidade da &lt;strong&gt;inferência estatística&lt;/strong&gt;, que baseia-se em, a partir de uma amostra, estimar algum parâmetro (média, por exemplo) envolvendo toda a população. Entretanto, ao formular uma hipótese estatística é preciso estar de posse de algum mecanismo que ofereça certa garantia de que a dedução feita ao analisar uma pequena parte do todo também vale no mundo real.&lt;/p&gt;
+
+&lt;p&gt;Uma das formas de obter essa resposta é através do &lt;strong&gt;teste de hipótese&lt;/strong&gt;, cujo conceito foi forjado por &lt;a href=&quot;https://en.wikipedia.org/wiki/Ronald_Fisher&quot;&gt;Ronald Fisher&lt;/a&gt;, considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt;, também conhecida como &lt;em&gt;hipótese nula&lt;/em&gt;; e &lt;script type=&quot;math/tex&quot;&gt;H_1&lt;/script&gt;, que recebe o nome de &lt;em&gt;hipótese alternativa&lt;/em&gt; e preferencialmente deve ser complementar à hipótese nula. O processo consiste em testar &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt;, avaliando a probabilidade dos dados observados ocorrerem assumindo que a hipótese nula seja válida.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;a href=&quot;https://nymarya.github.io//images/posts/blue_screen.png&quot;&gt;&lt;img src=&quot;https://nymarya.github.io//images/posts/blue_screen.png&quot; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Testar uma hipótese supondo que ela é verdadeira e ainda por cima sem ter todos os dados? Parece contraditório.&lt;/p&gt;
+
+&lt;h3 id=&quot;reductio-ad-absurdum&quot;&gt;Reductio ad absurdum&lt;/h3&gt;
+
+&lt;p&gt;O argumento lógico por trás desse método é o &lt;strong&gt;reductio ao absurdum&lt;/strong&gt;. Ao supor uma proposição, é desenvolvido o pensamento até que o resultado seja algo tão absurdo que invalide a suposição inicial.&lt;/p&gt;
+
+&lt;p&gt;Digamos que você quer provar que seu programa funciona, então essa seria sua hipótese. Intuivamente, sabemos que ele deve funcionar perfeitamente em diversas situações. Para isso, você o submete a uma bateria de testes mas observa que nem todos os casos são atentidos, encontrando uma contradição com sua premissa de que deveria rodar em todos os casos. Logo, você conclui que seu programa não está funcionando.&lt;/p&gt;
+
+&lt;p&gt;Para o teste de hipótese, a linha de raciocínio começa assumindo que a hipótese nula é válida. Ao analisar os dados disponíveis é obtido o parâmetro.  Com base em um &lt;strong&gt;nível de significância&lt;/strong&gt;, é visto o quão o parâmetro se distancia de um valor razoável de acordo com um modelo, ou seja, se esse valor seria muito raro de se obter caso a hipótese nula fosse verdade. Então, ao obter um &lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt; pequeno, chegamos a uma contradição, visto que ao assumir &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt; como verdadeira é esperado um nível de significância alto. Se for o caso, é bem provável que nossa tese esteja errada, e podemos dizer que a rejeitamos.&lt;/p&gt;
+
+&lt;p&gt;Ao utilizar a conclusão obtida pela técnica mencionada, podemos interpretar que o parâmetro ser obtido implica que &lt;script type=&quot;math/tex&quot;&gt;H_1&lt;/script&gt; é válida.&lt;/p&gt;
+
+&lt;p&gt;O valor que usamos como limiar para definir se rejeitamos a hipótese nula é p&amp;lt;0.05, ou seja: a probabilidade de ocorrência dos dados analisados uma vez que a hipótese nula seja válida deve ser menor que 5%.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Fun fact: o valor padrão de significância para um p-valor, p&amp;lt;0.05, foi apenas uma definição arbitrária do próprio Fisher em uma de suas publicações (que veio a ser adotado por toda a comunidade científica), desprovido de qualquer justificativa objetiva.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;atribuindo-valor-às-variáveis&quot;&gt;Atribuindo valor às variáveis&lt;/h3&gt;
+
+&lt;p&gt;Enumerados os termos usados, um exemplo ajuda a visualizar melhor como esses dois conhecimentos se misturam.&lt;/p&gt;
+
+&lt;p&gt;Digamos que nós queremos estudar o comportamento de acessos a um site que uma certa equipe é responsável. Depois de algum tempo, com base no retorno obtido das redes sociais, um dos integrantes acha que o percentual de usuário que possuem graduação é em média 60%, com 10 % de desvio padrão. Alguém da mesma equipe discorda, achando que a proporção deve ser diferente.&lt;/p&gt;
+
+&lt;p&gt;Para saber quem está mais próximo do resultado real, façamos com que &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt; represente a hipótese de que em média o percentual dos usuários que acessam o sistema possuem graduação seja diferente de 60% e &lt;script type=&quot;math/tex&quot;&gt;H_1&lt;/script&gt;, a afirmação que o percentual médio é igual a 60%.&lt;/p&gt;
+
+&lt;p&gt;Existem dois modos de verificar se a hipótese nula deve ser rejeitada, depois de escolhido o nível de significância &lt;script type=&quot;math/tex&quot;&gt;\alpha&lt;/script&gt;, que geralmente é em torno de 0,05 e 0,1. Uma é usando &lt;em&gt;p&lt;/em&gt;-valor, onde o &lt;em&gt;p&lt;/em&gt;-valor menor que o nível de significância implica em rejeitar &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt;. Outra é calculando a região crítica, ou regra de decisão, que define um intervalo para o parâmetro &lt;script type=&quot;math/tex&quot;&gt;\bar X&lt;/script&gt;, no qual &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt; será rejeitado. Ao calcular o parâmetro, é testado ele está contido na região crítica e, se for o caso, a tese é rejeitada.&lt;/p&gt;
+
+&lt;p&gt;Vamos supor que ao fazer uma simulação dos usuários, foi obtido o histograma abaixo e que ao calcular o &lt;em&gt;p&lt;/em&gt;-valor, seu valor é de 0.03:&lt;/p&gt;
+
+&lt;figure&gt;
+ &lt;a href=&quot;https://nymarya.github.io//images/posts/simulation_site_access.png&quot;&gt;&lt;img src=&quot;https://nymarya.github.io//images/posts/simulation_site_access.png&quot; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Neste caso, &lt;script type=&quot;math/tex&quot;&gt;H_0&lt;/script&gt; é rejeitado, ou seja, podemos dizer que há evidências de que o percentual médio dos usuários que acessam o sistema possuem graduação é 60%.&lt;/p&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.khanacademy.org/math/ap-statistics/tests-significance-ap/idea-significance-tests&quot;&gt;Aula do Khan Academy sobre testes de significância&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://philosophy.stackexchange.com/questions/561/what-is-the-difference-between-reductio-ad-absurdum-and-proof-by-contradiction&quot;&gt;Discussão sobre reductio ad absurdum e prova por contradição&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Null_hypothesis#Goals_of_null_hypothesis_tests&quot;&gt;Verbete sobre hipótese nula&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=bf3egy7TQ2Q&amp;amp;t=0s&amp;amp;list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr&amp;amp;index=23&quot;&gt;Vídeo-aula sobre teste de hipótese do Crash Course Statistics&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://sites.google.com/site/sequiturquodlibet/courses/laac/dn-lcp/vi?authuser=0&quot;&gt;Estratégias de demonstração em Dedução Natural&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="estatistica" /><category term="matematica" /><category term="reductio ad absurdum" /><summary type="html">Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo quick sort tem uma complexidade de O() quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente? Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).</summary></entry></feed>
