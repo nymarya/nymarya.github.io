@@ -27,7 +27,7 @@ Testar uma hipótese supondo que ela é verdadeira e ainda por cima sem ter todo
 
 ### Reductio ad absurdum
 
-O argumento lógico por trás desse método é o **reductio ao absurdum**. Ao supor uma proposição, é desenvolvido o pensamento até que o resultado seja algo tão absurdo que invalide a suposição inicial.
+O argumento lógico por trás desse método é o **reductio ad absurdum**. Ao supor uma proposição, é desenvolvido o pensamento até que o resultado seja algo tão absurdo que invalide a suposição inicial.
 
 Digamos que você quer provar que seu programa funciona, então essa seria sua hipótese. Intuivamente, sabemos que ele deve funcionar perfeitamente em diversas situações. Para isso, você o submete a uma bateria de testes mas observa que nem todos os casos são atentidos, encontrando uma contradição com sua premissa de que deveria rodar em todos os casos. Logo, você conclui que seu programa não está funcionando.
 
