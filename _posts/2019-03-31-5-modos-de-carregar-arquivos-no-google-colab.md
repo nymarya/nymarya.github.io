@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "5 modos de carregar arquivos no google colab"
+title: "5 modos de carregar arquivos no Google Colab"
 categories:
   - Edge Case
 tags:
