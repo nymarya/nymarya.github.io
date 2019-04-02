@@ -617,6 +617,10 @@ canvas {
   a:not(.btn):not(.pagination_pager) {
     color: #399f62;
     border-bottom: 1px dotted $lilas;
+
+    &:hover{
+      color: $lilas
+    }
   }
   ul,
   ol {

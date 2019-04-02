@@ -9,7 +9,7 @@ tags:
   - python
 ---
 
-O [Google Colab](https://colab.research.google.com) é uma ferramenta criada pelo Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (`.ipynb`) mais simples até treinar um modelo de _deep learning_ mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas),sendo todo seu trabalho sincronizado no Drive.
+O [Google Colab](https://colab.research.google.com) é uma ferramenta criada pelo Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (`.ipynb`) mais simples até treinar um modelo de _deep learning_ mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas), sendo todo seu trabalho sincronizado no Drive.
 
 Um dos primeiros problemas que aparecem ao usar o Colab é: como carregar arquivos nessa ferramenta, já que ele não tem acesso ao meu HD? Nesse post são listados 5 jeitos de fazer isso, cada um com suas vantagens e desvantagens.
 
@@ -114,10 +114,10 @@ page_token = None
             _, done = downloader.next_chunk()
 
           downloaded.seek(0)
-          
+
            if('.csv' in file.get('name')):
                 datasets.append(io.BytesIO(downloaded.read()))
-          
+
       page_token1 = response.get('nextPageToken', None)
       if page_token1 is None:
           break
