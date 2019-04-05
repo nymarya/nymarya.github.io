@@ -9,9 +9,9 @@ tags:
   - python
 ---
 
-O [Google Colab](https://colab.research.google.com) é uma ferramenta criada pelo Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (`.ipynb`) mais simples até treinar um modelo de _deep learning_ mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas), sendo todo seu trabalho sincronizado no Drive.
+O [Google Colab](https://colab.research.google.com) é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (`.ipynb`) mais simples até treinar um modelo de _deep learning_ mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.
 
-Um dos primeiros problemas que aparecem ao usar o Colab é: como carregar arquivos nessa ferramenta, já que ele não tem acesso ao meu HD? Nesse post são listados 5 jeitos de fazer isso, cada um com suas vantagens e desvantagens.
+Um dos primeiros problemas que aparecem ao usar o Colab é: como carregar arquivos nessa ferramenta, já que ele não tem acesso ao meu HD? Nesse post irei listar 5 jeitos de fazer isso, cada um com suas vantagens e desvantagens.
 
 ### 1. Usando um link
 
@@ -38,7 +38,7 @@ import io
 dataset = pd.read_csv(io.BytesIO(uploaded['file.csv']))
 ```
 
-Apesar de ser prático para um estudo rápido sobre um arquivo pequeno, por exemplo, essa _feature_ pode apresentar incompatibilidade com algumas versões de alguns navegadores, então nem sempre o método é aplicável.
+Apesar de ser prático para um estudo rápido sobre um arquivo pequeno, por exemplo, essa _feature_ pode apresentar incompatibilidade com algumas versões de alguns navegadores, então nem sempre o método de leitura é aplicável.
 
 ### 3. Fazendo upload de sua máquina via colab
 
@@ -50,11 +50,11 @@ Ao cliclar no botão **UPLOAD**, uma janela de seleção semelhante à do item a
 
 ![colab_file_preview](../images/posts/colab_file_preview.png)
 
-No entanto, a maior mudança em relação ao `google.colab` é que, além de apresentar maior compatibilidade com os navegadores, o arquivo não precisa ser convertido. Dá pra usar `read_csv` passando o nome do arquivo e a extensão.
+No entanto, a maior mudança em relação ao `google.colab` é que, além de apresentar maior compatibilidade com os navegadores, o arquivo não precisa ser convertido. Dá pra usar `read_csv` passando o nome do arquivo e a extensão como parâmetros.
 
 ---
 
-Os dois últimos métodos possuem algumas desvantagens em comum:
+Os dois últimos métodos apresentados possuem algumas desvantagens em comum:
 
 - Toda vez que o notebook for aberto, o processo de upload precisa ser repetido ( o que prejudica muito a reproducibilidade do que você fez no notebook);
 
@@ -66,7 +66,7 @@ Por isso, os dois se tornam mais úteis quando se quer fazer algo rápido e que 
 
 Ao abrir uma pasta no Google Drive, você pode observar que ela possui um _hash_, um código em sua url. Bem, dá para usar esse link para ler os arquivos dessa pasta.
 
-O primeiro passo é a ~~aceitação~~ autenticação. Ao rodar o código abaixo e clicar no link, você vai recer um _token_ para copiar e colar na caixa que é exibida no notebook.
+O primeiro passo é a ~~aceitação~~ autenticação. Ao rodar o código abaixo e clicar no link, você vai receber um _token_ para copiar e colar na caixa que é exibida no notebook.
 
 ```python
 from google.colab import auth
@@ -88,11 +88,11 @@ response = drive_service.files().list(q=" '"+folder +"' in parents",
 
 Especificando `'"+folder+"' in parents` são filtrados os arquivos que estão dentro da pasta `folder`.
 
-Depois de recuperados os arquivos, iterar sobre eles, vamos recuperar seus IDs e usar `files().get_media(fileId=id)` para baixar o arquivo através da API. Depois disso, os bytes podem ser traduzidos e o arquivo tratado.
+Depois de recuperados os arquivos e iterar sobre eles, vamos recuperar seus IDs e usar `files().get_media(fileId=id)` para baixar o arquivo através da API. Depois disso, os bytes podem ser traduzidos e o arquivo tratado.
 
 Tudo isso deve ser feito dentro de um loop.
 
-Abaixo, um código completo com o exemplo de arquivos de imagens
+Abaixo, um código completo com o exemplo de arquivos de imagens:
 
 ```python
 page_token = None
@@ -123,7 +123,7 @@ page_token = None
           break
 ```
 
-Com os arquivos recuperados, para usar o dataset, podemos passar o objeto para `read_csv`, por exemplo:
+Com os arquivos recuperados, para usar o dataset, podemos passar o objeto para `read_csv`. Por exemplo:
 
 ```python
 dataset = pd.read_csv(datasets[0])
@@ -151,7 +151,7 @@ movies = pd.read_csv(file, sep="\t")
 
 Cada método tem seu nível de dificuldade e uma limitação quanto ao tamanho da massa de dados que podem ser carregados de forma eficiente, cabe a cada um ver qual se encaixa melhor em cada situação.
 
-Nos links, existe a referência para uma alternativa ao passo 4 e alguns métodos para salvar arquivos a partir do Colab.
+Nos links, referenciei uma alternativa ao passo 4 e alguns métodos para salvar arquivos a partir do Colab.
 
 Até a próxima!
 
