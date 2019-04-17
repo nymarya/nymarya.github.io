@@ -1,6 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-01T17:40:53-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">5 modos de carregar arquivos no Google Colab</title><link href="http://localhost:4000/5-modos-de-carregar-arquivos-no-google-colab/" rel="alternate" type="text/html" title="5 modos de carregar arquivos no Google Colab" /><published>2019-03-31T00:00:00-03:00</published><updated>2019-03-31T00:00:00-03:00</updated><id>http://localhost:4000/5-modos-de-carregar-arquivos-no-google-colab</id><content type="html" xml:base="http://localhost:4000/5-modos-de-carregar-arquivos-no-google-colab/">&lt;p&gt;O &lt;a href=&quot;https://colab.research.google.com&quot;&gt;Google Colab&lt;/a&gt; é uma ferramenta criada pelo Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (&lt;code class=&quot;highlighter-rouge&quot;&gt;.ipynb&lt;/code&gt;) mais simples até treinar um modelo de &lt;em&gt;deep learning&lt;/em&gt; mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas), sendo todo seu trabalho sincronizado no Drive.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-04-16T23:00:49-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Análise de gênero e cor na UFRN</title><link href="http://localhost:4000/teste/" rel="alternate" type="text/html" title="Análise de gênero e cor na UFRN" /><published>2019-04-16T00:00:00-03:00</published><updated>2019-04-16T00:00:00-03:00</updated><id>http://localhost:4000/teste</id><content type="html" xml:base="http://localhost:4000/teste/">&lt;p&gt;Uma reportagem do Nexo Jornal analisando a &lt;a href=&quot;https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área&quot;&gt;distribuição de gênero e raça de estudante do ensino superior no Brasil&lt;/a&gt;, realizada com os dados de 2016, serviu de inspiração para um estudo local utilizando &lt;a href=&quot;http:/dados.ufrn.br&quot;&gt;dados abertos da UFRN&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Um dos primeiros problemas que aparecem ao usar o Colab é: como carregar arquivos nessa ferramenta, já que ele não tem acesso ao meu HD? Nesse post são listados 5 jeitos de fazer isso, cada um com suas vantagens e desvantagens.&lt;/p&gt;
+&lt;p&gt;Uma parte da análise resume-se a identificar os padrões de estudantes com base nas áreas de conhecimento.  Os demais estudos podem ser encontrados no repo&lt;/p&gt;
+
+&lt;h2 id=&quot;como-está-a-ufrn-hoje&quot;&gt;Como está a UFRN hoje?&lt;/h2&gt;
+
+&lt;p&gt;O primeiro passo foi conferir o cenário atual (2019), com foco em ver quais áreas possuem maior proporção de alunas, tentando responder a seguinte pergunta:&lt;/p&gt;
+
+&lt;p&gt;No que diz respeito à presença feminina, os cursos de ciências da saúde e ciências sociais aplicadas são os que possuem mais de metade dos matriculados do sexo feminino. Desses, o que se encontra no topo é Serviço Social, tendo mulheres compondo 90% do total de estudantes.&lt;/p&gt;
+
+&lt;p&gt;No curso de tecnologia da Informação, 9,74% dos alunos ingressantes eram mulheres.&lt;/p&gt;
+
+&lt;p&gt;Como esperado, boa parte dos cursos de engenharia e de ciências exatas possuem menos de 50% de ingressantes do sexo feminino, o que pode ser constatado ao observar os pontos verde-claros e amarelos na metade inferior do gráfico abaixo:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/posts/brancos_2019.jpg&quot; alt=&quot;brancos_2019&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Além disso, boa parte dos cursos que possuem mais de 50% de alunos brancos (metade direita do gráfico) também são da área de engenharias.&lt;/p&gt;
+
+&lt;p&gt;Em relação aos estudantes negros, o curso em que possuem a presença mais significativa é Teatro, onde foram 23% dos ingressantes. Em seguida, Música e Dança, respectivamente, foram os que mais receberam alunos negros em 2019.&lt;/p&gt;
+
+&lt;p&gt;Em TI, estudantes negros foram 6.3% dos matriculados neste ano.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/posts/negros_2019.png&quot; alt=&quot;negros_2019&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;o-que-mudou-ao-longo-do-tempo&quot;&gt;O que mudou ao longo do tempo?&lt;/h2&gt;
+
+&lt;div class=&quot;bk-root&quot; id=&quot;f0e6167d-a794-465b-8756-d4dbc54b5430&quot; data-root-id=&quot;5954&quot;&gt;&lt;/div&gt;</content><author><name></name></author><category term="UFRN" /><category term="data science" /><category term="python" /><summary type="html">Uma reportagem do Nexo Jornal analisando a distribuição de gênero e raça de estudante do ensino superior no Brasil, realizada com os dados de 2016, serviu de inspiração para um estudo local utilizando dados abertos da UFRN.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://files.realpython.com/media/Intermediate_Watermarked.9f8c0a24bde7.jpg" /></entry><entry><title type="html">5 modos de carregar arquivos no Google Colab</title><link href="http://localhost:4000/5-modos-de-carregar-arquivos-no-google-colab/" rel="alternate" type="text/html" title="5 modos de carregar arquivos no Google Colab" /><published>2019-03-31T00:00:00-03:00</published><updated>2019-03-31T00:00:00-03:00</updated><id>http://localhost:4000/5-modos-de-carregar-arquivos-no-google-colab</id><content type="html" xml:base="http://localhost:4000/5-modos-de-carregar-arquivos-no-google-colab/">&lt;p&gt;O &lt;a href=&quot;https://colab.research.google.com&quot;&gt;Google Colab&lt;/a&gt; é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (&lt;code class=&quot;highlighter-rouge&quot;&gt;.ipynb&lt;/code&gt;) mais simples até treinar um modelo de &lt;em&gt;deep learning&lt;/em&gt; mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.&lt;/p&gt;
+
+&lt;p&gt;Um dos primeiros problemas que aparecem ao usar o Colab é: como carregar arquivos nessa ferramenta, já que ele não tem acesso ao meu HD? Nesse post irei listar 5 jeitos de fazer isso, cada um com suas vantagens e desvantagens.&lt;/p&gt;
 
 &lt;h3 id=&quot;1-usando-um-link&quot;&gt;1. Usando um link&lt;/h3&gt;
 
@@ -27,7 +53,7 @@
 &lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BytesIO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uploaded&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'file.csv'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Apesar de ser prático para um estudo rápido sobre um arquivo pequeno, por exemplo, essa &lt;em&gt;feature&lt;/em&gt; pode apresentar incompatibilidade com algumas versões de alguns navegadores, então nem sempre o método é aplicável.&lt;/p&gt;
+&lt;p&gt;Apesar de ser prático para um estudo rápido sobre um arquivo pequeno, por exemplo, essa &lt;em&gt;feature&lt;/em&gt; pode apresentar incompatibilidade com algumas versões de alguns navegadores, então nem sempre o método de leitura é aplicável.&lt;/p&gt;
 
 &lt;h3 id=&quot;3-fazendo-upload-de-sua-máquina-via-colab&quot;&gt;3. Fazendo upload de sua máquina via colab&lt;/h3&gt;
 
@@ -39,11 +65,11 @@
 
 &lt;p&gt;&lt;img src=&quot;../images/posts/colab_file_preview.png&quot; alt=&quot;colab_file_preview&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;No entanto, a maior mudança em relação ao &lt;code class=&quot;highlighter-rouge&quot;&gt;google.colab&lt;/code&gt; é que, além de apresentar maior compatibilidade com os navegadores, o arquivo não precisa ser convertido. Dá pra usar &lt;code class=&quot;highlighter-rouge&quot;&gt;read_csv&lt;/code&gt; passando o nome do arquivo e a extensão.&lt;/p&gt;
+&lt;p&gt;No entanto, a maior mudança em relação ao &lt;code class=&quot;highlighter-rouge&quot;&gt;google.colab&lt;/code&gt; é que, além de apresentar maior compatibilidade com os navegadores, o arquivo não precisa ser convertido. Dá pra usar &lt;code class=&quot;highlighter-rouge&quot;&gt;read_csv&lt;/code&gt; passando o nome do arquivo e a extensão como parâmetros.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;Os dois últimos métodos possuem algumas desvantagens em comum:&lt;/p&gt;
+&lt;p&gt;Os dois últimos métodos apresentados possuem algumas desvantagens em comum:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -60,7 +86,7 @@
 
 &lt;p&gt;Ao abrir uma pasta no Google Drive, você pode observar que ela possui um &lt;em&gt;hash&lt;/em&gt;, um código em sua url. Bem, dá para usar esse link para ler os arquivos dessa pasta.&lt;/p&gt;
 
-&lt;p&gt;O primeiro passo é a &lt;del&gt;aceitação&lt;/del&gt; autenticação. Ao rodar o código abaixo e clicar no link, você vai recer um &lt;em&gt;token&lt;/em&gt; para copiar e colar na caixa que é exibida no notebook.&lt;/p&gt;
+&lt;p&gt;O primeiro passo é a &lt;del&gt;aceitação&lt;/del&gt; autenticação. Ao rodar o código abaixo e clicar no link, você vai receber um &lt;em&gt;token&lt;/em&gt; para copiar e colar na caixa que é exibida no notebook.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;google.colab&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;authenticate_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -80,11 +106,11 @@
 
 &lt;p&gt;Especificando &lt;code class=&quot;highlighter-rouge&quot;&gt;'&quot;+folder+&quot;' in parents&lt;/code&gt; são filtrados os arquivos que estão dentro da pasta &lt;code class=&quot;highlighter-rouge&quot;&gt;folder&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Depois de recuperados os arquivos, iterar sobre eles, vamos recuperar seus IDs e usar &lt;code class=&quot;highlighter-rouge&quot;&gt;files().get_media(fileId=id)&lt;/code&gt; para baixar o arquivo através da API. Depois disso, os bytes podem ser traduzidos e o arquivo tratado.&lt;/p&gt;
+&lt;p&gt;Depois de recuperados os arquivos e iterar sobre eles, vamos recuperar seus IDs e usar &lt;code class=&quot;highlighter-rouge&quot;&gt;files().get_media(fileId=id)&lt;/code&gt; para baixar o arquivo através da API. Depois disso, os bytes podem ser traduzidos e o arquivo tratado.&lt;/p&gt;
 
 &lt;p&gt;Tudo isso deve ser feito dentro de um loop.&lt;/p&gt;
 
-&lt;p&gt;Abaixo, um código completo com o exemplo de arquivos de imagens&lt;/p&gt;
+&lt;p&gt;Abaixo, um código completo com o exemplo de arquivos de imagens:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;page_token&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
@@ -114,7 +140,7 @@
           &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Com os arquivos recuperados, para usar o dataset, podemos passar o objeto para &lt;code class=&quot;highlighter-rouge&quot;&gt;read_csv&lt;/code&gt;, por exemplo:&lt;/p&gt;
+&lt;p&gt;Com os arquivos recuperados, para usar o dataset, podemos passar o objeto para &lt;code class=&quot;highlighter-rouge&quot;&gt;read_csv&lt;/code&gt;. Por exemplo:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read_csv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;datasets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -140,7 +166,7 @@
 
 &lt;p&gt;Cada método tem seu nível de dificuldade e uma limitação quanto ao tamanho da massa de dados que podem ser carregados de forma eficiente, cabe a cada um ver qual se encaixa melhor em cada situação.&lt;/p&gt;
 
-&lt;p&gt;Nos links, existe a referência para uma alternativa ao passo 4 e alguns métodos para salvar arquivos a partir do Colab.&lt;/p&gt;
+&lt;p&gt;Nos links, referenciei uma alternativa ao passo 4 e alguns métodos para salvar arquivos a partir do Colab.&lt;/p&gt;
 
 &lt;p&gt;Até a próxima!&lt;/p&gt;
 
@@ -148,7 +174,7 @@
 
 &lt;p&gt;&lt;a href=&quot;https://developers.google.com/drive/api/v3/search-parameters&quot;&gt;API de busca de arquivos do Google Drive&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/notebooks/io.ipynb&quot;&gt;Material do próprio Colab que contém maneiras de salvar arquivos&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="colab" /><category term="data science" /><category term="python" /><summary type="html">O Google Colab é uma ferramenta criada pelo Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (.ipynb) mais simples até treinar um modelo de deep learning mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas), sendo todo seu trabalho sincronizado no Drive.</summary></entry><entry><title type="html">O absurdo no teste de hipótese</title><link href="http://localhost:4000/o-absurdo-do-teste-de-hipotese/" rel="alternate" type="text/html" title="O absurdo no teste de hipótese" /><published>2018-12-01T00:00:00-02:00</published><updated>2018-12-01T00:00:00-02:00</updated><id>http://localhost:4000/o-absurdo-do-teste-de-hipotese</id><content type="html" xml:base="http://localhost:4000/o-absurdo-do-teste-de-hipotese/">&lt;p&gt;Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo &lt;em&gt;quick sort&lt;/em&gt; tem uma complexidade de O(&lt;script type=&quot;math/tex&quot;&gt;n^2&lt;/script&gt;) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/notebooks/io.ipynb&quot;&gt;Material do próprio Colab que contém maneiras de salvar arquivos&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="colab" /><category term="data science" /><category term="python" /><summary type="html">O Google Colab é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (.ipynb) mais simples até treinar um modelo de deep learning mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.</summary></entry><entry><title type="html">O absurdo no teste de hipótese</title><link href="http://localhost:4000/o-absurdo-do-teste-de-hipotese/" rel="alternate" type="text/html" title="O absurdo no teste de hipótese" /><published>2018-12-01T00:00:00-02:00</published><updated>2018-12-01T00:00:00-02:00</updated><id>http://localhost:4000/o-absurdo-do-teste-de-hipotese</id><content type="html" xml:base="http://localhost:4000/o-absurdo-do-teste-de-hipotese/">&lt;p&gt;Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo &lt;em&gt;quick sort&lt;/em&gt; tem uma complexidade de O(&lt;script type=&quot;math/tex&quot;&gt;n^2&lt;/script&gt;) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).&lt;/p&gt;
 
 &lt;p&gt;No entanto, alguns casos de estudo não são tão previsíveis como este célebre algoritmo e nem sempre é possível fazer uma análise que englobe a totalidade dos dados. Imagine tentar descobrir as chances de um candidato ganhar uma eleição analisando toda a população ao invés de fazer inferências, como as pesquisas de intenção de voto: a coleta de dados se mostraria não só um processo extremamente custoso financeiramente como demasiado lento para uma análise onde o tempo é crucial.&lt;/p&gt;
 
