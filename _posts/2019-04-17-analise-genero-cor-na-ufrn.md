@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Análise de gênero e cor na UFRN"
+title: "Análise de gênero e raça na UFRN"
 image: "https://files.realpython.com/media/Intermediate_Watermarked.9f8c0a24bde7.jpg"
 categories:
  - Edge Case
@@ -10,17 +10,19 @@ tags:
  - python
 ---
 
-Baseando-se em uma reportagem do Nexo Jornal que analisou a [distribuição de gênero e raça de estudante do ensino superior no Brasil](https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área), realizada com os dados de 2016 do INEP, foi feito um estudo local utilizando [dados abertos da UFRN](http:/dados.ufrn.br).
+Baseando-se em uma reportagem do Nexo Jornal que analisou a [distribuição de gênero e raça de estudantes do ensino superior no Brasil](https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área), realizada com os dados de 2016 do INEP, foi feito um estudo local utilizando [dados abertos da UFRN](http:/dados.ufrn.br).
 
 Uma parte da análise resume-se a identificar os padrões de estudantes com base nas áreas de conhecimento. Uma das bases usadas é a de discentes, que contém os dados do status (ativo, concluído, trancado) do curso do estudante, id do curso em que ele está matriculado, a matricula, a raça e o sexo.
 
 O outro dataset é o de cursos, que contém o nome do curso, a modalidade (graduação, doutorado, técnico) e a área de conhecimento na qual o curso se encaixa. 
 
+Para visualizar os gráficos interativos, acesse [este link](https://nbviewer.jupyter.org/github/nymarya/gender-and-race-ufrn/blob/master/genero_e_raca_todos.ipynb#Finalmente,-é-hora-de-juntar-tudo-e-plotar!). Lá, ao passar o mouse por cada ponto é possível visualizar o nome do curso, bem como a taxa de alunas mulheres e de alunos da raça determinada no gráfico. Também é possível usar o slider para mudar o ano analisado.
+
 Os demais estudos podem ser encontrados no [repositório](https://github.com/nymarya/gender-and-race-ufrn).
 
 ## Como está a UFRN hoje?
 
-O primeiro passo foi conferir o cenário atual (2019), com foco em ver quais áreas possuem maior proporção de alunas e de alunos de diferentes raças, além de atentar-se também a essas informações em relação ao curso de Tecnologia da Informação (BTI)
+O primeiro passo foi conferir o cenário atual (2019), com foco em ver quais áreas possuem maior proporção de alunas e de alunos de diferentes raças, além de atentar-se também a essas informações em relação ao curso de Tecnologia da Informação (BTI).
 
 No que diz respeito à presença feminina, os cursos de ciências da saúde e ciências sociais aplicadas são os que possuem mais de metade dos matriculados do sexo feminino. Desses, o que se encontra no topo é Serviço Social, tendo mulheres compondo 90% do total de estudantes.
 
@@ -30,11 +32,9 @@ Como esperado, boa parte dos cursos de engenharia e de ciências exatas possuem 
 
 ![brancos_2019](../images/posts/brancos_2019.jpg)
 
-> Para visualizar os gráficos iterativos, acessar [este link](https://nbviewer.jupyter.org/github/nymarya/gender-and-race-ufrn/blob/master/genero_e_raca_todos.ipynb)
-
 Além disso, boa parte dos cursos que possuem mais de 50% de alunos brancos (metade direita do gráfico) também são da área de engenharias.
 
-Em relação aos estudantes negros, o curso em que possuem a presença mais significativa é Teatro, onde foram 23% dos ingressantes. Em seguida, Música e Dança, respectivamente, foram os que mais receberam alunos negros em 2019. Também é interessante notar que esses cursos, bem como a maioria dos que tem apresentam uma presença de ingressantes negro superior a 10%, também possuem mais de 40% de mulheres.
+Em relação aos estudantes negros, o curso em que eles possuem a presença mais significativa é Teatro, onde foram 23% dos ingressantes. Em seguida, Música e Dança, respectivamente, foram os que mais receberam alunos negros em 2019. Também é interessante notar que esses cursos, bem como a maioria dos que tem apresentam uma presença de ingressantes negro superior a 10%, também possuem mais de 40% de mulheres.
 
 No BTI, estudantes negros foram 6.3% dos matriculados neste ano.
 
@@ -54,25 +54,23 @@ Em 2012, pelos menos 40% dos alunos ingressante de muitos cursos se declaravam b
 
 ![brancos_2012](../images/posts/brancos_2012.jpg)
 
-Já em 2016, pouco cursos possuíam mais de 40% de alunos brancos sendo matriculados, o que é bem contrastante com a situação de 2012. O que não supreende, porém, é que nesse grupo os cursos de engenharia e ciências exatas se mostram mais presente, comparando a outros áreas. O cenário em que engenharia e exatas são as áreas onde a proporção de mulheres é menor também não mudou muito, na verdade parece até ter piorado, possuindo ainda menos alunas.
+Já em 2016, pouco cursos possuíam mais de 40% de alunos brancos sendo matriculados, o que é bem contrastante com a situação de 2012. O que não supreende, porém, é que nesse grupo seleto os cursos de engenharia e ciências exatas se mostram mais presentes, comparando a outras áreas. O cenário em que engenharia e exatas são as áreas onde a proporção de mulheres é menor também não mudou muito, levando-se em consideração que neste momento possuem ainda menos alunas.
 
 ![brancos_2016](../images/posts/brancos_2016.jpg)
 
-No ano de 2019, a distribuição de alunos brancos muda novamente, assumindo um padrão mais parecido com 2012, apesar de agora terem bem menos cursos com alunos brancos serem 60% a 80% dos estudantes de algum curso.
+No ano de 2019, a distribuição de alunos brancos muda novamente, assumindo um padrão mais parecido com 2012, apesar de agora serem observados bem menos cursos com alunos brancos sendo 60% dos estudantes ingressantes.
 
 Tanto em 2019 como em 2016, apenas um curso de exatas possui uma turma de ingressantes com proporção de 50% ou mais de mulheres.
 
 ![brancos_2019](../images/posts/brancos_2019.jpg)
 
-No curso de Tecnologia da Informação, cujos dados não existem em 2012 devido à data de criação do curso, a proporção de mulheres ingressantes varia entre 9% e 15%, sendo de 9.74% em 2019, como citado anteriormente.
+No curso de Tecnologia da Informação, cujos dados não existem em 2012 devido à data de criação do curso, a proporção de mulheres ingressantes varia entre 9% e 15% ao longo dos anos, com a taxa de 9.74% em 2019, como citado anteriormente.
 
 ## Como estamos em relação ao Brasil?
 
 Para poder comparar com os resultados encontrados pelo Nexo Jornal, foram analisados os dados de alunos que ingressaram em 2016 e estão com status de "ativo" ou "concluído".
 
-Uma semelhança é o fato de os cursos de engenharias e exatas apresentarem poucos negros e poucas mulheres,  
-
-Algo que chama a atenção é a presença significativa de negros em Gestão de Cooperativas.
+O fato de os cursos de engenharias e exatas apresentarem poucos negros e poucas mulheres, por exemplo, estão de acordo com a situação observada no cenário nacional. No entanto, algo que chama a atenção é a presença considerável de negros em Gestão de Cooperativas.
 
 ![negros_2016](../images/posts/negros_2016.png)
 
@@ -82,16 +80,10 @@ Enquanto na UFRN os cursos com mais alunos ingressantes indígenas são Ciência
 
 ## Considerações finais
 
-Apesar de alguns avanços em relação à presença de alunas mulheres na UFRN, a falta de diversidade no que diz respeito a raça ainda é alarmante, principalmente pelo fato de o número de cursos com proporção maior de alunos brancos ter aumentado nos últimos anos.
+Apesar de alguns avanços em relação à presença de alunas mulheres na UFRN, a falta de diversidade no que diz respeito a raça ainda é alarmante, principalmente pelo fato de o número de cursos com proporção maior de alunos brancos ter aumentado nos últimos anos, atingindo taxas próximas à época antes do sistema de cota ser implantado.
 
-Isso evidencia a importância de movimentos e comunidades como PyLadies e [AfroPython](https://afropython.org) em Natal, bem como outros que possam atrair pessoas ainda mais diversas para a UFRN, como aqueles de origem oriental e indígenas.
+Isso evidencia a importância de movimentos e comunidades como PyLadies, [Women in Engineering](https://www.instagram.com/wie.ufrn/?hl=pt-br), [Women Tech Makers](https://www.instagram.com/wtmnatal/) e [AfroPython](https://afropython.org) em Natal, bem como outros que possam atrair pessoas ainda mais diversas para a UFRN, como aqueles de origem oriental e indígenas.
 
 Até a próxima!
-
-
-
-
-
-
 
 
