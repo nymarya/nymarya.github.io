@@ -8,7 +8,17 @@ layout: compress
 <body id="posts" class="inner-post-page">
 
     <div class="block-left">
+        
       <div class="content">
+        <div style="position:absolute; bottom: -10px; top:0; left:-30px; right:0">
+        <button class="pull-right" onclick="closeNav()"
+                style="background: rgb(255,255,255,0); border-color: rgb(255,255,255,0)">
+          <i class="material-icons pull-right" style="color: white; font-size: 40px">
+              menu
+              </i>
+          </button>
+        </div>
+          
         <div class="post-title-section">
           <div class="section-line">Posts <em>/</em></div>
           <h1 class="section-title">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>
@@ -19,14 +29,21 @@ layout: compress
               {% endunless %}
             {% endfor %}
           </ul>
-          <div class="section-line reverse"><a href="{{ site.url}}/posts">Back to posts</a> <em>/</em></div>
+          <div class="section-line reverse"><a href="{{ site.url}}/posts"><i class="material-icons">
+            arrow_back
+            </i>Voltar para posts</a> <em>/</em></div>
         </div>
       </div>
     </div>
 
     <div class="block-right">
-      <div class="share-buttons">
-        {% include share.html %}
+      <div style="display: none" id="menu-right">
+        <button class="pull-right" style="background: rgb(255,255,255,0); border-color: rgb(255,255,255,0)"
+        onclick="openNav()">
+          <i class="material-icons pull-right" style="color: black; font-size: 40px">
+              menu
+              </i>
+        </button>
       </div>
       <a href="{{ site.url }}" title="home" class="home-icon"></a>
       <a title="projects" class="projects-menu-icon">
