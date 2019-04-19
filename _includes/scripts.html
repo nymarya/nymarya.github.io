@@ -17,14 +17,14 @@
 <script type="text/javascript">
   /* Set the width of the sidebar to 250px (show it) */
   function openNav() {
-    $('div.block-left').show("drop", 100);
+    $('div.block-left').show();
     $('.block-right').css('width', '60%');
     $('#menu-right').hide();
   }
 
   /* Set the width of the sidebar to 0 (hide it) */
   function closeNav() {
-    $('div.block-left').toggle("drop", 100);
+    $('div.block-left').hide();
     $('.block-right').css('width', '100%');
     $('#menu-right').show();
   }
