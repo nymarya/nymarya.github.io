@@ -40,6 +40,8 @@ No BTI, estudantes negros foram 6.3% dos matriculados neste ano.
 
 ![negros_2019](../images/posts/negros_2019.png)
 
+{% include gender_and_race/negros2019.html %}
+
 Ao analisar os ingressantes de 2019 que se declaram como pardos, vemos que, dos (poucos) cursos nos quais esses alunos são pelo menos 50%, uma parte considerável são das áreas de ciências sociais aplicadas e ciências exatas e da terra.
 
 ![pardos_2019](../images/posts/pardos_2019.jpg)
@@ -48,21 +50,26 @@ Uma observação interessante é a de que boa parte dos cursos nos quais ao meno
 
 ![pardos_2019_40](../images/posts/pardos_2019_40.jpg)
 
+{% include gender_and_race/pardos2019.html %}
+
 ## O que mudou?
 
 Em 2012, pelos menos 40% dos alunos ingressante de muitos cursos se declaravam brancos. E isso acontecia em todas as áres de conhecimento, com exceção de ciências agrárias. Além disso, as alunas mulheres eram menos de um terço basicamente em algumas engenharias e cursos de ciências exatas e da terra. Em todos os cursos de exatas, mulheres são menos de 50% dos alunos matriculados. 
 
 ![brancos_2012](../images/posts/brancos_2012.jpg)
+{% include gender_and_race/brancos2012.html %}
 
 Já em 2016, pouco cursos possuíam mais de 40% de alunos brancos sendo matriculados, o que é bem contrastante com a situação de 2012. O que não supreende, porém, é que nesse grupo seleto os cursos de engenharia e ciências exatas se mostram mais presentes, comparando a outras áreas. O cenário em que engenharia e exatas são as áreas onde a proporção de mulheres é menor também não mudou muito, levando-se em consideração que neste momento possuem ainda menos alunas.
 
 ![brancos_2016](../images/posts/brancos_2016.jpg)
+{% include gender_and_race/brancos2016.html %}
 
 No ano de 2019, a distribuição de alunos brancos muda novamente, assumindo um padrão mais parecido com 2012, apesar de agora serem observados bem menos cursos com alunos brancos sendo 60% dos estudantes ingressantes.
 
 Tanto em 2019 como em 2016, apenas um curso de exatas possui uma turma de ingressantes com proporção de 50% ou mais de mulheres.
 
 ![brancos_2019](../images/posts/brancos_2019.jpg)
+{% include gender_and_race/brancos2019.html %}
 
 No curso de Tecnologia da Informação, cujos dados não existem em 2012 devido à data de criação do curso, a proporção de mulheres ingressantes varia entre 9% e 15% ao longo dos anos, com a taxa de 9.74% em 2019, como citado anteriormente.
 
@@ -85,5 +92,3 @@ Apesar de alguns avanços em relação à presença de alunas mulheres na UFRN, 
 Isso evidencia a importância de movimentos e comunidades como PyLadies, [Women in Engineering](https://www.instagram.com/wie.ufrn/?hl=pt-br), [Women Tech Makers](https://www.instagram.com/wtmnatal/) e [AfroPython](https://afropython.org) em Natal, bem como outros que possam atrair pessoas ainda mais diversas para a UFRN, como aqueles de origem oriental e indígenas.
 
 Até a próxima!
-
-

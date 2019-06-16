@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>my plot</title>
+      
+      
+        
+          
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css" type="text/css" />
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="eec946c2-1c00-46b1-9cfc-8e733de37b04" data-root-id="12179"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="12558">
+          {"cc2ec016-c5c3-434b-ada3-aa7395100fad":{"roots":{"references":[{"attributes":{"children":[{"id":"12136","subtype":"Figure","type":"Plot"},{"id":"12136","subtype":"Figure","type":"Plot"}]},"id":"12179","type":"Column"},{"attributes":{},"id":"12148","type":"BasicTicker"},{"attributes":{},"id":"12452","type":"Selection"},{"attributes":{"dimension":1,"ticker":{"id":"12153","type":"BasicTicker"}},"id":"12156","type":"Grid"},{"attributes":{},"id":"12145","type":"LinearScale"},{"attributes":{"fill_alpha":{"value":0.8},"fill_color":{"field":"area","transform":{"id":"1007","type":"CategoricalColorMapper"}},"line_color":{"field":"area","transform":{"id":"1007","type":"CategoricalColorMapper"}},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"12164","type":"Circle"},{"attributes":{"items":[{"id":"12174","type":"LegendItem"}],"location":"center"},"id":"12175","type":"Legend"},{"attributes":{"axis_label":"Porcentagem de alunos de origem oriental no curso","formatter":{"id":"12169","type":"BasicTickFormatter"},"ticker":{"id":"12148","type":"BasicTicker"}},"id":"12147","type":"LinearAxis"},{"attributes":{"items":[{"id":"12174","type":"LegendItem"}],"visible":false},"id":"12173","type":"Legend"},{"attributes":{},"id":"12171","type":"BasicTickFormatter"},{"attributes":{},"id":"12451","type":"UnionRenderers"},{"attributes":{"callback":null,"tooltips":[["curso","@curso"],["amarelos","@x%"],["mulheres","@y%"]]},"id":"12157","type":"HoverTool"},{"attributes":{"callback":null,"data":{"area":["Ci\u00eancias Sociais Aplicadas","Outra","Engenharias","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Humanas","Ci\u00eancias Humanas","Ci\u00eancias Humanas","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias da Sa\u00fade","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Agr\u00e1rias","Engenharias","Engenharias","Engenharias","Engenharias","Ci\u00eancias Biol\u00f3gicas","Engenharias","Engenharias","Engenharias","Engenharias","Ci\u00eancias Exatas e da Terra","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Ci\u00eancias Exatas e da Terra","Ci\u00eancias da Sa\u00fade","Lingu\u00edstica, Letras e Artes","Ci\u00eancias da Sa\u00fade","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Humanas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Humanas","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Humanas","Ci\u00eancias Humanas","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Exatas e da Terra","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Exatas e da Terra","Lingu\u00edstica, Letras e Artes","Ci\u00eancias da Sa\u00fade","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Exatas e da Terra","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Exatas e da Terra","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Agr\u00e1rias"],"curso":["ADMINISTRA\u00c7\u00c3O","AN\u00c1LISE E DESENVOLVIMENTO DE SISTEMAS","ARQUITETURA E URBANISMO","ARTES VISUAIS","BIBLIOTECONOMIA","BIOMEDICINA","CI\u00caNCIA DA COMPUTA\u00c7\u00c3O","CI\u00caNCIAS ATUARIAIS","CI\u00caNCIAS BIOL\u00d3GICAS","CI\u00caNCIAS CONT\u00c1BEIS","CI\u00caNCIAS E TECNOLOGIA","CI\u00caNCIAS ECON\u00d4MICAS","CI\u00caNCIAS SOCIAIS","COMUNICA\u00c7\u00c3O SOCIAL - AUDIOVISUAL","COMUNICA\u00c7\u00c3O SOCIAL- PUBLICIDADE E PROPAGANDA","DAN\u00c7A","DESIGN","DIREITO","ECOLOGIA","EDUCA\u00c7\u00c3O F\u00cdSICA","ENFERMAGEM","ENGENHARIA AGRON\u00d4MICA","ENGENHARIA AMBIENTAL","ENGENHARIA BIOM\u00c9DICA","ENGENHARIA CIVIL","ENGENHARIA DE ALIMENTOS","ENGENHARIA DE AQUICULTURA","ENGENHARIA DE COMPUTA\u00c7\u00c3O","ENGENHARIA DE MATERIAIS","ENGENHARIA DE PETR\u00d3LEO","ENGENHARIA DE PRODU\u00c7\u00c3O","ENGENHARIA DE SOFTWARE","ENGENHARIA DE TELECOMUNICA\u00c7\u00d5ES","ENGENHARIA EL\u00c9TRICA","ENGENHARIA FLORESTAL","ENGENHARIA MECATR\u00d4NICA","ENGENHARIA MEC\u00c2NICA","ENGENHARIA QU\u00cdMICA","ENGENHARIA T\u00caXTIL","ESTAT\u00cdSTICA","FARM\u00c1CIA","FILOSOFIA","FISIOTERAPIA","FONOAUDIOLOGIA","F\u00cdSICA","GEOF\u00cdSICA","GEOGRAFIA","GEOLOGIA","GEST\u00c3O DE POL\u00cdTICAS P\u00daBLICAS","GEST\u00c3O HOSPITALAR","HIST\u00d3RIA","JORNALISMO","LETRAS - FRANC\u00caS","LETRAS - INGL\u00caS","LETRAS - L\u00cdNGUA ESPANHOLA","LETRAS - L\u00cdNGUA PORTUGUESA","LETRAS - L\u00cdNGUA PORTUGUESA E LIBRAS","MATEM\u00c1TICA","MEDICINA","METEOROLOGIA","M\u00daSICA","NUTRI\u00c7\u00c3O","ODONTOLOGIA","PEDAGOGIA","PSICOLOGIA","QU\u00cdMICA","QU\u00cdMICA DO PETR\u00d3LEO","SA\u00daDE COLETIVA","SERVI\u00c7O SOCIAL","SISTEMAS DE INFORMA\u00c7\u00c3O","TEATRO","TECNOLOGIA DA INFORMA\u00c7\u00c3O","TURISMO","ZOOTECNIA"],"x":[0.0,0.0,0.0,0.0,0.0,1.7857142857142858,0.0,0.0,0.7633587786259542,0.0,0.11389521640091116,1.4492753623188406,0.0,0.0,2.3529411764705883,0.0,0.0,0.8264462809917356,0.0,1.2195121951219512,0.0,0.0,1.6129032258064515,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.247191011235955,0.0,0.0,0.0,0.0,3.4482758620689653,0.0,0.0,0.0,0.0,1.2195121951219512,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.3888888888888888,1.7857142857142858,0.0,0.0,0.0,0.0,0.0,0.0,1.2987012987012987,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.3787878787878788,0.0,0.0],"y":[52.38095238095238,14.814814814814815,69.04761904761905,58.333333333333336,61.81818181818182,64.28571428571429,25.0,34.78260869565217,54.19847328244275,44.13145539906103,21.52619589977221,26.08695652173913,41.77215189873418,38.57142857142857,45.88235294117647,65.38461538461539,63.41463414634146,42.14876033057851,61.111111111111114,32.926829268292686,83.84615384615384,37.5,61.29032258064516,42.5531914893617,28.846153846153847,41.37931034482759,44.827586206896555,18.75,60.526315789473685,35.714285714285715,35.95505617977528,7.142857142857143,15.384615384615385,16.049382716049383,42.10526315789474,20.689655172413794,16.666666666666668,34.0,47.61904761904762,45.45454545454545,56.09756097560975,51.06382978723404,72.63157894736842,83.78378378378379,23.076923076923077,46.666666666666664,49.31506849315068,24.137931034482758,63.63636363636363,73.41772151898734,42.48366013071895,60.0,57.142857142857146,48.0,75.0,69.64285714285714,79.48717948717949,24.761904761904763,36.36363636363637,36.36363636363637,25.757575757575758,69.56521739130434,68.83116883116882,82.43243243243244,73.33333333333333,42.2680412371134,59.09090909090909,66.66666666666667,93.97590361445783,14.705882352941176,50.0,14.015151515151516,72.36842105263158,64.28571428571429]},"selected":{"id":"12452","type":"Selection"},"selection_policy":{"id":"12451","type":"UnionRenderers"}},"id":"12162","type":"ColumnDataSource"},{"attributes":{"ticker":{"id":"12148","type":"BasicTicker"}},"id":"12151","type":"Grid"},{"attributes":{"callback":null,"end":100},"id":"12141","type":"Range1d"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"12157","type":"HoverTool"},{"id":"12158","type":"SaveTool"}]},"id":"12159","type":"Toolbar"},{"attributes":{"factors":["Ci\u00eancias Sociais Aplicadas","Outra","Engenharias","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Humanas","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Agr\u00e1rias"],"palette":["#3288bd","#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f"]},"id":"1007","type":"CategoricalColorMapper"},{"attributes":{"callback":null,"end":100},"id":"12139","type":"Range1d"},{"attributes":{},"id":"12153","type":"BasicTicker"},{"attributes":{"source":{"id":"12162","type":"ColumnDataSource"}},"id":"12167","type":"CDSView"},{"attributes":{"axis_label":"Porcentagem de mulheres no curso","formatter":{"id":"12171","type":"BasicTickFormatter"},"ticker":{"id":"12153","type":"BasicTicker"}},"id":"12152","type":"LinearAxis"},{"attributes":{"text":"RELA\u00c7\u00c3O ENTRE RA\u00c7A/COR E G\u00caNERO NOS CURSOS EM 2018"},"id":"12137","type":"Title"},{"attributes":{"label":{"field":"area"},"renderers":[{"id":"12166","type":"GlyphRenderer"}]},"id":"12174","type":"LegendItem"},{"attributes":{"below":[{"id":"12147","type":"LinearAxis"}],"center":[{"id":"12151","type":"Grid"},{"id":"12156","type":"Grid"},{"id":"12173","type":"Legend"}],"left":[{"id":"12152","type":"LinearAxis"}],"plot_height":400,"renderers":[{"id":"12166","type":"GlyphRenderer"}],"right":[{"id":"12175","type":"Legend"}],"title":{"id":"12137","type":"Title"},"toolbar":{"id":"12159","type":"Toolbar"},"x_range":{"id":"12139","type":"Range1d"},"x_scale":{"id":"12143","type":"LinearScale"},"y_range":{"id":"12141","type":"Range1d"},"y_scale":{"id":"12145","type":"LinearScale"}},"id":"12136","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"12169","type":"BasicTickFormatter"},{"attributes":{},"id":"12158","type":"SaveTool"},{"attributes":{},"id":"12143","type":"LinearScale"},{"attributes":{"data_source":{"id":"12162","type":"ColumnDataSource"},"glyph":{"id":"12164","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"12165","type":"Circle"},"selection_glyph":null,"view":{"id":"12167","type":"CDSView"}},"id":"12166","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"12165","type":"Circle"}],"root_ids":["12179"]},"title":"Bokeh Application","version":"1.1.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('12558').textContent;
+                  var render_items = [{"docid":"cc2ec016-c5c3-434b-ada3-aa7395100fad","roots":{"12179":"eec946c2-1c00-46b1-9cfc-8e733de37b04"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>

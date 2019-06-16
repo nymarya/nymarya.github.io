@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>my plot</title>
+      
+      
+        
+          
+        <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.css" type="text/css" />
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-1.1.0.min.js"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="3fc5fced-8c9f-46d2-bd2d-d43d1a747097" data-root-id="10931"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="11289">
+          {"2e152c4b-17c3-427b-b73f-9bfa3701a35f":{"roots":{"references":[{"attributes":{"children":[{"id":"10888","subtype":"Figure","type":"Plot"},{"id":"10888","subtype":"Figure","type":"Plot"}]},"id":"10931","type":"Column"},{"attributes":{"dimension":1,"ticker":{"id":"10905","type":"BasicTicker"}},"id":"10908","type":"Grid"},{"attributes":{},"id":"11183","type":"Selection"},{"attributes":{},"id":"10910","type":"SaveTool"},{"attributes":{"callback":null,"tooltips":[["curso","@curso"],["amarelos","@x%"],["mulheres","@y%"]]},"id":"10909","type":"HoverTool"},{"attributes":{},"id":"10905","type":"BasicTicker"},{"attributes":{"below":[{"id":"10899","type":"LinearAxis"}],"center":[{"id":"10903","type":"Grid"},{"id":"10908","type":"Grid"},{"id":"10925","type":"Legend"}],"left":[{"id":"10904","type":"LinearAxis"}],"plot_height":400,"renderers":[{"id":"10918","type":"GlyphRenderer"}],"right":[{"id":"10927","type":"Legend"}],"title":{"id":"10889","type":"Title"},"toolbar":{"id":"10911","type":"Toolbar"},"x_range":{"id":"10891","type":"Range1d"},"x_scale":{"id":"10895","type":"LinearScale"},"y_range":{"id":"10893","type":"Range1d"},"y_scale":{"id":"10897","type":"LinearScale"}},"id":"10888","subtype":"Figure","type":"Plot"},{"attributes":{"axis_label":"Porcentagem de mulheres no curso","formatter":{"id":"10923","type":"BasicTickFormatter"},"ticker":{"id":"10905","type":"BasicTicker"}},"id":"10904","type":"LinearAxis"},{"attributes":{"callback":null,"end":100},"id":"10891","type":"Range1d"},{"attributes":{},"id":"10895","type":"LinearScale"},{"attributes":{"fill_alpha":{"value":0.8},"fill_color":{"field":"area","transform":{"id":"1007","type":"CategoricalColorMapper"}},"line_color":{"field":"area","transform":{"id":"1007","type":"CategoricalColorMapper"}},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"10916","type":"Circle"},{"attributes":{},"id":"10897","type":"LinearScale"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"line_alpha":{"value":0.1},"line_color":{"value":"#1f77b4"},"size":{"units":"screen","value":10},"x":{"field":"x"},"y":{"field":"y"}},"id":"10917","type":"Circle"},{"attributes":{},"id":"10900","type":"BasicTicker"},{"attributes":{"callback":null,"data":{"area":["Ci\u00eancias Sociais Aplicadas","Outra","Engenharias","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Humanas","Ci\u00eancias Humanas","Ci\u00eancias Humanas","Ci\u00eancias Humanas","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias da Sa\u00fade","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Agr\u00e1rias","Engenharias","Engenharias","Engenharias","Engenharias","Ci\u00eancias Biol\u00f3gicas","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Engenharias","Ci\u00eancias Exatas e da Terra","Ci\u00eancias da Sa\u00fade","Lingu\u00edstica, Letras e Artes","Ci\u00eancias da Sa\u00fade","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Humanas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Humanas","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Humanas","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Humanas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Exatas e da Terra","Lingu\u00edstica, Letras e Artes","Ci\u00eancias da Sa\u00fade","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Exatas e da Terra","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Exatas e da Terra","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Sociais Aplicadas","Ci\u00eancias Agr\u00e1rias"],"curso":["ADMINISTRA\u00c7\u00c3O","AN\u00c1LISE E DESENVOLVIMENTO DE SISTEMAS","ARQUITETURA E URBANISMO","ARTES VISUAIS","BIBLIOTECONOMIA","BIOMEDICINA","CI\u00caNCIAS ATUARIAIS","CI\u00caNCIAS BIOL\u00d3GICAS","CI\u00caNCIAS CONT\u00c1BEIS","CI\u00caNCIAS E TECNOLOGIA","CI\u00caNCIAS ECON\u00d4MICAS","CI\u00caNCIAS SOCIAIS","COMUNICA\u00c7\u00c3O SOCIAL","COMUNICA\u00c7\u00c3O SOCIAL - AUDIOVISUAL","COMUNICA\u00c7\u00c3O SOCIAL- PUBLICIDADE E PROPAGANDA","DAN\u00c7A","DESIGN","DIREITO","ECOLOGIA","EDUCA\u00c7\u00c3O F\u00cdSICA","ENFERMAGEM","ENGENHARIA AGRON\u00d4MICA","ENGENHARIA AMBIENTAL","ENGENHARIA BIOM\u00c9DICA","ENGENHARIA CIVIL","ENGENHARIA DE ALIMENTOS","ENGENHARIA DE AQUICULTURA","ENGENHARIA DE COMPUTA\u00c7\u00c3O","ENGENHARIA DE MATERIAIS","ENGENHARIA DE PETR\u00d3LEO","ENGENHARIA DE PRODU\u00c7\u00c3O","ENGENHARIA DE TELECOMUNICA\u00c7\u00d5ES","ENGENHARIA EL\u00c9TRICA","ENGENHARIA FLORESTAL","ENGENHARIA MECATR\u00d4NICA","ENGENHARIA MEC\u00c2NICA","ENGENHARIA QU\u00cdMICA","ENGENHARIA T\u00caXTIL","ESTAT\u00cdSTICA","FARM\u00c1CIA","FILOSOFIA","FISIOTERAPIA","FONOAUDIOLOGIA","F\u00cdSICA","GEOF\u00cdSICA","GEOGRAFIA","GEOLOGIA","GEST\u00c3O DE POL\u00cdTICAS P\u00daBLICAS","GEST\u00c3O HOSPITALAR","HIST\u00d3RIA","LETRAS - INGL\u00caS","LETRAS - L\u00cdNGUA ESPANHOLA","LETRAS - L\u00cdNGUA PORTUGUESA","LETRAS - L\u00cdNGUA PORTUGUESA E LIBRAS","LICENCIATURA EM CI\u00caNCIAS SOCIAIS","MATEM\u00c1TICA","MEDICINA","METEOROLOGIA","M\u00daSICA","NUTRI\u00c7\u00c3O","ODONTOLOGIA","PEDAGOGIA","PSICOLOGIA","QU\u00cdMICA","QU\u00cdMICA DO PETR\u00d3LEO","SA\u00daDE COLETIVA","SERVI\u00c7O SOCIAL","SISTEMAS DE INFORMA\u00c7\u00c3O","TEATRO","TECNOLOGIA DA INFORMA\u00c7\u00c3O","TURISMO","ZOOTECNIA"],"x":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.47393364928909953,3.4482758620689653,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.7142857142857143,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"y":[20.0,22.22222222222222,71.05263157894737,61.904761904761905,63.63636363636363,51.724137931034484,30.0,54.02298850574713,44.91525423728814,26.724137931034484,32.0,41.935483870967744,52.63157894736842,43.75,52.38095238095238,65.0,68.96551724137932,44.07582938388626,65.51724137931035,36.170212765957444,81.92771084337349,31.57894736842105,51.42857142857143,40.0,24.096385542168676,41.1764705882353,28.571428571428573,10.526315789473685,59.25925925925926,42.30769230769231,36.666666666666664,0.0,16.666666666666668,50.0,15.789473684210526,14.52991452991453,40.0,57.142857142857146,9.090909090909092,62.18487394957983,37.5,64.17910447761194,82.6086956521739,24.0,33.333333333333336,42.857142857142854,27.272727272727273,56.52173913043478,84.61538461538461,37.755102040816325,60.0,70.58823529411765,64.61538461538461,100.0,37.5,27.77777777777778,45.714285714285715,69.23076923076923,19.607843137254903,79.16666666666667,59.09090909090909,80.0,77.5,46.42857142857143,57.142857142857146,66.66666666666667,86.36363636363636,9.523809523809524,33.333333333333336,14.728682170542635,67.85714285714286,81.48148148148148]},"selected":{"id":"11183","type":"Selection"},"selection_policy":{"id":"11182","type":"UnionRenderers"}},"id":"10914","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"10914","type":"ColumnDataSource"},"glyph":{"id":"10916","type":"Circle"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"10917","type":"Circle"},"selection_glyph":null,"view":{"id":"10919","type":"CDSView"}},"id":"10918","type":"GlyphRenderer"},{"attributes":{"label":{"field":"area"},"renderers":[{"id":"10918","type":"GlyphRenderer"}]},"id":"10926","type":"LegendItem"},{"attributes":{"factors":["Ci\u00eancias Sociais Aplicadas","Outra","Engenharias","Lingu\u00edstica, Letras e Artes","Ci\u00eancias Biol\u00f3gicas","Ci\u00eancias Exatas e da Terra","Ci\u00eancias Humanas","Ci\u00eancias da Sa\u00fade","Ci\u00eancias Agr\u00e1rias"],"palette":["#3288bd","#66c2a5","#abdda4","#e6f598","#ffffbf","#fee08b","#fdae61","#f46d43","#d53e4f"]},"id":"1007","type":"CategoricalColorMapper"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"10909","type":"HoverTool"},{"id":"10910","type":"SaveTool"}]},"id":"10911","type":"Toolbar"},{"attributes":{"source":{"id":"10914","type":"ColumnDataSource"}},"id":"10919","type":"CDSView"},{"attributes":{},"id":"11182","type":"UnionRenderers"},{"attributes":{"text":"RELA\u00c7\u00c3O ENTRE RA\u00c7A/COR E G\u00caNERO NOS CURSOS EM 2015"},"id":"10889","type":"Title"},{"attributes":{"callback":null,"end":100},"id":"10893","type":"Range1d"},{"attributes":{},"id":"10921","type":"BasicTickFormatter"},{"attributes":{"ticker":{"id":"10900","type":"BasicTicker"}},"id":"10903","type":"Grid"},{"attributes":{},"id":"10923","type":"BasicTickFormatter"},{"attributes":{"axis_label":"Porcentagem de alunos de origem oriental no curso","formatter":{"id":"10921","type":"BasicTickFormatter"},"ticker":{"id":"10900","type":"BasicTicker"}},"id":"10899","type":"LinearAxis"},{"attributes":{"items":[{"id":"10926","type":"LegendItem"}],"location":"center"},"id":"10927","type":"Legend"},{"attributes":{"items":[{"id":"10926","type":"LegendItem"}],"visible":false},"id":"10925","type":"Legend"}],"root_ids":["10931"]},"title":"Bokeh Application","version":"1.1.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('11289').textContent;
+                  var render_items = [{"docid":"2e152c4b-17c3-427b-b73f-9bfa3701a35f","roots":{"10931":"3fc5fced-8c9f-46d2-bd2d-d43d1a747097"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
