@@ -184,21 +184,24 @@ forte do partido contra a mesma.
 
 ### NOVO
 
-O grafo do NOVO difere dos demais, sem conter palavras comuns como "brasil", "estado", "governo", 
-e, surpreendentemente, "reforma" ou "previdencia", como seria esperado do partido que defende 
+O grafo do NOVO difere dos demais, sem conter palavras comuns como "estado" e "governo", 
+mas apresenta "reforma" e "previdencia", como seria esperado do partido que defende 
 a reforma.
 
 ![NOVO](../images/posts/graph_novo.png)
 
-No entanto, é interessante ver que assuntos como saneamento básico e impostos parecem ser os temas
+É interessante ver que assuntos como renda e déficit são temas
 que o deputados do NOVO mais gostam de citar e discutir.
 
 ### PDT
 
-A clique obtida a partir dos discursos do PDT traz os termos mais comuns da clique do PSL e 
-do PT.po
+A clique obtida a partir dos discursos do PDT  é a que mais se diferencia 
+sem conter nenhuma das palavras comuns aos anteriores.
 
 ![PDT](../images/posts/graph_pdt.png)
+
+É curioso aparecerem nomes próprios como "flavio" e "geovania", além dos termos como 
+"discurso", "pedido", "comunicacao" e "registro".
 
 ## Considerações finais
 
