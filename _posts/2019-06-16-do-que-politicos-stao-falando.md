@@ -11,7 +11,7 @@ tags:
 ---
 
 Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
-atualizado é monitorar o que eles dizem em seus discursos no congresso.
+atualizado é monitorar o que eles dizem em seus discursos na Câmara.
 
 Para a nossa sorte, a [API  da câmara de deputados](https://dadosabertos.camara.leg.br/swagger/api.html) disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme [este artigo](https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3) sobre análise de redes a fim de medir 
 viés em discursos.
@@ -101,7 +101,7 @@ vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC,decode_erro
  e ao acessar `vec_alphanumeric.vocabulary_` temos acesso a um dicionário no qual cada chave é um conjunto de palavras e 
  o seu valor representa o número de ocorrências no texto.
  
- O grafo é gerado usando a biblioteca [NetworkX](). O método responsável por sua criação recebe um par (chave, valor) do 
+ O grafo é gerado usando a biblioteca [NetworkX](https://networkx.github.io). O método responsável por sua criação recebe um par (chave, valor) do 
  dicionário criado pelo CountVectorizer e da chave extrai todas as palavras, 
  criando um nó para cada. Depois, forma pares dessas palavras e cria uma aresta para cada par com o peso sendo o valor recebido na entrada. 
  Se a aresta já existir, seu  peso é somado à frequência da frase. 
@@ -145,7 +145,7 @@ vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC,decode_erro
    return G
 ```
 
-A função `norm` é usada para evitar repetiões causadas por palavras no plural ou algumas conjugações de verbos.
+A função `norm` é usada para evitar repetições causadas por palavras no plural ou algumas conjugações de verbos.
 
 Com isso, obtemos nossos lindos grafos que serão analisados na próxima seção.
 
@@ -184,9 +184,19 @@ forte do partido contra a mesma.
 
 ### NOVO
 
+O grafo do NOVO difere dos demais, sem conter palavras comuns como "brasil", "estado", "governo", 
+e, surpreendentemente, "reforma" ou "previdencia", como seria esperado do partido que defende 
+a reforma.
+
 ![NOVO](../images/posts/graph_novo.png)
 
+No entanto, é interessante ver que assuntos como saneamento básico e impostos parecem ser os temas
+que o deputados do NOVO mais gostam de citar e discutir.
+
 ### PDT
+
+A clique obtida a partir dos discursos do PDT traz os termos mais comuns da clique do PSL e 
+do PT.po
 
 ![PDT](../images/posts/graph_pdt.png)
 
