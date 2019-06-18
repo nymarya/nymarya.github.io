@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Do que os políticos estão falando?"
-image: "posts/graph_pt.png"
+image: "images/posts/graph_pt.png"
 categories:
  - Edge Case
 tags:
