@@ -10,10 +10,10 @@ tags:
  - python
 ---
 
-Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter atualizado é monitorar o que eles dizem em seu dizem no congresso.
+Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
+atualizado é monitorar o que eles dizem em seus discursos no congresso.
 
-Para a nossa sorte, a [API  da câmara de deputados](https://dadosabertos.camara.leg.br/swagger/api.html) disponibiliza discursos dos deputados. Para usar esses textos,  
-podemos usar a teoria de grafos, conforme [este artigo](https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3) sobre análise de redes a fim de medir 
+Para a nossa sorte, a [API  da câmara de deputados](https://dadosabertos.camara.leg.br/swagger/api.html) disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme [este artigo](https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3) sobre análise de redes a fim de medir 
 viés em discursos.
 
 O código utilizado para esta análise pode ser encontrado neste [repositório](https://github.com/nymarya/political-speeches-networks).
@@ -195,4 +195,5 @@ forte do partido contra a mesma.
 ## Links
 
 [Curso do Datacamp sobre análise de redes](https://www.datacamp.com/courses/network-analysis-in-python-part-1)
+
 Até a próxima!
