@@ -56,7 +56,9 @@ Criado o dataset, é hora de tratar os dados. A característica mais importante 
 uma introdução do locutor, como nos exemplos abaixo:
 
 > O SR. ABOU ANNI (PSL - SP. Sem revisão do orador.) -
-> 
+
+
+
 > DISCURSO NA ÍNTEGRA ENCAMINHADO PELO SR. DEPUTADO BILAC PINTO.\r\n\r\n
 
 Para remover esses textos que não trazem relevância para o estudo, usamos algumas funções do `pandas`. Para o primeiro caso, 
@@ -95,7 +97,8 @@ nesta lista e não se tornam nós de um grafo.
 A classe é instânciada como abaixo:
 
 ```python
-vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC,decode_error='replace' ,
+vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC, 
+                                   decode_error='replace',
                                    stop_words=STOP_WORDS, ngram_range=(2,5),
                                    encoding='latin1', strip_accents='unicode')
 ```
@@ -208,6 +211,10 @@ sem conter nenhuma das palavras comuns aos anteriores.
 "discurso", "pedido", "comunicacao" e "registro".
 
 ## Considerações finais
+
+Como qualquer estudante de ciência da computação nota em algum ponto de sua trajetória acadêmica, os grafos possuem as mais variadas aplicações. Neste caso, serviu para trazer palavras-chave dos discursos dos deputados entre janeiro e junho de 2019.
+
+Com poucas métricas, já foi possível notar como os temas educação e reforma da previdência movimentaram a câmara nesses primeiros 6 meses, levando-se em consideração os 4 partidos analisados. Isso serve de estímulo para usar grafos, além de outras técnicas, para promover o monitoramento das ações dos políticos, estimulando, assim, a participação da população brasileira.
 
 ## Links
 
