@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Do que os políticos estão falando?"
-image: "images/posts/graph_pt.png"
+image: "https://nymarya.github.io/images/posts/graph_psl.png"
 categories:
  - Edge Case
 tags:
@@ -34,18 +34,18 @@ O retorno desta consulta é um json que contém a chave `transcricao`. Seu valor
 
 ```python
  speeches = []
- 
+
  total = len(deputies)
  # Create a dictionary that contains
  # id, speech, party, state
  for i, dep in enumerate(deputies):
-   
+
    # Get all speechs given by the current deputy
    query = 'https://dadosabertos.camara.leg.br/api/v2/deputados/'+str(dep[0])+\
            '/discursos?dataInicio=2019-01-01&dataFim=2019-06-11&ordenarPor=dataHoraInicio&ordem=ASC'
    response = requests.get(query)
    speech_json = response.json()
-   
+
    # Add each speech to the list
    speeches += [[ dep[0], speech['transcricao'], dep[1], dep[2] ] for speech in speech_json['dados']]
 ```
@@ -56,7 +56,7 @@ Criado o dataset, é hora de tratar os dados. A característica mais importante 
 uma introdução do locutor, como nos exemplos abaixo:
 
 > O SR. ABOU ANNI (PSL - SP. Sem revisão do orador.) -
-
+> 
 > DISCURSO NA ÍNTEGRA ENCAMINHADO PELO SR. DEPUTADO BILAC PINTO.\r\n\r\n
 
 Para remover esses textos que não trazem relevância para o estudo, usamos algumas funções do `pandas`. Para o primeiro caso, 
@@ -73,8 +73,8 @@ entre duas palavras indica que elas aparecem no mesmo contexto.
 O que é contexto para nós? Bem, dada uma frase, cada palavra que a compõe é agrupada com suas vizinhas em grupos de 2 e 5 
 palavras. Por exemplo, a frase 
 
- > Olhos de cigana oblíqua e dissimulada
-  
+> Olhos de cigana oblíqua e dissimulada
+
 seria dividida em
 
 > [Olhos de ], [de cigana], [cigana oblíqua], [oblíqua e], [e dissimulada], [ Olhos de cigana oblíqua e ], [de cigana oblíqua e dissimulada]
@@ -93,45 +93,47 @@ não tem significado ao serem analisadas sozinhas. Sendo assim, muitos verbos, s
 nesta lista e não se tornam nós de um grafo.
 
 A classe é instânciada como abaixo:
+
 ```python
 vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC,decode_error='replace' ,
                                    stop_words=STOP_WORDS, ngram_range=(2,5),
                                    encoding='latin1', strip_accents='unicode')
 ```
+
  e ao acessar `vec_alphanumeric.vocabulary_` temos acesso a um dicionário no qual cada chave é um conjunto de palavras e 
  o seu valor representa o número de ocorrências no texto.
- 
+
  O grafo é gerado usando a biblioteca [NetworkX](https://networkx.github.io). O método responsável por sua criação recebe um par (chave, valor) do 
  dicionário criado pelo CountVectorizer e da chave extrai todas as palavras, 
  criando um nó para cada. Depois, forma pares dessas palavras e cria uma aresta para cada par com o peso sendo o valor recebido na entrada. 
  Se a aresta já existir, seu  peso é somado à frequência da frase. 
- 
- ```python
+
+```python
  def generate_graph(vocabulary):
-   
+
    # Create a undirected graph
    G = nx.Graph()
-   
+
    # Iterate over each item of the vocabulary
    for phrase, frequency in vocabulary.items():
      # Get words in the phrase
      words = phrase.split()
-     
+
      # Using only tokens of length 2 or 5
      if len(words) not in [2,5]:
        continue
-     
+
      words_norm = [norm(word) for word in words if is_important(word) ]
      # Extract unique words in the phrase
      words_unique = list(set(words_norm))
-     
+
      # Create a node if it does not exists already
      G.add_nodes_from(words_unique)
-     
+
      # Form combinations of 2 from the words
      # which will be a edge
      pair = combinations(words_unique, 2) 
-     
+
      for word1, word2 in pair:
        edge = (word1, word2)
        # Increments weight of edge
@@ -141,7 +143,7 @@ vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC,decode_erro
          G.edges[word1, word2]['weight'] += frequency
        else:
          G.add_weighted_edges_from([(word1, word2, frequency)])
- 
+
    return G
 ```
 
@@ -157,6 +159,8 @@ Os conceitos utilizados para extrais informações são os de cliques e centrali
 de nós que são totalmente conectados entre si. É um conceito geralmente usado para representar um grupo (de pessoas) no qual 
 todas se conhecem, que aqui usamos para detectar um grupo de palavras que aparecem no mesmo contexto.
 
+Já a centralidade é uma medida que ajuda a identificar nós importantes no grafo. Usamos a centralidade de grau, que mede o número de ligações (arestas) que incidem em um nó. Como estamos lidando com um grafo não direcionado, esse número é o mesmo número de arestas que estão ligadas ao nó. Esse indicador é usado para colorir cada nó dos grafos abaixos, gerados com a biblioteca [nxviz](https://nxviz.readthedocs.io/en/latest/modules.html).
+
 ### PSL
 
 A clique que obtemos com o grafo gerado com discursos de deputados do PSL comprova a intuição que temos 
@@ -170,14 +174,14 @@ reforma da previdência, que pode justificar o nó "reforma" neste grafo.
 
 ### PT
 
-Já analisando o discurso do PT, na maior clique aparecem termos como educação, direito, social
-que são diretamente ligada às principais pautas do partido.
+Já analisando o discurso do PT, na maior clique aparecem termos como educação, direito, social e saúde
+que são diretamente ligados às principais pautas do partido.
 
 ![PT](../images/posts/graph_pt.png)
 
 É esperado também a presença de "defesa", visto que "em defesa da educação" é uma frase frequentemente 
 usada para falar das greves e protestos contra os ~~cortes~~ contigenciamentos das verbas para 
-a educação. Isso também pode justificar a presença da palavra "ministro".
+a educação. Isso também pode justificar a presença da palavra "ministro", que foi muito criticado por falta de comunicação e por suas decisões.
 
 O tema de reforma da previdência também aparece neste grafo, o que não surpreende dada a posição 
 forte do partido contra a mesma.
@@ -207,6 +211,10 @@ sem conter nenhuma das palavras comuns aos anteriores.
 
 ## Links
 
-[Curso do Datacamp sobre análise de redes](https://www.datacamp.com/courses/network-analysis-in-python-part-1)
+[Curso do Datacamp sobre análise de redes (inglês)](https://www.datacamp.com/courses/network-analysis-in-python-part-1)
+
+[Verbete sobre cliques (inglês)](https://en.wikipedia.org/wiki/Clique_(graph_theory))
+
+[Verbete sobre centralidade](https://pt.wikipedia.org/wiki/Centralidade)
 
 Até a próxima!
