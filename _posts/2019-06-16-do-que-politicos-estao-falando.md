@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Do que os políticos estão falando?"
-image: "https://nymarya.github.io/images/posts/graph_psl.png"
+image: "../images/posts/graph_psl.png"
 categories:
  - Edge Case
 tags:
