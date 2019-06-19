@@ -1,12 +1,213 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-16T22:22:27-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/analise/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/analise</id><content type="html" xml:base="http://localhost:4000/analise/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter atualizado é monitorar o que eles dizem em seu dizem no congresso.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-18T22:29:03-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/do-que-politicos-estao-falando/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/do-que-politicos-estao-falando</id><content type="html" xml:base="http://localhost:4000/do-que-politicos-estao-falando/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
+atualizado é monitorar o que eles dizem em seus discursos na Câmara.&lt;/p&gt;
 
-&lt;p&gt;Para a nossa sorte, a &lt;a href=&quot;https://dadosabertos.camara.leg.br/swagger/api.html&quot;&gt;API  da câmara de deputados&lt;/a&gt; disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme &lt;a href=&quot;https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3&quot;&gt;este artigo&lt;/a&gt; sobre análise de redes a fim de medir viẽs em discursos.&lt;/p&gt;
+&lt;p&gt;Para a nossa sorte, a &lt;a href=&quot;https://dadosabertos.camara.leg.br/swagger/api.html&quot;&gt;API  da câmara de deputados&lt;/a&gt; disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme &lt;a href=&quot;https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3&quot;&gt;este artigo&lt;/a&gt; sobre análise de redes a fim de medir 
+viés em discursos.&lt;/p&gt;
 
-&lt;h2 id=&quot;dados-dados-dados&quot;&gt;Dados, dados, dados&lt;/h2&gt;
+&lt;p&gt;O código utilizado para esta análise pode ser encontrado neste &lt;a href=&quot;https://github.com/nymarya/political-speeches-networks&quot;&gt;repositório&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;dos-dados-aos-grafos&quot;&gt;Dos dados aos grafos&lt;/h2&gt;
+
+&lt;p&gt;Tudo se inicia importação dos dados. Com o auxílio da biblioteca &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;requests&lt;/a&gt; do Python, podemos consultar os discursos de cada deputados
+através da url &lt;code class=&quot;highlighter-rouge&quot;&gt;deputados\{id}\discursos&lt;/code&gt;. Os ids dos deputados, bem como o partido e  foram recuperados consultando a url &lt;code class=&quot;highlighter-rouge&quot;&gt;deputados&lt;/code&gt;. Para definir um limite de 
+discursos utilizados, filtramos apenas os que aconteceram este ano adicionando os parâmetros &lt;code class=&quot;highlighter-rouge&quot;&gt;dataInicio=2019-01-01&lt;/code&gt; e&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;dataFim=2019-06-11&lt;/code&gt;. Finalmente, ordenamos pelo horário de início do discurso. No fim, teremos uma consulta assim:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; query = 'https://dadosabertos.camara.leg.br/api/v2/deputados/'+str(dep[0])+\
+           '/discursos?dataInicio=2019-01-01&amp;amp;dataFim=2019-06-11&amp;amp;ordenarPor=dataHoraInicio&amp;amp;ordem=ASC'
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;O retorno desta consulta é um json que contém a chave &lt;code class=&quot;highlighter-rouge&quot;&gt;transcricao&lt;/code&gt;. Seu valor é justamente o discurso em si.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;speeches&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+
+ &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deputies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;c1&quot;&gt;# Create a dictionary that contains
+&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# id, speech, party, state
+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dep&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;deputies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+   &lt;span class=&quot;c1&quot;&gt;# Get all speechs given by the current deputy
+&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;query&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'https://dadosabertos.camara.leg.br/api/v2/deputados/'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;\
+           &lt;span class=&quot;s&quot;&gt;'/discursos?dataInicio=2019-01-01&amp;amp;dataFim=2019-06-11&amp;amp;ordenarPor=dataHoraInicio&amp;amp;ordem=ASC'&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requests&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;speech_json&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+   &lt;span class=&quot;c1&quot;&gt;# Add each speech to the list
+&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;speeches&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;speech&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'transcricao'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;speech&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;speech_json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'dados'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Com isso, podemos montar um dataset que terá informações como id do deputado, discurso, sigla do partido e sigla do estado.&lt;/p&gt;
+
+&lt;p&gt;Criado o dataset, é hora de tratar os dados. A característica mais importante a ser notada nos discursos, é a de que todos tem 
+uma introdução do locutor, como nos exemplos abaixo:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;O SR. ABOU ANNI (PSL - SP. Sem revisão do orador.) -&lt;/p&gt;
+
+  &lt;p&gt;DISCURSO NA ÍNTEGRA ENCAMINHADO PELO SR. DEPUTADO BILAC PINTO.\r\n\r\n&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Para remover esses textos que não trazem relevância para o estudo, usamos algumas funções do &lt;code class=&quot;highlighter-rouge&quot;&gt;pandas&lt;/code&gt;. Para o primeiro caso, 
+a string é dividida pelo símbolo “-“ duas vezes, sendo as duas primeiras substrings obtida ignoradas. Esse processo apaga as
+strings que não seguem o primeiro padrão, sendo então necessário aplicar o tratamento do segundo padrão em uma cópia do dataset 
+e unindo ambos ao final. O segundo tipo de introdução é removida ao dividir a string quando encontrar “\r\n\r\n” e manter 
+apenas a segunda substring. Ao final, ainda é necessário remover todas as ocorrências de “\r”, “\n” e “-“ para a próxima 
+etapa do desenvolvimento.&lt;/p&gt;
+
+&lt;p&gt;A formação dos grafos se dá através do mapeamento das palavras usadas no discurso, sendo a frequência em que elas aparecem no 
+texto o atributo que usaremos para medir sua importância. Cada nó é uma palavra e uma aresta 
+entre duas palavras indica que elas aparecem no mesmo contexto.&lt;/p&gt;
+
+&lt;p&gt;O que é contexto para nós? Bem, dada uma frase, cada palavra que a compõe é agrupada com suas vizinhas em grupos de 2 e 5 
+palavras. Por exemplo, a frase&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Olhos de cigana oblíqua e dissimulada&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;seria dividida em&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;[Olhos de ], [de cigana], [cigana oblíqua], [oblíqua e], [e dissimulada], [ Olhos de cigana oblíqua e ], [de cigana oblíqua e dissimulada]&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Esse método é o mesmo explicado no artigo mencionado na seção anterior e isso que tratamos como o contexto de uma palavra.&lt;/p&gt;
+
+&lt;p&gt;Depois de divididas, são contadas quantas vezes cada conjunto ocorre no texto. Para isso, usamos a classe 
+&lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer&quot;&gt;CountVectorizer&lt;/a&gt; do 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;scikit-learn&lt;/code&gt;, que recebe uma expressão regular na forma &lt;code class=&quot;highlighter-rouge&quot;&gt;['[A-Za-z]+(?=\\s+)']&lt;/code&gt; para recuperar todas as palavras além dos espaços 
+em branco que a seguem. Ao receber o parâmetro &lt;code class=&quot;highlighter-rouge&quot;&gt;ngram_range=(2,5)&lt;/code&gt;, a própria função gera todas as combinações de palavras vizinhas 
+de tamanho de 2 a 5 (sendo as de tamanho 3 e 4 removidas para formar o grafo nos próximos passos).&lt;/p&gt;
+
+&lt;p&gt;Um parâmetro essencial que deve ser passado é o &lt;code class=&quot;highlighter-rouge&quot;&gt;stop_words&lt;/code&gt;, que define quais palavras devem ser ignoradas neste processo. 
+Conjunções e artigos, por exemplo, são elementos que se repetem muito na língua portuguesa, o que traria uma frequência muito alta para estas palavras que 
+não tem significado ao serem analisadas sozinhas. Sendo assim, muitos verbos, saudações, advérbios e outros elementos são adicionados 
+nesta lista e não se tornam nós de um grafo.&lt;/p&gt;
+
+&lt;p&gt;A classe é instânciada como abaixo:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;vec_alphanumeric&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountVectorizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token_pattern&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TOKENS_ALPHANUMERIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;decode_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'replace'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                                   &lt;span class=&quot;n&quot;&gt;stop_words&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STOP_WORDS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ngram_range&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+                                   &lt;span class=&quot;n&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'latin1'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strip_accents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'unicode'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;e ao acessar &lt;code class=&quot;highlighter-rouge&quot;&gt;vec_alphanumeric.vocabulary_&lt;/code&gt; temos acesso a um dicionário no qual cada chave é um conjunto de palavras e 
+ o seu valor representa o número de ocorrências no texto.&lt;/p&gt;
+
+&lt;p&gt;O grafo é gerado usando a biblioteca &lt;a href=&quot;https://networkx.github.io&quot;&gt;NetworkX&lt;/a&gt;. O método responsável por sua criação recebe um par (chave, valor) do 
+ dicionário criado pelo CountVectorizer e da chave extrai todas as palavras, 
+ criando um nó para cada. Depois, forma pares dessas palavras e cria uma aresta para cada par com o peso sendo o valor recebido na entrada. 
+ Se a aresta já existir, seu  peso é somado à frequência da frase.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;generate_graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;vocabulary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+   &lt;span class=&quot;c1&quot;&gt;# Create a undirected graph
+&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;G&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Graph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+   &lt;span class=&quot;c1&quot;&gt;# Iterate over each item of the vocabulary
+&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phrase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vocabulary&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+     &lt;span class=&quot;c1&quot;&gt;# Get words in the phrase
+&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phrase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+     &lt;span class=&quot;c1&quot;&gt;# Using only tokens of length 2 or 5
+&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
+
+     &lt;span class=&quot;n&quot;&gt;words_norm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;norm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;words&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is_important&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+     &lt;span class=&quot;c1&quot;&gt;# Extract unique words in the phrase
+&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;words_unique&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words_norm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+     &lt;span class=&quot;c1&quot;&gt;# Create a node if it does not exists already
+&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_nodes_from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words_unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+     &lt;span class=&quot;c1&quot;&gt;# Form combinations of 2 from the words
+&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# which will be a edge
+&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;combinations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;words_unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; 
+
+     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word2&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pair&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+       &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+       &lt;span class=&quot;c1&quot;&gt;# Increments weight of edge
+&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;# if it already exists
+&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;# Otherwise, create a new edge
+&lt;/span&gt;       &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edge&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edges&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'weight'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt;
+       &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+         &lt;span class=&quot;n&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_weighted_edges_from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
+
+   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;G&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A função &lt;code class=&quot;highlighter-rouge&quot;&gt;norm&lt;/code&gt; é usada para evitar repetições causadas por palavras no plural ou algumas conjugações de verbos.&lt;/p&gt;
+
+&lt;p&gt;Com isso, obtemos nossos lindos grafos que serão analisados na próxima seção.&lt;/p&gt;
+
+&lt;h2 id=&quot;ligando-os-pontos&quot;&gt;Ligando os pontos&lt;/h2&gt;
+
+&lt;p&gt;Neste estudo, são usados todos os discursos de deputados do mesmo partido. Os partidos gerados são PSL, PT, PDT e NOVO.&lt;/p&gt;
+
+&lt;p&gt;Os conceitos utilizados para extrais informações são os de cliques e centralidade. Uma clique nada mais é do que um subconjunto 
+de nós que são totalmente conectados entre si. É um conceito geralmente usado para representar um grupo (de pessoas) no qual 
+todas se conhecem, que aqui usamos para detectar um grupo de palavras que aparecem no mesmo contexto.&lt;/p&gt;
+
+&lt;p&gt;Já a centralidade é uma medida que ajuda a identificar nós importantes no grafo. Usamos a centralidade de grau, que mede o número de ligações (arestas) que incidem em um nó. Como estamos lidando com um grafo não direcionado, esse número é o mesmo número de arestas que estão ligadas ao nó. Esse indicador é usado para colorir cada nó dos grafos abaixos, gerados com a biblioteca &lt;a href=&quot;https://nxviz.readthedocs.io/en/latest/modules.html&quot;&gt;nxviz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;psl&quot;&gt;PSL&lt;/h3&gt;
+
+&lt;p&gt;A clique que obtemos com o grafo gerado com discursos de deputados do PSL comprova a intuição que temos 
+ao pensar nesse partido. Segurança e polícia, que são temas que associamos às promessas dos 
+candidatos, estão presentes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/posts/graph_psl.png&quot; alt=&quot;PSL&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Uma pauta recorrente no congresso e cuja aparição era esperada é a 
+reforma da previdência, que pode justificar o nó “reforma” neste grafo.&lt;/p&gt;
+
+&lt;h3 id=&quot;pt&quot;&gt;PT&lt;/h3&gt;
+
+&lt;p&gt;Já analisando o discurso do PT, na maior clique aparecem termos como educação, direito, social e saúde
+que são diretamente ligados às principais pautas do partido.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/posts/graph_pt.png&quot; alt=&quot;PT&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;É esperado também a presença de “defesa”, visto que “em defesa da educação” é uma frase frequentemente 
+usada para falar das greves e protestos contra os &lt;del&gt;cortes&lt;/del&gt; contigenciamentos das verbas para 
+a educação. Isso também pode justificar a presença da palavra “ministro”, que foi muito criticado por falta de comunicação e por suas decisões.&lt;/p&gt;
+
+&lt;p&gt;O tema de reforma da previdência também aparece neste grafo, o que não surpreende dada a posição 
+forte do partido contra a mesma.&lt;/p&gt;
+
+&lt;h3 id=&quot;novo&quot;&gt;NOVO&lt;/h3&gt;
+
+&lt;p&gt;O grafo do NOVO difere dos demais, sem conter palavras comuns como “estado” e “governo”, 
+mas apresenta “reforma” e “previdencia”, como seria esperado do partido que defende 
+a reforma.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/posts/graph_novo.png&quot; alt=&quot;NOVO&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;É interessante ver que assuntos como renda e déficit são temas
+que o deputados do NOVO mais gostam de citar e discutir.&lt;/p&gt;
+
+&lt;h3 id=&quot;pdt&quot;&gt;PDT&lt;/h3&gt;
+
+&lt;p&gt;A clique obtida a partir dos discursos do PDT  é a que mais se diferencia 
+sem conter nenhuma das palavras comuns aos anteriores.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/posts/graph_pdt.png&quot; alt=&quot;PDT&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;É curioso aparecerem nomes próprios como “flavio” e “geovania”, além dos termos como 
+“discurso”, “pedido”, “comunicacao” e “registro”.&lt;/p&gt;
 
 &lt;h2 id=&quot;considerações-finais&quot;&gt;Considerações finais&lt;/h2&gt;
 
-&lt;p&gt;Até a próxima!&lt;/p&gt;</content><author><name></name></author><category term="networks" /><category term="data science" /><category term="python" /><summary type="html">Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter atualizado é monitorar o que eles dizem em seu dizem no congresso.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://files.realpython.com/media/Intermediate_Watermarked.9f8c0a24bde7.jpg" /></entry><entry><title type="html">Análise de gênero e raça na UFRN</title><link href="http://localhost:4000/analise-genero-cor-na-ufrn/" rel="alternate" type="text/html" title="Análise de gênero e raça na UFRN" /><published>2019-04-17T00:00:00-03:00</published><updated>2019-04-17T00:00:00-03:00</updated><id>http://localhost:4000/analise-genero-cor-na-ufrn</id><content type="html" xml:base="http://localhost:4000/analise-genero-cor-na-ufrn/">&lt;p&gt;Baseando-se em uma reportagem do Nexo Jornal que analisou a &lt;a href=&quot;https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área&quot;&gt;distribuição de gênero e raça de estudantes do ensino superior no Brasil&lt;/a&gt;, realizada com os dados de 2016 do INEP, foi feito um estudo local utilizando &lt;a href=&quot;http:/dados.ufrn.br&quot;&gt;dados abertos da UFRN&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.datacamp.com/courses/network-analysis-in-python-part-1&quot;&gt;Curso do Datacamp sobre análise de redes (inglês)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Clique_(graph_theory)&quot;&gt;Verbete sobre cliques (inglês)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Centralidade&quot;&gt;Verbete sobre centralidade&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Até a próxima!&lt;/p&gt;</content><author><name></name></author><category term="networks" /><category term="data science" /><category term="python" /><summary type="html">Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter atualizado é monitorar o que eles dizem em seus discursos na Câmara.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nymarya.github.io/images/posts/graph_psl.png" /></entry><entry><title type="html">Análise de gênero e raça na UFRN</title><link href="http://localhost:4000/analise-genero-cor-na-ufrn/" rel="alternate" type="text/html" title="Análise de gênero e raça na UFRN" /><published>2019-04-17T00:00:00-03:00</published><updated>2019-04-17T00:00:00-03:00</updated><id>http://localhost:4000/analise-genero-cor-na-ufrn</id><content type="html" xml:base="http://localhost:4000/analise-genero-cor-na-ufrn/">&lt;p&gt;Baseando-se em uma reportagem do Nexo Jornal que analisou a &lt;a href=&quot;https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área&quot;&gt;distribuição de gênero e raça de estudantes do ensino superior no Brasil&lt;/a&gt;, realizada com os dados de 2016 do INEP, foi feito um estudo local utilizando &lt;a href=&quot;http:/dados.ufrn.br&quot;&gt;dados abertos da UFRN&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Uma parte da análise resume-se a identificar os padrões de estudantes com base nas áreas de conhecimento. Uma das bases usadas é a de discentes, que contém os dados do status (ativo, concluído, trancado) do curso do estudante, id do curso em que ele está matriculado, a matricula, a raça e o sexo.&lt;/p&gt;
 
