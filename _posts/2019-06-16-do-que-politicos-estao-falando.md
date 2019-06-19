@@ -21,7 +21,7 @@ O código utilizado para esta análise pode ser encontrado neste [repositório](
 ## Dos dados aos grafos
 
 Tudo se inicia na importação dos dados. Com o auxílio da biblioteca [requests](https://pypi.org/project/requests/) do Python, podemos consultar os discursos de cada deputados
-através da url `deputados\{id}\discursos`. Os ids dos deputados, bem como seus repectivos partidos, foram recuperados consultando a url `deputados`. Para definir um limite de 
+através da url `deputados\{id}\discursos`. Os ids dos deputados, bem como seus respectivos partidos, foram recuperados consultando a url `deputados`. Para definir um limite de 
 discursos utilizados, filtramos apenas os que aconteceram este ano adicionando os parâmetros `dataInicio=2019-01-01` e  
 `dataFim=2019-06-11`. Finalmente, ordenamos pelo horário de início do discurso. No fim, teremos uma consulta assim:
 
