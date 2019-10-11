@@ -1,3 +1,13 @@
+---
+layout: post
+title: "blockchain"
+categories:
+  - Edge Case
+tags:
+  - pt-br
+  - blockchain
+---
+
 # Blockchain
 
 O que é essa blockchain que todo mundo fala? É aquilo que o povo ganha dinheiro? O que tem a ver com mineração? 
