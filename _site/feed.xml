@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-18T22:47:28-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/do-que-politicos-estao-falando/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/do-que-politicos-estao-falando</id><content type="html" xml:base="http://localhost:4000/do-que-politicos-estao-falando/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-11-15T19:20:48-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">CNNS: The convolution</title><link href="http://localhost:4000/cnns-the-convolution/" rel="alternate" type="text/html" title="CNNS: The convolution" /><published>2019-11-15T00:00:00-03:00</published><updated>2019-11-15T00:00:00-03:00</updated><id>http://localhost:4000/cnns-the-convolution</id><content type="html" xml:base="http://localhost:4000/cnns-the-convolution/">&lt;p&gt;This post is the first of a series on deep learning, specifically Convolutional Neural Networks (CNNs), that consists of two theorical posts and one more practical, discussing a particular model. Let’s start with the C of the initials CNN.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Convolution&lt;/strong&gt; is a term used in mathematics for describing the operation on two functions that produces a third function expressing how the shape of one is modified by the other. I always remember one class in which the teacher explained this idea using a very simplistic example. Imagine that you are standing between two stages during a music festival: if you move closer to one or another, you will listen better to one song. If you stay in the middle, the signals are too mixed. This confusion is the convolution in action.&lt;/p&gt;
+
+&lt;h2 id=&quot;talking-images&quot;&gt;Talking images&lt;/h2&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/8b5gDEqjO5BKM/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;First, the basics of images. To the computer, an image is nothing but a matrix of integers. When the picture is b&amp;amp;w, each integer between 0 and 255 represents the luminosity of the pixel. There are two ways of representing RGB figures. The first is a group of 3 integers that composes a pixel, each value representing red, blue, or green value. On another approach, the image with dimensions mxnx3 has one layer for each color.&lt;/p&gt;
+
+&lt;p&gt;In terms of image processing, convolute means executing multiple matrix multiplications between the matrix representing the image and the &lt;a href=&quot;https://en.wikipedia.org/wiki/Kernel_(image_processing)&quot;&gt;mask&lt;/a&gt;. Hence, we can apply several transformation filters, such as edge detection and blurring or sharpening effects.&lt;/p&gt;
+
+&lt;h2 id=&quot;types-of-image-convolution&quot;&gt;Types of image convolution&lt;/h2&gt;
+
+&lt;p&gt;Although a conventional matrix multiplication requires that the number of columns of the 1st matrix must equal the number of rows of the 2nd matrix, the convolution process has no such condition. The kernel’s dimensions don’t need to match the image, as the convolution is not the same as a traditional product. Instead, the operation is repeated successively across the picture, as if it would a sliding window moving over the image.&lt;/p&gt;
+
+&lt;p&gt;Considering that the shapes do not match, there are several types of convolution that result in distinct dimensions. The &lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html&quot;&gt;convolve&lt;/a&gt; method in scipy module presents three modes: &lt;em&gt;full, *with which at the end-points of the operation, the signals do not overlap completely, and boundary effects may occur; *same&lt;/em&gt;, in which the outcome is the same size as the image; and &lt;em&gt;valid&lt;/em&gt;, where the product consists only of those elements that do not rely on the zero-padding.&lt;/p&gt;
+
+&lt;h2 id=&quot;talking-math&quot;&gt;Talking math&lt;/h2&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The operation, as said before, is very similar to standard matrix multiplication. The differences begin with the size of the final matrix. When in the mode &lt;em&gt;full&lt;/em&gt;, the resulting matrix C has the size &lt;em&gt;m&lt;/em&gt; combines the size of the kernel matrix K and the image B. The equation below shows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;m = |K| + |B| - 1&lt;/script&gt;
+
+&lt;p&gt;The values of &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; are obtained by multiplying K and B.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;C(i, j) = \sum_{p=0}^{i+1} \sum_{q=0}^{j+1} K(p,q) B(i - p + 1, j - q + 1)&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; are some positions in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, and the notation &lt;script type=&quot;math/tex&quot;&gt;M(a, b)&lt;/script&gt; denotes the element on the a-th row and b-th.&lt;/p&gt;
+
+&lt;h2 id=&quot;convolute-and-learn&quot;&gt;Convolute and learn&lt;/h2&gt;
+
+&lt;p&gt;The inspiration for inserting the idea of convolution to build a machine learning technique comes from a biological mechanism present in the brain of the mammals. The visual cortex contains groups of neurons called &lt;strong&gt;receptive fields&lt;/strong&gt;, that “&lt;a href=&quot;https://en.wikipedia.org/wiki/Receptive_field&quot;&gt;can elicit neuronal responses when stimulated&lt;/a&gt;”. Receptive fields overlap and repeat between neighboring cells, so they act as local filters over what they receive.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://doi.org/10.1113%2Fjphysiol.1968.sp008455&quot;&gt;study&lt;/a&gt;, that brings information about that region, divides the cells into two types: &lt;em&gt;simple&lt;/em&gt;, that respond to specific patterns from within its receptive field; and &lt;em&gt;complex&lt;/em&gt;, that have larger receptive fields and are insensitive to the exact position of the pattern in the area.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;/h2&gt;
+
+&lt;p&gt;It is important (and so interesting!) to learn about all the steps in the computational learning process, and it is especially powerful to understand the reason why the model was built in a particular way. In the next posts, we will continue to see some theory and then dissect and train a &lt;del&gt;really&lt;/del&gt; deep learning model.&lt;/p&gt;
+
+&lt;h2 id=&quot;further-reading--references&quot;&gt;Further reading &amp;amp; references&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html&quot;&gt;Image processing with OpenCV&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cs231n.github.io/convolutional-networks/&quot;&gt;CS123N&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.nature.com/articles/s42003-018-0110-y&quot;&gt;Activations of DCNNs are aligned with gamma band activty of human visual cortex&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://books.google.com/books?id=8YrxWojxUA4C&amp;amp;pg=PA106&quot;&gt;Brain and the visual perception&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1363130&quot;&gt;Receptive fields of single neurones in the cat’s striate cortex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="networks" /><category term="data science" /><category term="python" /><summary type="html">This post is the first of a series on deep learning, specifically Convolutional Neural Networks (CNNs), that consists of two theorical posts and one more practical, discussing a particular model. Let’s start with the C of the initials CNN.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://i.stack.imgur.com/VC1TX.png" /></entry><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/do-que-politicos-estao-falando/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/do-que-politicos-estao-falando</id><content type="html" xml:base="http://localhost:4000/do-que-politicos-estao-falando/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
 atualizado é monitorar o que eles dizem em seus discursos na Câmara.&lt;/p&gt;
 
 &lt;p&gt;Para a nossa sorte, a &lt;a href=&quot;https://dadosabertos.camara.leg.br/swagger/api.html&quot;&gt;API  da câmara de deputados&lt;/a&gt; disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme &lt;a href=&quot;https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3&quot;&gt;este artigo&lt;/a&gt; sobre análise de redes a fim de medir 
