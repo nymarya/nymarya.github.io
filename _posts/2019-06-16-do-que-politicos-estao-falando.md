@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Do que os políticos estão falando?"
-image: "https://nymarya.github.io/images/posts/graph_psl.png"
+image: "../images/posts/graph_psl.png"
 categories:
  - Edge Case
 tags:
@@ -13,15 +13,15 @@ tags:
 Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
 atualizado é monitorar o que eles dizem em seus discursos na Câmara.
 
-Para a nossa sorte, a [API  da câmara de deputados](https://dadosabertos.camara.leg.br/swagger/api.html) disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme [este artigo](https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3) sobre análise de redes a fim de medir 
-viés em discursos.
+Para a nossa sorte, a [API  da câmara de deputados](https://dadosabertos.camara.leg.br/swagger/api.html) disponibiliza discursos dos deputados. Para examinar esses textos,  podemos usar a teoria de grafos, conforme [este artigo](https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3) sobre análise de redes a fim de medir 
+o viés em discursos.
 
 O código utilizado para esta análise pode ser encontrado neste [repositório](https://github.com/nymarya/political-speeches-networks).
 
 ## Dos dados aos grafos
 
-Tudo se inicia importação dos dados. Com o auxílio da biblioteca [requests](https://pypi.org/project/requests/) do Python, podemos consultar os discursos de cada deputados
-através da url `deputados\{id}\discursos`. Os ids dos deputados, bem como o partido e  foram recuperados consultando a url `deputados`. Para definir um limite de 
+Tudo se inicia na importação dos dados. Com o auxílio da biblioteca [requests](https://pypi.org/project/requests/) do Python, podemos consultar os discursos de cada deputados
+através da url `deputados\{id}\discursos`. Os ids dos deputados, bem como seus respectivos partidos, foram recuperados consultando a url `deputados`. Para definir um limite de 
 discursos utilizados, filtramos apenas os que aconteceram este ano adicionando os parâmetros `dataInicio=2019-01-01` e  
 `dataFim=2019-06-11`. Finalmente, ordenamos pelo horário de início do discurso. No fim, teremos uma consulta assim:
 
@@ -52,7 +52,7 @@ O retorno desta consulta é um json que contém a chave `transcricao`. Seu valor
 
 Com isso, podemos montar um dataset que terá informações como id do deputado, discurso, sigla do partido e sigla do estado.
 
-Criado o dataset, é hora de tratar os dados. A característica mais importante a ser notada nos discursos, é a de que todos tem 
+Criado o dataset, é hora de tratar os dados. A característica mais importante a ser notada nos discursos é a de que todos tem 
 uma introdução do locutor, como nos exemplos abaixo:
 
 > O SR. ABOU ANNI (PSL - SP. Sem revisão do orador.) -
@@ -62,9 +62,9 @@ uma introdução do locutor, como nos exemplos abaixo:
 > DISCURSO NA ÍNTEGRA ENCAMINHADO PELO SR. DEPUTADO BILAC PINTO.\r\n\r\n
 
 Para remover esses textos que não trazem relevância para o estudo, usamos algumas funções do `pandas`. Para o primeiro caso, 
-a string é dividida pelo símbolo "-" duas vezes, sendo as duas primeiras substrings obtida ignoradas. Esse processo apaga as
+a string é dividida pelo símbolo "-" duas vezes, ignorando-se as duas primeiras substrings obtidas. Esse processo apaga as
 strings que não seguem o primeiro padrão, sendo então necessário aplicar o tratamento do segundo padrão em uma cópia do dataset 
-e unindo ambos ao final. O segundo tipo de introdução é removida ao dividir a string quando encontrar "\r\n\r\n" e manter 
+e unir ambos ao final. A segunda forma de introdução é removida ao dividir a string quando encontrar "\r\n\r\n" e manter 
 apenas a segunda substring. Ao final, ainda é necessário remover todas as ocorrências de "\r", "\n" e "-" para a próxima 
 etapa do desenvolvimento.
 
@@ -94,7 +94,7 @@ Conjunções e artigos, por exemplo, são elementos que se repetem muito na lín
 não tem significado ao serem analisadas sozinhas. Sendo assim, muitos verbos, saudações, advérbios e outros elementos são adicionados 
 nesta lista e não se tornam nós de um grafo.
 
-A classe é instânciada como abaixo:
+A classe é instanciada como abaixo:
 
 ```python
 vec_alphanumeric = CountVectorizer(token_pattern=TOKENS_ALPHANUMERIC, 
@@ -156,9 +156,9 @@ Com isso, obtemos nossos lindos grafos que serão analisados na próxima seção
 
 ## Ligando os pontos
 
-Neste estudo, são usados todos os discursos de deputados do mesmo partido. Os partidos gerados são PSL, PT, PDT e NOVO.
+Neste estudo, são usados todos os discursos de deputados de um mesmo partido. Os partidos gerados são PSL, PT, PDT e NOVO.
 
-Os conceitos utilizados para extrais informações são os de cliques e centralidade. Uma clique nada mais é do que um subconjunto 
+Os conceitos utilizados para extrair informações são os de cliques e centralidade. Uma clique nada mais é do que um subconjunto 
 de nós que são totalmente conectados entre si. É um conceito geralmente usado para representar um grupo (de pessoas) no qual 
 todas se conhecem, que aqui usamos para detectar um grupo de palavras que aparecem no mesmo contexto.
 
@@ -202,7 +202,7 @@ que o deputados do NOVO mais gostam de citar e discutir.
 
 ### PDT
 
-A clique obtida a partir dos discursos do PDT  é a que mais se diferencia 
+A clique obtida a partir dos discursos do PDT  é a que mais se diferencia, 
 sem conter nenhuma das palavras comuns aos anteriores.
 
 ![PDT](../images/posts/graph_pdt.png)
@@ -212,9 +212,9 @@ sem conter nenhuma das palavras comuns aos anteriores.
 
 ## Considerações finais
 
-Como qualquer estudante de ciência da computação nota em algum ponto de sua trajetória acadêmica, os grafos possuem as mais variadas aplicações. Neste caso, serviu para trazer palavras-chave dos discursos dos deputados entre janeiro e junho de 2019.
+Como qualquer estudante de ciência da computação nota em algum ponto de sua trajetória acadêmica, os grafos possuem as mais variadas aplicações. Neste caso, serviram para trazer palavras-chave dos discursos dos deputados entre janeiro e junho de 2019.
 
-Com poucas métricas, já foi possível notar como os temas educação e reforma da previdência movimentaram a câmara nesses primeiros 6 meses, levando-se em consideração os 4 partidos analisados. Isso serve de estímulo para usar grafos, além de outras técnicas, para promover o monitoramento das ações dos políticos, estimulando, assim, a participação da população brasileira.
+Com poucas métricas, já foi possível notar como os temas educação e reforma da previdência movimentaram a câmara nesses primeiros 6 meses, levando-se em consideração os 4 partidos analisados. Isso serve de estímulo para usar grafos, além de outras técnicas, para promover o monitoramento das ações dos políticos, incentivando, assim, a participação da população brasileira.
 
 ## Links
 
