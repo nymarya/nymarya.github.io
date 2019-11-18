@@ -1,4 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-06-18T22:47:28-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/do-que-politicos-estao-falando/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/do-que-politicos-estao-falando</id><content type="html" xml:base="http://localhost:4000/do-que-politicos-estao-falando/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-11-17T21:54:00-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">CNNS: A covolução</title><link href="http://localhost:4000/cnns-a-convolucao/" rel="alternate" type="text/html" title="CNNS: A covolução" /><published>2019-11-17T00:00:00-03:00</published><updated>2019-11-17T00:00:00-03:00</updated><id>http://localhost:4000/cnns-a-convolucao</id><content type="html" xml:base="http://localhost:4000/cnns-a-convolucao/">&lt;p&gt;Este é o primeiro post de uma série sobre deep learning, especialmente Redes Neurais Convolucionais (em inglês: Convolutional Neural Networks, ou CNNs) que consiste de dois post teóricos e um mais prático, discorrendo sobre um modelo específico. Vamos começar com o C da sigla em inglês, CNN.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Convolução&lt;/strong&gt; é um termo usado na área da matemática para descrever a operação sobre duas funções que produzem uma terceira função expressando como a primeira é modificada pela outra. Eu sempre me recordo de uma aula na qual o professor explicou esse conceito de uma maneira bem simples. Imagine que você está entre dois palcos durante um festival de música: se você se mover em direção a um ou outro, ouvirá melhor alguma das músicas. Se ficar no meio, os sinais ficam muito misturados. Esta confusão de ruídos é a convolução em ação.&lt;/p&gt;
+
+&lt;h2 id=&quot;sobre-imagens&quot;&gt;Sobre imagens&lt;/h2&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/8b5gDEqjO5BKM/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Primeiro, o básico de imagens. Para o computador, uma imagem não passa de de uma matrix de inteiros. Quando a imagem é em tons de cinza, cada número entre 0 e 255 representa a luminosidade de um pixel. Existem duas maneiras de representar figuras RGB. A primeira é como um grupo de 3 inteiros que compoem um pixel, com cada elemento do trio representando o valor de vermelho, verde e azul, respectivamente. Na outra forma, a imagem possui dimensões mxnx3, tendo uma camada para cada cor.&lt;/p&gt;
+
+&lt;p&gt;Em relação a processamento de imagens, convolucionar significa executar várias multiplicações de matrizes entre a matrix que representa a imagem e a  [máscara](https://en.wikipedia.org/wiki/Kernel_(image_processing). Deste modo, nós podemos aplicar filtros, seja para detecção de bordas, efeitos de blurring ou de sharpening.&lt;/p&gt;
+
+&lt;h2 id=&quot;tipos-de-convolução-de-imagem&quot;&gt;Tipos de convolução de imagem&lt;/h2&gt;
+
+&lt;p&gt;Embora uma multiplicação de matrizes convencional requeira que o número de colunas da primeira matrix seja igual ao número de linhas da segunda matriz, o processo de convolução não possui este tipo de condição. As dimensões do kernel não precisam bater com as da imagem, visto que a convolução não equivale a um produto convecional. Ao invés disso, a operação é realizada sucessivamente sobre a figura, como se fosse uma janela deslizante movendo sobre a imagem.&lt;/p&gt;
+
+&lt;p&gt;Considerando que os formatos não estão adequados, existem tipos de convolução cujos resultos tem dimensões diferentes. O método &lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html&quot;&gt;convolve&lt;/a&gt; do módulo scipy possui três modos: &lt;em&gt;full&lt;/em&gt;, no qual os sinais não se sobrepõe completamente nas bordas da operação e podem acontecer efeitos nas bordas; &lt;em&gt;same&lt;/em&gt;, no qual o resultado tem o mesmo tamanho da imagem; e &lt;em&gt;valid&lt;/em&gt;, onde o product consiste apenas dos elementos que não dependem de zero-padding.&lt;/p&gt;
+
+&lt;h2 id=&quot;sobre-matemática&quot;&gt;Sobre matemática&lt;/h2&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A operação, como dito anteriormente, é muito similiar à multiplicação de matrizes comum. As diferenças começãm com o tamanho da matriz final. No modo &lt;em&gt;full&lt;/em&gt;, a matriz resultante C tem tamanho &lt;em&gt;m&lt;/em&gt; que combina o tamanho da matriz kernel K e a imagem B, conforma a equação abaixo:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;m = |K| + |B| - 1&lt;/script&gt;
+
+&lt;p&gt;Os valores de &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; são obtidos ao multiplicar K e B.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;C(i, j) = \sum_{p=0}^{i+1} \sum_{q=0}^{j+1} K(p,q) B(i - p + 1, j - q + 1)&lt;/script&gt;
+
+&lt;p&gt;onde &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; e &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; são posições em &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, e a notação &lt;script type=&quot;math/tex&quot;&gt;M(a, b)&lt;/script&gt; denota a elemento na a-ésima linha e b-ésima coluna.&lt;/p&gt;
+
+&lt;h2 id=&quot;convolucionar-para-aprender&quot;&gt;Convolucionar para aprender&lt;/h2&gt;
+
+&lt;p&gt;A inspiração de usar a ideia de convolução para construir um algoritmo de aprendizado de máquina vem de um mecanismo biológico encontrado no cérebro de mamíferos. O córtex visual contem grupos de neurônios que são modulados por &lt;strong&gt;campos receptivos&lt;/strong&gt;, que “&lt;a href=&quot;https://en.wikipedia.org/wiki/Receptive_field&quot;&gt;podem provocar reações neurais quando estimuladas&lt;/a&gt;”. Campos receptivos podem se sobrepor e repetir entre células visiznhas, de forma que atuam como filtros locais sobre o que recebem.&lt;/p&gt;
+
+&lt;p&gt;O &lt;a href=&quot;https://doi.org/10.1113%2Fjphysiol.1968.sp008455&quot;&gt;estudo&lt;/a&gt;, que traz informações sobre a região, divide as células em dois tipos: &lt;em&gt;simples&lt;/em&gt;, que reagem a padrões específicos de seu campo receptivo; e &lt;em&gt;complexas&lt;/em&gt;, que tem campos receptivos maiores e não são sensíveis à exata posição de um padrão na área.&lt;/p&gt;
+
+&lt;h2 id=&quot;discussão&quot;&gt;Discussão&lt;/h2&gt;
+
+&lt;p&gt;É importante (além de interessante! ) aprender sobre todos os passos no processo do aprendizado computacional, e é especialmente poderoso enteder a razão pela qual o modelo foi criado de certa maneira. Nos próximos posts, vamos continuar a ver teoria e depois investigar e treinar um modelo de deep learning.
+Até mais!&lt;/p&gt;
+
+&lt;h2 id=&quot;para-saber-mais--referências&quot;&gt;Para saber mais &amp;amp; referências&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html&quot;&gt;Processamento de imagens com OpenCV&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cs231n.github.io/convolutional-networks/&quot;&gt;CS123N&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.nature.com/articles/s42003-018-0110-y&quot;&gt;Activations of DCNNs are aligned with gamma band activty of human visual cortex&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://books.google.com/books?id=8YrxWojxUA4C&amp;amp;pg=PA106&quot;&gt;Brain and the visual perception&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1363130&quot;&gt;Receptive fields of single neurones in the cat’s striate cortex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="deep learning" /><category term="CNN" /><summary type="html">Este é o primeiro post de uma série sobre deep learning, especialmente Redes Neurais Convolucionais (em inglês: Convolutional Neural Networks, ou CNNs) que consiste de dois post teóricos e um mais prático, discorrendo sobre um modelo específico. Vamos começar com o C da sigla em inglês, CNN.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://i.stack.imgur.com/VC1TX.png" /></entry><entry><title type="html">CNNS: The convolution</title><link href="http://localhost:4000/cnns-the-convolution/" rel="alternate" type="text/html" title="CNNS: The convolution" /><published>2019-11-17T00:00:00-03:00</published><updated>2019-11-17T00:00:00-03:00</updated><id>http://localhost:4000/cnns-the-convolution</id><content type="html" xml:base="http://localhost:4000/cnns-the-convolution/">&lt;p&gt;This post is the first of a series on deep learning, specifically Convolutional Neural Networks (CNNs), that consists of two theorical posts and one more practical, discussing a particular model. Let’s start with the C of the initials CNN.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Convolution&lt;/strong&gt; is a term used in mathematics to describing the operation on two functions that produces a third function expressing how the shape of one is modified by the other. I always remember a class in which the teacher explained this idea using a very simplistic example. Imagine that you are standing between two stages during a music festival: if you move closer to one or another, you will listen better to one song. If you stay in the middle, the signals are too mixed. This confusion is the convolution in action.&lt;/p&gt;
+
+&lt;h2 id=&quot;talking-images&quot;&gt;Talking images&lt;/h2&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/8b5gDEqjO5BKM/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;First, the basics of images. To the computer, an image is nothing but a matrix of integers. When the picture is b&amp;amp;w, each integer between 0 and 255 represents the luminosity of the pixel. There are two ways of representing RGB figures. The first is a group of 3 integers that compose a pixel, with each of them representing red, blue, or green value. On another approach, the image with dimensions mxnx3 has one layer for each color.&lt;/p&gt;
+
+&lt;p&gt;In terms of image processing, convolute means executing multiple matrix multiplications between the matrix representing the image and the [mask](https://en.wikipedia.org/wiki/Kernel_(image_processing). Hence, we can apply several transformation filters, such as edge detection, blurring and sharpening effects.&lt;/p&gt;
+
+&lt;h2 id=&quot;types-of-image-convolution&quot;&gt;Types of image convolution&lt;/h2&gt;
+
+&lt;p&gt;Although a conventional matrix multiplication requires that the number of columns of the 1st matrix must equal the number of rows of the 2nd matrix, the convolution process has no such condition. The kernel’s dimensions don’t need to match the image, as the convolution is not the same as a traditional product. Instead, the operation is repeated successively across the picture, as such as a sliding window moving over the image.&lt;/p&gt;
+
+&lt;p&gt;Considering that the shapes do not match, there are several types of convolution that result in distinct dimensions. The &lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html&quot;&gt;convolve&lt;/a&gt; method in the scipy module presents three modes: &lt;em&gt;full&lt;/em&gt;, in which the signals do not overlap completely at the end-points of the operation and boundary effects may occur; &lt;em&gt;same&lt;/em&gt;, in which the outcome is the same size as the image; and &lt;em&gt;valid&lt;/em&gt;, where the product consists only of those elements that do not rely on zero-padding.&lt;/p&gt;
+
+&lt;h2 id=&quot;talking-math&quot;&gt;Talking math&lt;/h2&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The operation, as said before, is very similar to standard matrix multiplication. The differences begin with the size of the final matrix. When in the mode &lt;em&gt;full&lt;/em&gt;, the resulting matrix C has the size &lt;em&gt;m&lt;/em&gt; that combines the size of the kernel matrix K and the image B, as the equation below shows:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;m = |K| + |B| - 1&lt;/script&gt;
+
+&lt;p&gt;The values of &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt; are obtained by multiplying K and B.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;C(i, j) = \sum_{p=0}^{i+1} \sum_{q=0}^{j+1} K(p,q) B(i - p + 1, j - q + 1)&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; are some positions in &lt;script type=&quot;math/tex&quot;&gt;C&lt;/script&gt;, and the notation &lt;script type=&quot;math/tex&quot;&gt;M(a, b)&lt;/script&gt; denotes the element on the a-th row and b-th column.&lt;/p&gt;
+
+&lt;h2 id=&quot;convolute-and-learn&quot;&gt;Convolute and learn&lt;/h2&gt;
+
+&lt;p&gt;The inspiration for using the idea of convolution to build a machine learning technique comes from a biological mechanism present in the brain of mammals. The visual cortex contains groups of neurons that are modulated by &lt;strong&gt;receptive fields&lt;/strong&gt;, that “&lt;a href=&quot;https://en.wikipedia.org/wiki/Receptive_field&quot;&gt;can elicit neuronal responses when stimulated&lt;/a&gt;”. Receptive fields overlap and repeat between neighboring cells, so they act as local filters over what they receive.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://doi.org/10.1113%2Fjphysiol.1968.sp008455&quot;&gt;study&lt;/a&gt;, that brings information about that region, divides the cells into two types: &lt;em&gt;simple&lt;/em&gt;, that respond to specific patterns from within its receptive field; and &lt;em&gt;complex&lt;/em&gt;, that have larger receptive fields and are insensitive to the exact position of the pattern in the area.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;/h2&gt;
+
+&lt;p&gt;It is important (and also interesting!) to learn about all the steps in the computational learning process, and it is especially powerful to understand the reason why the model was built in a particular way. In the next posts, we will continue to see some theory and then dissect and train a &lt;del&gt;really&lt;/del&gt; deep learning model.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+
+&lt;h2 id=&quot;further-reading--references&quot;&gt;Further reading &amp;amp; references&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html&quot;&gt;Image processing with OpenCV&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cs231n.github.io/convolutional-networks/&quot;&gt;CS123N&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.nature.com/articles/s42003-018-0110-y&quot;&gt;Activations of DCNNs are aligned with gamma band activty of human visual cortex&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://books.google.com/books?id=8YrxWojxUA4C&amp;amp;pg=PA106&quot;&gt;Brain and the visual perception&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1363130&quot;&gt;Receptive fields of single neurones in the cat’s striate cortex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="deep learning" /><category term="CNN" /><summary type="html">This post is the first of a series on deep learning, specifically Convolutional Neural Networks (CNNs), that consists of two theorical posts and one more practical, discussing a particular model. Let’s start with the C of the initials CNN.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://i.stack.imgur.com/VC1TX.png" /></entry><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/do-que-politicos-estao-falando/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/do-que-politicos-estao-falando</id><content type="html" xml:base="http://localhost:4000/do-que-politicos-estao-falando/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
 atualizado é monitorar o que eles dizem em seus discursos na Câmara.&lt;/p&gt;
 
 &lt;p&gt;Para a nossa sorte, a &lt;a href=&quot;https://dadosabertos.camara.leg.br/swagger/api.html&quot;&gt;API  da câmara de deputados&lt;/a&gt; disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme &lt;a href=&quot;https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3&quot;&gt;este artigo&lt;/a&gt; sobre análise de redes a fim de medir 
