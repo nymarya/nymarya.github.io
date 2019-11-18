@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "CNNS: A covolução"
+title: "CNNS: A convolução"
 image: "https://i.stack.imgur.com/VC1TX.png"
 categories:
  - Edge Case
