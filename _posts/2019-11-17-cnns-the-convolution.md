@@ -35,7 +35,7 @@ Considering that the shapes do not match, there are several types of convolution
 <img src="https://media.giphy.com/media/26xBI73gWquCBBCDe/giphy.gif">
 </div>
 
-The operation, as said before, is very similar to standard matrix multiplication. The differences begin with the size of the final matrix. When in the mode *full*, the resulting matrix C has the size *m* that combines the size of the kernel matrix K and the image B. The equation below shows:
+The operation, as said before, is very similar to standard matrix multiplication. The differences begin with the size of the final matrix. When in the mode *full*, the resulting matrix C has the size *m* that combines the size of the kernel matrix K and the image B, as the equation below shows:
 
 $$
 m = |K| + |B| - 1
@@ -47,7 +47,7 @@ $$
 C(i, j) = \sum_{p=0}^{i+1} \sum_{q=0}^{j+1} K(p,q) B(i - p + 1, j - q + 1)
 $$
 
-where $$i$$ and $$j$$ are some positions in $$C$$, and the notation $$M(a, b)$$ denotes the element on the a-th row and b-th.
+where $$i$$ and $$j$$ are some positions in $$C$$, and the notation $$M(a, b)$$ denotes the element on the a-th row and b-th column.
 
 ## Convolute and learn
 
@@ -58,6 +58,8 @@ The [study](https://doi.org/10.1113%2Fjphysiol.1968.sp008455), that brings infor
 ## Final thoughts
 
 It is important (and also interesting!) to learn about all the steps in the computational learning process, and it is especially powerful to understand the reason why the model was built in a particular way. In the next posts, we will continue to see some theory and then dissect and train a ~~really~~ deep learning model.
+
+Stay tuned!
 
 ## Further reading & references
 
