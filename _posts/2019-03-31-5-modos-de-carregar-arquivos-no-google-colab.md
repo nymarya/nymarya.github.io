@@ -2,7 +2,7 @@
 layout: post
 title: "5 modos de carregar arquivos no Google Colab"
 categories:
-  - Edge Case
+  - pt-br
 tags:
   - colab
   - data science

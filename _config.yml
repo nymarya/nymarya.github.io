@@ -34,7 +34,7 @@ encoding: "bom|utf-8"
 twitter:            nymaryah
 #facebook:           username
 github:             nymarya
-#stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
+stackoverflow:     11397140/nymarya
 linkedin:          mayradazevedo
 #xing:              username
 #instagram:          username
@@ -55,7 +55,7 @@ linkedin:          mayradazevedo
 # behance:           username
 
 # Gems
-gems:
+plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist

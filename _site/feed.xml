@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-11-17T21:58:56-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">CNNS: A convolução</title><link href="http://localhost:4000/cnns-a-convolucao/" rel="alternate" type="text/html" title="CNNS: A convolução" /><published>2019-11-17T00:00:00-03:00</published><updated>2019-11-17T00:00:00-03:00</updated><id>http://localhost:4000/cnns-a-convolucao</id><content type="html" xml:base="http://localhost:4000/cnns-a-convolucao/">&lt;p&gt;Este é o primeiro post de uma série sobre deep learning, especialmente Redes Neurais Convolucionais (em inglês: Convolutional Neural Networks, ou CNNs) que consiste de dois post teóricos e um mais prático, discorrendo sobre um modelo específico. Vamos começar com o C da sigla em inglês, CNN.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-11T23:03:41-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">CNNS: A convolução</title><link href="http://localhost:4000/cnns-a-convolucao/" rel="alternate" type="text/html" title="CNNS: A convolução" /><published>2019-11-17T00:00:00-03:00</published><updated>2019-11-17T00:00:00-03:00</updated><id>http://localhost:4000/cnns-a-convolucao</id><content type="html" xml:base="http://localhost:4000/cnns-a-convolucao/">&lt;p&gt;Este é o primeiro post de uma série sobre deep learning, especialmente Redes Neurais Convolucionais (em inglês: Convolutional Neural Networks, ou CNNs) que consiste de dois post teóricos e um mais prático, discorrendo sobre um modelo específico. Vamos começar com o C da sigla em inglês, CNN.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Convolução&lt;/strong&gt; é um termo usado na área da matemática para descrever a operação sobre duas funções que produzem uma terceira função expressando como a primeira é modificada pela outra. Eu sempre me recordo de uma aula na qual o professor explicou esse conceito de uma maneira bem simples. Imagine que você está entre dois palcos durante um festival de música: se você se mover em direção a um ou outro, ouvirá melhor alguma das músicas. Se ficar no meio, os sinais ficam muito misturados. Esta confusão de ruídos é a convolução em ação.&lt;/p&gt;
 
@@ -116,15 +116,15 @@ Até mais!&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1363130&quot;&gt;Receptive fields of single neurones in the cat’s striate cortex&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="deep learning" /><category term="CNN" /><summary type="html">This post is the first of a series on deep learning, specifically Convolutional Neural Networks (CNNs), that consists of two theorical posts and one more practical, discussing a particular model. Let’s start with the C of the initials CNN.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://i.stack.imgur.com/VC1TX.png" /></entry><entry><title type="html">Do que os políticos estão falando?</title><link href="http://localhost:4000/do-que-politicos-estao-falando/" rel="alternate" type="text/html" title="Do que os políticos estão falando?" /><published>2019-06-16T00:00:00-03:00</published><updated>2019-06-16T00:00:00-03:00</updated><id>http://localhost:4000/do-que-politicos-estao-falando</id><content type="html" xml:base="http://localhost:4000/do-que-politicos-estao-falando/">&lt;p&gt;Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
 atualizado é monitorar o que eles dizem em seus discursos na Câmara.&lt;/p&gt;
 
-&lt;p&gt;Para a nossa sorte, a &lt;a href=&quot;https://dadosabertos.camara.leg.br/swagger/api.html&quot;&gt;API  da câmara de deputados&lt;/a&gt; disponibiliza discursos dos deputados. Para usar esses textos,  podemos usar a teoria de grafos, conforme &lt;a href=&quot;https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3&quot;&gt;este artigo&lt;/a&gt; sobre análise de redes a fim de medir 
-viés em discursos.&lt;/p&gt;
+&lt;p&gt;Para a nossa sorte, a &lt;a href=&quot;https://dadosabertos.camara.leg.br/swagger/api.html&quot;&gt;API  da câmara de deputados&lt;/a&gt; disponibiliza discursos dos deputados. Para examinar esses textos,  podemos usar a teoria de grafos, conforme &lt;a href=&quot;https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3&quot;&gt;este artigo&lt;/a&gt; sobre análise de redes a fim de medir 
+o viés em discursos.&lt;/p&gt;
 
 &lt;p&gt;O código utilizado para esta análise pode ser encontrado neste &lt;a href=&quot;https://github.com/nymarya/political-speeches-networks&quot;&gt;repositório&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;dos-dados-aos-grafos&quot;&gt;Dos dados aos grafos&lt;/h2&gt;
 
-&lt;p&gt;Tudo se inicia importação dos dados. Com o auxílio da biblioteca &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;requests&lt;/a&gt; do Python, podemos consultar os discursos de cada deputados
-através da url &lt;code class=&quot;highlighter-rouge&quot;&gt;deputados\{id}\discursos&lt;/code&gt;. Os ids dos deputados, bem como o partido e  foram recuperados consultando a url &lt;code class=&quot;highlighter-rouge&quot;&gt;deputados&lt;/code&gt;. Para definir um limite de 
+&lt;p&gt;Tudo se inicia na importação dos dados. Com o auxílio da biblioteca &lt;a href=&quot;https://pypi.org/project/requests/&quot;&gt;requests&lt;/a&gt; do Python, podemos consultar os discursos de cada deputados
+através da url &lt;code class=&quot;highlighter-rouge&quot;&gt;deputados\{id}\discursos&lt;/code&gt;. Os ids dos deputados, bem como seus respectivos partidos, foram recuperados consultando a url &lt;code class=&quot;highlighter-rouge&quot;&gt;deputados&lt;/code&gt;. Para definir um limite de 
 discursos utilizados, filtramos apenas os que aconteceram este ano adicionando os parâmetros &lt;code class=&quot;highlighter-rouge&quot;&gt;dataInicio=2019-01-01&lt;/code&gt; e&lt;br /&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;dataFim=2019-06-11&lt;/code&gt;. Finalmente, ordenamos pelo horário de início do discurso. No fim, teremos uma consulta assim:&lt;/p&gt;
 
@@ -153,7 +153,7 @@ discursos utilizados, filtramos apenas os que aconteceram este ano adicionando o
 
 &lt;p&gt;Com isso, podemos montar um dataset que terá informações como id do deputado, discurso, sigla do partido e sigla do estado.&lt;/p&gt;
 
-&lt;p&gt;Criado o dataset, é hora de tratar os dados. A característica mais importante a ser notada nos discursos, é a de que todos tem 
+&lt;p&gt;Criado o dataset, é hora de tratar os dados. A característica mais importante a ser notada nos discursos é a de que todos tem 
 uma introdução do locutor, como nos exemplos abaixo:&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -165,9 +165,9 @@ uma introdução do locutor, como nos exemplos abaixo:&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Para remover esses textos que não trazem relevância para o estudo, usamos algumas funções do &lt;code class=&quot;highlighter-rouge&quot;&gt;pandas&lt;/code&gt;. Para o primeiro caso, 
-a string é dividida pelo símbolo “-“ duas vezes, sendo as duas primeiras substrings obtida ignoradas. Esse processo apaga as
+a string é dividida pelo símbolo “-“ duas vezes, ignorando-se as duas primeiras substrings obtidas. Esse processo apaga as
 strings que não seguem o primeiro padrão, sendo então necessário aplicar o tratamento do segundo padrão em uma cópia do dataset 
-e unindo ambos ao final. O segundo tipo de introdução é removida ao dividir a string quando encontrar “\r\n\r\n” e manter 
+e unir ambos ao final. A segunda forma de introdução é removida ao dividir a string quando encontrar “\r\n\r\n” e manter 
 apenas a segunda substring. Ao final, ainda é necessário remover todas as ocorrências de “\r”, “\n” e “-“ para a próxima 
 etapa do desenvolvimento.&lt;/p&gt;
 
@@ -201,7 +201,7 @@ Conjunções e artigos, por exemplo, são elementos que se repetem muito na lín
 não tem significado ao serem analisadas sozinhas. Sendo assim, muitos verbos, saudações, advérbios e outros elementos são adicionados 
 nesta lista e não se tornam nós de um grafo.&lt;/p&gt;
 
-&lt;p&gt;A classe é instânciada como abaixo:&lt;/p&gt;
+&lt;p&gt;A classe é instanciada como abaixo:&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;vec_alphanumeric&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountVectorizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token_pattern&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TOKENS_ALPHANUMERIC&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
                                    &lt;span class=&quot;n&quot;&gt;decode_error&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'replace'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -261,9 +261,9 @@ nesta lista e não se tornam nós de um grafo.&lt;/p&gt;
 
 &lt;h2 id=&quot;ligando-os-pontos&quot;&gt;Ligando os pontos&lt;/h2&gt;
 
-&lt;p&gt;Neste estudo, são usados todos os discursos de deputados do mesmo partido. Os partidos gerados são PSL, PT, PDT e NOVO.&lt;/p&gt;
+&lt;p&gt;Neste estudo, são usados todos os discursos de deputados de um mesmo partido. Os partidos gerados são PSL, PT, PDT e NOVO.&lt;/p&gt;
 
-&lt;p&gt;Os conceitos utilizados para extrais informações são os de cliques e centralidade. Uma clique nada mais é do que um subconjunto 
+&lt;p&gt;Os conceitos utilizados para extrair informações são os de cliques e centralidade. Uma clique nada mais é do que um subconjunto 
 de nós que são totalmente conectados entre si. É um conceito geralmente usado para representar um grupo (de pessoas) no qual 
 todas se conhecem, que aqui usamos para detectar um grupo de palavras que aparecem no mesmo contexto.&lt;/p&gt;
 
@@ -307,7 +307,7 @@ que o deputados do NOVO mais gostam de citar e discutir.&lt;/p&gt;
 
 &lt;h3 id=&quot;pdt&quot;&gt;PDT&lt;/h3&gt;
 
-&lt;p&gt;A clique obtida a partir dos discursos do PDT  é a que mais se diferencia 
+&lt;p&gt;A clique obtida a partir dos discursos do PDT  é a que mais se diferencia, 
 sem conter nenhuma das palavras comuns aos anteriores.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;../images/posts/graph_pdt.png&quot; alt=&quot;PDT&quot; /&gt;&lt;/p&gt;
@@ -317,9 +317,9 @@ sem conter nenhuma das palavras comuns aos anteriores.&lt;/p&gt;
 
 &lt;h2 id=&quot;considerações-finais&quot;&gt;Considerações finais&lt;/h2&gt;
 
-&lt;p&gt;Como qualquer estudante de ciência da computação nota em algum ponto de sua trajetória acadêmica, os grafos possuem as mais variadas aplicações. Neste caso, serviu para trazer palavras-chave dos discursos dos deputados entre janeiro e junho de 2019.&lt;/p&gt;
+&lt;p&gt;Como qualquer estudante de ciência da computação nota em algum ponto de sua trajetória acadêmica, os grafos possuem as mais variadas aplicações. Neste caso, serviram para trazer palavras-chave dos discursos dos deputados entre janeiro e junho de 2019.&lt;/p&gt;
 
-&lt;p&gt;Com poucas métricas, já foi possível notar como os temas educação e reforma da previdência movimentaram a câmara nesses primeiros 6 meses, levando-se em consideração os 4 partidos analisados. Isso serve de estímulo para usar grafos, além de outras técnicas, para promover o monitoramento das ações dos políticos, estimulando, assim, a participação da população brasileira.&lt;/p&gt;
+&lt;p&gt;Com poucas métricas, já foi possível notar como os temas educação e reforma da previdência movimentaram a câmara nesses primeiros 6 meses, levando-se em consideração os 4 partidos analisados. Isso serve de estímulo para usar grafos, além de outras técnicas, para promover o monitoramento das ações dos políticos, incentivando, assim, a participação da população brasileira.&lt;/p&gt;
 
 &lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
 
@@ -329,7 +329,7 @@ sem conter nenhuma das palavras comuns aos anteriores.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://pt.wikipedia.org/wiki/Centralidade&quot;&gt;Verbete sobre centralidade&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Até a próxima!&lt;/p&gt;</content><author><name></name></author><category term="networks" /><category term="data science" /><category term="python" /><summary type="html">Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter atualizado é monitorar o que eles dizem em seus discursos na Câmara.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nymarya.github.io/images/posts/graph_psl.png" /></entry><entry><title type="html">Análise de gênero e raça na UFRN</title><link href="http://localhost:4000/analise-genero-cor-na-ufrn/" rel="alternate" type="text/html" title="Análise de gênero e raça na UFRN" /><published>2019-04-17T00:00:00-03:00</published><updated>2019-04-17T00:00:00-03:00</updated><id>http://localhost:4000/analise-genero-cor-na-ufrn</id><content type="html" xml:base="http://localhost:4000/analise-genero-cor-na-ufrn/">&lt;p&gt;Baseando-se em uma reportagem do Nexo Jornal que analisou a &lt;a href=&quot;https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área&quot;&gt;distribuição de gênero e raça de estudantes do ensino superior no Brasil&lt;/a&gt;, realizada com os dados de 2016 do INEP, foi feito um estudo local utilizando &lt;a href=&quot;http:/dados.ufrn.br&quot;&gt;dados abertos da UFRN&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Até a próxima!&lt;/p&gt;</content><author><name></name></author><category term="networks" /><category term="data science" /><category term="python" /><summary type="html">Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter atualizado é monitorar o que eles dizem em seus discursos na Câmara.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/posts/graph_psl.png" /></entry><entry><title type="html">Análise de gênero e raça na UFRN</title><link href="http://localhost:4000/analise-genero-cor-na-ufrn/" rel="alternate" type="text/html" title="Análise de gênero e raça na UFRN" /><published>2019-04-17T00:00:00-03:00</published><updated>2019-04-17T00:00:00-03:00</updated><id>http://localhost:4000/analise-genero-cor-na-ufrn</id><content type="html" xml:base="http://localhost:4000/analise-genero-cor-na-ufrn/">&lt;p&gt;Baseando-se em uma reportagem do Nexo Jornal que analisou a &lt;a href=&quot;https://www.nexojornal.com.br/grafico/2017/12/13/Gênero-e-raça-de-estudantes-do-ensino-superior-no-Brasil-por-curso-e-área&quot;&gt;distribuição de gênero e raça de estudantes do ensino superior no Brasil&lt;/a&gt;, realizada com os dados de 2016 do INEP, foi feito um estudo local utilizando &lt;a href=&quot;http:/dados.ufrn.br&quot;&gt;dados abertos da UFRN&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Uma parte da análise resume-se a identificar os padrões de estudantes com base nas áreas de conhecimento. Uma das bases usadas é a de discentes, que contém os dados do status (ativo, concluído, trancado) do curso do estudante, id do curso em que ele está matriculado, a matricula, a raça e o sexo.&lt;/p&gt;
 

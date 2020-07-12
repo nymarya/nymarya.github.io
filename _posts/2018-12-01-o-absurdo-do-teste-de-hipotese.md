@@ -2,7 +2,7 @@
 layout: post
 title: "O absurdo no teste de hipótese"
 categories:
-  - Edge Case
+  - pt-br
 tags:
   - estatistica
   - matematica

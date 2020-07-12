@@ -3,7 +3,7 @@ layout: post
 title: "CNNS: A convolução"
 image: "https://i.stack.imgur.com/VC1TX.png"
 categories:
- - Edge Case
+ - pt-br
 tags:
  - deep learning
  - CNN

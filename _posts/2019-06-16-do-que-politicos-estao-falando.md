@@ -3,7 +3,7 @@ layout: post
 title: "Do que os políticos estão falando?"
 image: "../images/posts/graph_psl.png"
 categories:
- - Edge Case
+ - pt-br
 tags:
  - networks
  - data science

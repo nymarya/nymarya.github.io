@@ -3,7 +3,7 @@ layout: post
 title: "Análise de gênero e raça na UFRN"
 image: "https://files.realpython.com/media/Intermediate_Watermarked.9f8c0a24bde7.jpg"
 categories:
- - Edge Case
+ - pt-br
 tags:
  - UFRN
  - data science

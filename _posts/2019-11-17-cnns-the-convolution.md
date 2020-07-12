@@ -3,7 +3,7 @@ layout: post
 title: "CNNS: The convolution"
 image: "https://i.stack.imgur.com/VC1TX.png"
 categories:
- - Edge Case
+ - eng
 tags:
  - deep learning
  - CNN
