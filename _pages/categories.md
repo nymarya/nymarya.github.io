@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Tag Archive
-description: "An archive of posts sorted by tag."
+title: Categories Archive
+description: "An archive of posts sorted by categories."
 permalink: /categories.html
 ---
 
