@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-13T19:42:28-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">CNNS: A convolução</title><link href="http://localhost:4000/cnns-a-convolucao/" rel="alternate" type="text/html" title="CNNS: A convolução" /><published>2019-11-17T00:00:00-03:00</published><updated>2019-11-17T00:00:00-03:00</updated><id>http://localhost:4000/cnns-a-convolucao</id><content type="html" xml:base="http://localhost:4000/cnns-a-convolucao/">&lt;p&gt;Este é o primeiro post de uma série sobre deep learning, especialmente Redes Neurais Convolucionais (em inglês: Convolutional Neural Networks, ou CNNs) que consiste de dois post teóricos e um mais prático, discorrendo sobre um modelo específico. Vamos começar com o C da sigla em inglês, CNN.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-07-15T14:59:23-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Portfólio automatizado no README</title><link href="http://localhost:4000/portfolio-automatizado-no-readme/" rel="alternate" type="text/html" title="Portfólio automatizado no README" /><published>2020-07-15T00:00:00-03:00</published><updated>2020-07-15T00:00:00-03:00</updated><id>http://localhost:4000/portfolio-automatizado-no-readme</id><content type="html" xml:base="http://localhost:4000/portfolio-automatizado-no-readme/">&lt;p&gt;No dia 10 de julho de 2020, estava eu calmamente navegando pela minha timeline do Twiter, quando me aparece o tweet abaixo:&lt;/p&gt;
+
+&lt;div&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Made myself a self-updating GitHub personal README! It uses a GitHub Action to update itself with my latest GitHub releases, blog entries and TILs &lt;a href=&quot;https://t.co/Eve7FOrwYK&quot;&gt;https://t.co/Eve7FOrwYK&lt;/a&gt; &lt;a href=&quot;https://t.co/oJPXLtFdgM&quot;&gt;pic.twitter.com/oJPXLtFdgM&lt;/a&gt;&lt;/p&gt;&amp;mdash; Simon Willison (@simonw) &lt;a href=&quot;https://twitter.com/simonw/status/1281435464474324993?ref_src=twsrc%5Etfw&quot;&gt;July 10, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Para um desenvolvedor sua existência já está resumida na própria bio do GitHub, na página &lt;a href=&quot;https://nymarya.github.io&quot;&gt;about&lt;/a&gt; do site pessoal, na descrição do LinkedIn, às vezes até na descrição do Twitter, e com a possibilidade de automatizar. Depois da invenção do Simon, a feature nova pareceu mais interessante, podendo dar um diferencial em relação às outras de poder trazer informações sintetizadas que não precisam ser ajustadas manualmente (e consequentemente esquecidas de serem atualizadas).&lt;/p&gt;
+
+&lt;h3 id=&quot;começando-a-automatização-readme&quot;&gt;Começando a automatização README&lt;/h3&gt;
+
+&lt;p&gt;O primeiro passo é escolher quais informações devem aparecer. No meu caso, queria mostrar os posts e um resumo do que tem no meu GitHub, as linguagens que estão presentes nele.&lt;/p&gt;
+
+&lt;p&gt;O próprio resumo escolhi escrever manualmente por motivos de: queria usar emoticons; queria escrever em inglês e português; algumas informações são pessoais, como os hobbies, e não encontraria lugares de onde tirar a informação; e até poderia criar um script que simplemente acrescenta o texto que eu escolhi, mas não acho que ficaria um código bonito e organizado.&lt;/p&gt;
+
+&lt;p&gt;Pensado isso, é hora de colocar a mão no código.&lt;/p&gt;
+
+&lt;h3 id=&quot;inserindo-posts-com-beautifulsoup&quot;&gt;Inserindo posts com BeautifulSoup&lt;/h3&gt;
+
+&lt;p&gt;Simon em seu &lt;a href=&quot;https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/&quot;&gt;post&lt;/a&gt; usa uma forma mais robusta e organizada para recuperar os posts, mas infelizmente meu blog no Github Pages não me dá as mesmas ferramentas. Porém, como a estrutura do HTML é bem organizada, não foi difícil recuperar o que eu queria.&lt;/p&gt;
+
+&lt;p&gt;A biblioteca &lt;a href=&quot;https://pypi.org/project/beautifulsoup4/&quot;&gt;BeautifulSoup&lt;/a&gt; é ótima para minerar informações de sites. Para pegar os posts separados por cada língua, recuperei o HTML da &lt;a href=&quot;https://nymarya.github.io/categories&quot;&gt;página&lt;/a&gt; onde os posts já estão divididos, identifiquei onde fica cada categoria, e simplemente salvei o endereço, título e data do número de links que eu queria. O código todo, que tem aproximadamente 30 linhas) está &lt;a href=&quot;https://github.com/nymarya/nymarya/blob/master/posts.py&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;inserindo-resumo-das-linguagens&quot;&gt;Inserindo resumo das linguagens&lt;/h3&gt;
+
+&lt;p&gt;Mais uma vez, Simon utilizou uma forma um pouco mais elegante. Dessa vez, foi usando a API em GraphQl para recuperar informações do GitHub.&lt;/p&gt;
+
+&lt;p&gt;Resolvi usar a API REST pela praticidade. Usei ela duas vezes: uma para recuperar os nomes dos repositórios (&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.github.com/users/&amp;lt;usuario&amp;gt;/repos&lt;/code&gt;) e outra para recuperar as linguagens em cada repositório (&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.github.com/repos/&amp;lt;usuario&amp;gt;/&amp;lt;repo&amp;gt;/languages'&lt;/code&gt;). A versão sem autenticação da API, além de acessar só os repositórios públicos, tem um limite de 60 requisições por hora, então para quem possui 60 repositórios públicos ou mais o recomendado é usar autenticação. Todas elas são consultadas utilizando a biblioteca requests.&lt;/p&gt;
+
+&lt;p&gt;A resposta da segunda API consiste em um dicionário com cada linguagem e sua contagem de bytes. Assim, para saber a proporção basta ir unindo essas informações e no final calcular as porcentagens. Para a exibição, é usada uma tabela onde na primeira linha ficam as logos das ferramentas (boa parte das logos vem desse &lt;a href=&quot;https://github.com/abranhe/programming-languages-logos&quot;&gt;repositório&lt;/a&gt; e na segunda os nome e as porcentagem de código em que são usadas. O código com todas essas funções está &lt;a href=&quot;https://github.com/nymarya/nymarya/blob/master/repositories.py&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;agora-sim-a-automatização&quot;&gt;Agora sim a automatização&lt;/h3&gt;
+
+&lt;p&gt;Todo o processo de escrita no arquivo é feita no arquivo &lt;a href=&quot;https://github.com/nymarya/nymarya/blob/master/build_readme.py&quot;&gt;build_readme.py&lt;/a&gt;. Mas para fazer o preenchimento do arquivo primeiro precisamos indicar no README.md aonde os textos vão ser colocados. Isso é feito com comentários no markdown, que marcam as seções:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- &amp;lt;nome da seção&amp;gt;&lt;/span&gt; starts --&amp;gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- &amp;lt;nome da seção&amp;gt;&lt;/span&gt; ends --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Daí, usando a biblioteca &lt;code class=&quot;highlighter-rouge&quot;&gt;re&lt;/code&gt; podemos usar expressões regulares para identificar esses blocos. A expressão usada é &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;lt;!-- &amp;lt;nome da seção&amp;gt; starts --&amp;gt;.*&amp;lt;!-- &amp;lt;nome da seção&amp;gt; ends --&amp;gt;&quot;&lt;/code&gt;. Na hora de inserir o texto, os comentários se mantém, para na próxima atualização a seção poder ser encontrada novamente, e os caracteres &lt;code class=&quot;highlighter-rouge&quot;&gt;.*&lt;/code&gt; são substituídos pelo conteúdo de fato, consequentemente também reescrevendo o texto anterior.&lt;/p&gt;
+
+&lt;p&gt;O passo final é configurar o workflow no Github Actions. Isso é feito indo para a aba específica, escolhendo “set up a workflow yourself” e então adicionando os comandos para configurar o Python e o pip, instalar dependências que estão no requeirements.txt, atualizar o README.md e finalmente dar commit no resultado, além de ajustar o cron para que a tarefa rode a cada 1 hora, entre 1:00 e 23:00. Ao salvar o &lt;code class=&quot;highlighter-rouge&quot;&gt;main.yml&lt;/code&gt; que contém as configurações na pasta &lt;code class=&quot;highlighter-rouge&quot;&gt;.github/workflows&lt;/code&gt;, o GitHub Actions vai identificar o arquivo. O workflow é basicamente o mesmo do Simon, a diferença é que o dele ainda inclui um comando para pegar variáveis de ambiente.&lt;/p&gt;
+
+&lt;h3 id=&quot;para-quem-tiver-mais-tempo-e-disposição&quot;&gt;Para quem tiver mais tempo e disposição&lt;/h3&gt;
+
+&lt;p&gt;Existe uma série de coisas que poderiam ser automatizadas. Os releases mais recentes (como Simon fez), contagem de commits, interações no StackOverflow (não olhei se eles tem API, se não tiverem certamente o BeautifulSoup resolve), trabalho atual e formação do LinkedIn (se tiverem API deve ser paga, então novamente poderia usar BeautifulSoup), publicações no LinkedIn, posts do Medium, vídeos ou episódios de podcasts mais recentes para quem é desse mundo, e por aí vai.&lt;/p&gt;
+
+&lt;p&gt;Ansiosa para ver quais ideias vão surgir. Até mais!&lt;/p&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/&quot;&gt;Post do Simon onde ele explica o que ele fez&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://simonwillison.net/2020/Apr/20/self-rewriting-readme/&quot;&gt;Outro post do Simon sobre automatização do README&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="github actions" /><category term="readme" /><summary type="html">No dia 10 de julho de 2020, estava eu calmamente navegando pela minha timeline do Twiter, quando me aparece o tweet abaixo:</summary></entry><entry><title type="html">Self-updating portfolio on README</title><link href="http://localhost:4000/self-updating-portfolio-on-readme/" rel="alternate" type="text/html" title="Self-updating portfolio on README" /><published>2020-07-15T00:00:00-03:00</published><updated>2020-07-15T00:00:00-03:00</updated><id>http://localhost:4000/self-updating-portfolio-on-readme</id><content type="html" xml:base="http://localhost:4000/self-updating-portfolio-on-readme/">&lt;p&gt;At July 10h, 2020, I was happily navigating through my Twitter timeline when this tweet popped to my eyes:&lt;/p&gt;
+
+&lt;div&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Made myself a self-updating GitHub personal README! It uses a GitHub Action to update itself with my latest GitHub releases, blog entries and TILs &lt;a href=&quot;https://t.co/Eve7FOrwYK&quot;&gt;https://t.co/Eve7FOrwYK&lt;/a&gt; &lt;a href=&quot;https://t.co/oJPXLtFdgM&quot;&gt;pic.twitter.com/oJPXLtFdgM&lt;/a&gt;&lt;/p&gt;— Simon Willison (@simonw) &lt;a href=&quot;https://twitter.com/simonw/status/1281435464474324993?ref_src=twsrc%5Etfw&quot;&gt;July 10, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A developer’s existence is already described in a GitHub profile, the &lt;a href=&quot;https://nymarya.github.io&quot;&gt;about&lt;/a&gt; page of a personal website, the LinkedIn description, sometimes even a Twitter bio, and the automated approach was the thing that made me want to build a README on GitHub. After seeing Simon’s idea, the new feature looked more interesting, offering an opportunity to show synthesized information that doesn’t require manual updating (and therefore decreases the risk of not being updated at all), a quality that the other options don’t present.&lt;/p&gt;
+
+&lt;h3 id=&quot;starting-an-automated-readme&quot;&gt;Starting an automated README&lt;/h3&gt;
+
+&lt;p&gt;The first step is to choose which informations should appear. In my case, I wanted to show my posts and an overview of the tools used in my Github repositories.&lt;/p&gt;
+
+&lt;p&gt;The auto-description itself I choose to write manually because: I wanted to use emojis; to write posts both in English and Portuguese; some personal information, such as hobbies, I couldn’t retrieve from anywhere; and, yes, I could create a script to simply append the text that I would manually choose, but I don’t think it would look pretty and tidy.&lt;/p&gt;
+
+&lt;p&gt;With that in mind, it’s time to start.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-posts-with-beautifulsoup&quot;&gt;Adding posts with BeautifulSoup&lt;/h3&gt;
+
+&lt;p&gt;In his &lt;a href=&quot;https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/&quot;&gt;post&lt;/a&gt;, Simon retrieves his posts in more elegantly, but my Github Pages blog doesn’t offer me the same tools. However, it has an HTML structured that is very well-formed, so it was easy to get what I wanted from it.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://pypi.org/project/beautifulsoup4/&quot;&gt;BeautifulSoup&lt;/a&gt; library is great for mining information from websites. To get the posts divided by each language, I got the HTML of the &lt;a href=&quot;https://nymarya.github.io/categories&quot;&gt;page&lt;/a&gt; where the posts are categorized, identified where (meaning: which tag) was located each category, and simply recovered the address, title, and date of a number (previously chosen) of posts. The full code is available &lt;a href=&quot;https://github.com/nymarya/nymarya/blob/master/posts.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;adding-profile-overview&quot;&gt;Adding profile overview&lt;/h3&gt;
+
+&lt;p&gt;Once again, Simon’s solution is somewhat more sophisticated. This time, he used the Github’s GraphQL API to retrieve data from GitHub in a way that calls way fewer HTTP requests.&lt;/p&gt;
+
+&lt;p&gt;I decided to use the REST API for practical reasons. I used it twice: once to get the names of the repositories (&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.github.com/users/&amp;lt;usuario&amp;gt;/repo&lt;/code&gt;) and once to get the languages used in each repository (&lt;code class=&quot;highlighter-rouge&quot;&gt;https://api.github.com/repos/&amp;lt;usuario&amp;gt;/&amp;lt;repo&amp;gt;/languages'&lt;/code&gt;). The unanthenticated version of the Github API, besides providing access only for public repositories, has a limit of 60 requests per hour, so if you have 60 repositories or more, you should use at least the authenticated version. All requests are made with the self-named library, &lt;code class=&quot;highlighter-rouge&quot;&gt;requests&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The response for the second API consists of a dictionary containing each language and its byte count. Then, to get the proportion is only needed to append all information and finally calculate the percentages. To show this information, I used a table that contains the logos in the first line (a great number of those come from this &lt;a href=&quot;https://github.com/abranhe/programming-languages-logos&quot;&gt;repository&lt;/a&gt;) and the second line shows the name and percentage of code in which each language is used. The code is available &lt;a href=&quot;https://github.com/nymarya/nymarya/blob/master/repositories.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;finally-the-self-updating-part&quot;&gt;Finally, the self-updating part&lt;/h3&gt;
+
+&lt;p&gt;All writing process is defined in the &lt;a href=&quot;https://github.com/nymarya/nymarya/blob/master/build_readme.py&quot;&gt;build_readme.py&lt;/a&gt; file. But to insert text in the file, first, it is necessary to indicate in the README.md where the information will be placed. This is done by making comments in the markdown that will mark the sections:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- &amp;lt;section name&amp;gt;&lt;/span&gt; starts --&amp;gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- &amp;lt;section name&amp;gt;&lt;/span&gt; ends --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, using the &lt;code class=&quot;highlighter-rouge&quot;&gt;re&lt;/code&gt; library we can use regular expressions to identify these blocks. The expression used &lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;&amp;lt;!-- &amp;lt;section name&amp;gt; starts --&amp;gt;.*&amp;lt;!-- &amp;lt;section name&amp;gt; ends --&amp;gt;&quot;&lt;/code&gt;. The &lt;code class=&quot;highlighter-rouge&quot;&gt;.*&lt;/code&gt; characters is used to capture all text inside the section, so in the next update, all previous content will be replaced with the new one. When inserting the text per se, the comments must remain around the new content, because that way the block can be found when the script runs again.&lt;/p&gt;
+
+&lt;p&gt;The final step is to set up the workflow with Github Actions. This is done by going to the tab, choosing “set up a workflow yourself” and then adding the commands to set up python, configure pip, install dependencies from requeirements.txt, update README.md and finally committing the result, besides setting the cron so the task will run every hour. When you save the &lt;code class=&quot;highlighter-rouge&quot;&gt;main.yml&lt;/code&gt; containing the configurations in the directory &lt;code class=&quot;highlighter-rouge&quot;&gt;.github/workflows&lt;/code&gt;, o GitHub Actions will identify the file right away. The workflow is almost the same as Simon’s, the only difference is that his setup has one more command to get environmental variables.&lt;/p&gt;
+
+&lt;h3 id=&quot;for-those-who-have-time-and-energy&quot;&gt;For those who have time and energy&lt;/h3&gt;
+
+&lt;p&gt;There is still a bunch of stuff that can be automated. The most recent releases (as Simon did), counting the commits, questions and answers from StackOverflow (I don’t know if they have an API, if don’t certainly BeautifulSoup is there for you), current job and education info on LinkedIn (again API or BeautifulSoup must do the job), publications on LinkedIn, posts on Medium, most recent videos or podcasts, and so on. Creativity is welcome.&lt;/p&gt;
+
+&lt;p&gt;I’m anxious to see the next ideas. See ya!&lt;/p&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/&quot;&gt;Simon’s post where he explains it all&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://simonwillison.net/2020/Apr/20/self-rewriting-readme/&quot;&gt;Yet another Simon’s post on README automation&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="github actions" /><category term="readme" /><summary type="html">At July 10h, 2020, I was happily navigating through my Twitter timeline when this tweet popped to my eyes:</summary></entry><entry><title type="html">CNNS: A convolução</title><link href="http://localhost:4000/cnns-a-convolucao/" rel="alternate" type="text/html" title="CNNS: A convolução" /><published>2019-11-17T00:00:00-03:00</published><updated>2019-11-17T00:00:00-03:00</updated><id>http://localhost:4000/cnns-a-convolucao</id><content type="html" xml:base="http://localhost:4000/cnns-a-convolucao/">&lt;p&gt;Este é o primeiro post de uma série sobre deep learning, especialmente Redes Neurais Convolucionais (em inglês: Convolutional Neural Networks, ou CNNs) que consiste de dois post teóricos e um mais prático, discorrendo sobre um modelo específico. Vamos começar com o C da sigla em inglês, CNN.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Convolução&lt;/strong&gt; é um termo usado na área da matemática para descrever a operação sobre duas funções que produzem uma terceira função expressando como a primeira é modificada pela outra. Eu sempre me recordo de uma aula na qual o professor explicou esse conceito de uma maneira bem simples. Imagine que você está entre dois palcos durante um festival de música: se você se mover em direção a um ou outro, ouvirá melhor alguma das músicas. Se ficar no meio, os sinais ficam muito misturados. Esta confusão de ruídos é a convolução em ação.&lt;/p&gt;
 

@@ -29,7 +29,7 @@ Pensado isso, é hora de colocar a mão no código.
 
 Simon em seu [post](https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/) usa uma forma mais robusta e organizada para recuperar os posts, mas infelizmente meu blog no Github Pages não me dá as mesmas ferramentas. Porém, como a estrutura do HTML é bem organizada, não foi difícil recuperar o que eu queria.
 
-A biblioteca [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) é ótima para minerar informações de sites. Para pegar os posts separados por cada língua, recuperei o HTML da [página](https://nymarya.github.io/categories) onde os posts já estão divididos, identifiquei onde fica cada categoria, e simplemente salvei o endereço, título e data do número de links que eu queria. O código todo, que não dá nem 30 linhas) está [aqui](https://github.com/nymarya/nymarya/blob/master/posts.py).
+A biblioteca [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) é ótima para minerar informações de sites. Para pegar os posts separados por cada língua, recuperei o HTML da [página](https://nymarya.github.io/categories) onde os posts já estão divididos, identifiquei onde fica cada categoria, e simplemente salvei o endereço, título e data do número de links que eu queria. O código todo, que tem aproximadamente 30 linhas) está [aqui](https://github.com/nymarya/nymarya/blob/master/posts.py).
 
 ### Inserindo resumo das linguagens
 
@@ -50,7 +50,7 @@ Todo o processo de escrita no arquivo é feita no arquivo [build_readme.py](http
 
 Daí, usando a biblioteca `re` podemos usar expressões regulares para identificar esses blocos. A expressão usada é `"<!-- <nome da seção> starts -->.*<!-- <nome da seção> ends -->"`. Na hora de inserir o texto, os comentários se mantém, para na próxima atualização a seção poder ser encontrada novamente, e os caracteres `.*` são substituídos pelo conteúdo de fato, consequentemente também reescrevendo o texto anterior.
 
-O passo final é configurar o workflow no Github Actions. Isso é feito indo para a aba específica, escolhendo "set up a workflow yourself" e então adicionando os comandos para configurar o Python e o pip, instalar dependências que estão no requeirements.txt, atualizar o README.md e finalmente dar commit no resultado, além de ajustar o cron para que a tarefa rode a cada 1 hora. O workflow é basicamente o mesmo do Simon, a diferença é que o dele ainda inclui um comando para pegar variáveis de ambiente.
+O passo final é configurar o workflow no Github Actions. Isso é feito indo para a aba específica, escolhendo "set up a workflow yourself" e então adicionando os comandos para configurar o Python e o pip, instalar dependências que estão no requeirements.txt, atualizar o README.md e finalmente dar commit no resultado, além de ajustar o cron para que a tarefa rode a cada 1 hora, entre 1:00 e 23:00. Ao salvar o `main.yml` que contém as configurações na pasta `.github/workflows`, o GitHub Actions vai identificar o arquivo. O workflow é basicamente o mesmo do Simon, a diferença é que o dele ainda inclui um comando para pegar variáveis de ambiente.
 
 ### Para quem tiver mais tempo e disposição
 
