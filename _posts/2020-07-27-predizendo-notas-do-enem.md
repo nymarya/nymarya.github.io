@@ -13,17 +13,38 @@ Desafio da aceleração do aceleradev era para predizer as notas de matemática 
 
 ### O básico
 
-Para os 90%, fu ino básico: um modelo simples, um pré-processamento mais cuidadosa.
+Para os 90%, fui no básico: um modelo simples, um pré-processamento mais cuidadoso.
 
 O modelo escolhido foi o LinearRegression, com os parâmetros já pre-estabelecidos.
 
-No tratamento, primeiro utilizei pandas-profiling para ter uma visão geral do banco de treinamento. A ferramente dá todas as estatísticas e já indica quais colunas tem correlação entre si. Retirei essas. Retirei também as que tinham 50% ou mais de valores nulos ou as colunas que tinham valor constante. Feita a separação entre features numericas e categoricas. As numéricas imputei os valores nulos com -1 e padronizei com Standard scaler. As categoricas imputei com a string "N/A" e usei o OneHotEncoder. Isso aumenta significativamente o numero de colunas, então tive que usar o TruncatedSVD para reduzir a dimensionalidade.
+No tratamento, primeiro utilizei pandas-profiling para ter uma visão geral do banco de treinamento. A ferramente dá todas as estatísticas e já indica quais colunas tem correlação entre si. Retirei essas. Retirei também as que tinham 50% ou mais de valores nulos ou as colunas que tinham valor constante. Feita a separação entre features numericas e categoricas. As numéricas imputei os valores nulos com -1 e padronizei com Standard scaler. As categoricas imputei com a string "N/A" e usei o OneHotEncoder. Isso aumenta significativamente o numero de colunas, então tive que usar o TruncatedSVD para reduzir a dimensionalidade, que sem tratamento fica 61462.
 
 ### Digievoluindo a solução
 
 Feito o básico, resta fazer um trabalho mais rebuscado de engenharias de dados.
 
 Algumas coisas simples a serem testadas seria trocar o standarscaler por outro normalizador como MinMAxScaler, RobustScaler, ou Normalizer. Trocar o encoder por outro CatBoost, LabelEncoder. Diminuir a dimensionalidade com o RFE, ou [LDA, ou NCA](https://scikit-learn.org/stable/auto_examples/neighbors/plot_nca_dim_reduction.html), SelectKBest
+
+Testei com Truncated e depois outros para reduzir. Demmorou muito, pouca mudança
+
+Com label encoder, e testando os diferentes redutores
+
+| Pre       | Scaler/Normalizer | Encoder        | Reduce_dim   | Model                                                                                                         | Score |
+| --------- | ----------------- | -------------- | ------------ | ------------------------------------------------------------------------------------------------------------- | ----- |
+|           | Normalizer        | OneHotEncoder  | Kbest(30)    | LR                                                                                                            | 91.72 |
+|           | RobustScaler      | OrdinalEncoder | RFE(30)Kbest | LR                                                                                                            | 93.28 |
+|           | RobustScaler      | OeHot          | RFE(10)Kbest | LR                                                                                                            | 93.25 |
+|           | Rob               | OneHot         | RFEKbest     | Theisen                                                                                                       | 92.52 |
+|           | Quantile          |                |              |                                                                                                               | 93.07 |
+| sem corre |                   |                |              |                                                                                                               | 93.36 |
+| ""        | Rob               |                | kbest(50)    | lr                                                                                                            | 93.37 |
+|           |                   |                | rfe(50, lr)  |                                                                                                               | 93.31 |
+|           |                   |                | rfe(30, lr)  |                                                                                                               | 93.36 |
+|           |                   |                | rfe(30, svr) |                                                                                                               | 93.37 |
+|           |                   |                | k50          | Random,                                                                                                       | 93.5  |
+|           |                   |                | k50          | random                                                                                                        | 93,56 |
+|           |                   |                | k50          | random, n_estimators=50, max_depth=4, min_samples_split=4,                                   max_features=0.5 | 93,65 |
+|           |                   |                | k(50)        | DecisionT                                                                                                     | 91    |
 
 ### Inserindo resumo das linguagens
 
