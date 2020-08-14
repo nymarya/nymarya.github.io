@@ -17,6 +17,38 @@
   }
 }
 
+.post {
+  height: 100%;
+  position: relative;
+  display: block;
+
+  > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .content {
+    height: 100%;
+  }
+}
+
+.post-content {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 15% 0 15%;
+}
+
+.block-post{
+  width: 100%;
+  margin: 0 auto 0 auto;
+  height: 60%;
+  display: table;
+
+  .content {
+    height: 100%;
+    max-width: 100%;
+  }
+}
+
 .block-right {
   float: right;
   overflow-y: auto;
@@ -635,12 +667,16 @@ canvas {
   }
 }
 
+.inner-post-page {
+  padding-bottom: 20px;
+}
+
 .demo {
   margin-bottom: 50px;
 }
 
 .post-title-section {
-  position: absolute;
+  // position: absolute;
   bottom: 50px;
   left: 50px;
   right: 50px;
