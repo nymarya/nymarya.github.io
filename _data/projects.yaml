@@ -1,16 +1,16 @@
 - title: PRF API
   url: https://github.com/nymarya/prf_api
-  image: https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/github-universe.jpg?itok=lwRZddXA
+  image: ../images/github.jpg
   completed: true
 
 - title: Corvus
   url: https://github.com/nymarya/corvus
-  image: https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/github-universe.jpg?itok=lwRZddXA
+  image: ../images/github.jpg
   completed: true
 
 - title: ODUFRN Downloader
   url: https://odufrn.github.io/odufrn-downloader/
-  image: https://avatars2.githubusercontent.com/u/52975911?s=200&v=4
+  image: ../images/odufrn.png
   completed: true
 
 - title: Regula RN
@@ -20,7 +20,7 @@
 
 - title: RETSUS
   url: https://retsus.ufrn.br
-  image: https://github.com/nymarya/nymarya.github.io/blob/master/images/retsus.png?raw=true
+  image: ../images/retsus.png
   completed: true
 
 # - title: SGP
@@ -40,7 +40,7 @@
 
 - title: Comunica-EDU
   url: http://www.educacao.rn.gov.br/Conteudo.asp?TRAN=ITEM&TARG=176381&ACT=&PAGE=&PARM=&LBL=MAT%C9RIA
-  image: http://adcon.rn.gov.br/ACERVO/seec/IMG/IMG000000000176382.JPEG
+  image: ../images/cpnatal.jpeg
   completed: true
 
 
