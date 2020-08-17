@@ -40,7 +40,6 @@
 .block-post{
   width: 100%;
   margin: 0 auto 0 auto;
-  height: 60%;
   display: table;
 
   .content {
@@ -249,7 +248,7 @@ canvas {
     &:nth-child(8n+1),
     &:nth-child(8n+2) {
       width: 50%;
-      height: 70%;
+      height: 50%;
     }
     &:nth-child(8n+6) {
       width: calc(100%/3 + 100%/3);
@@ -578,7 +577,7 @@ canvas {
       color: darken($white, 40);
     }
     .date {
-      color: #399f62;
+      color: $purple;
       float: right;
       display: inline-block;
       font-size: 15px;
@@ -647,7 +646,7 @@ canvas {
     display: block;
   }
   a:not(.btn):not(.pagination_pager) {
-    color: #399f62;
+    color: $purple;
     border-bottom: 1px dotted $lilas;
 
     &:hover{
@@ -969,3 +968,12 @@ canvas {
 span.muted {
   color: #aaa
 }
+
+.bd-navbar {
+  min-height: 4rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.btn.btn_google-plus{background-color:#dc4e41 !important;color:#fff !important}
+.btn.btn_twitter{background-color:#55acee;color:#fff !important}
+.btn.btn_facebook{background-color:#3b5998;color:#fff !important}

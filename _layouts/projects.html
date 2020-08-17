@@ -6,22 +6,7 @@ layout: compress
 <html>
 {% include head.html %}
 <body id="posts" class="inner-post-page">
-  <header class="navbar navbar-expand navbar-dark flex-column flex-row-reverse bd-navbar">
-    <div class="d-flex flex-row-reverse bd-highlight pull-right">
-      <div class="p-2 bd-highlight">
-        <a title="projects" href="../../includes/overlay.html" >
-          Projects
-        </a>
-      </div>
-      <div class="p-2 bd-highlight">
-        <a href="../posts.html" title="posts">Posts</a>
-      </div>
-      <div class="p-2 bd-highlight">
-        <a href="{{ site.url }}" title="home">Home</a></div>
-      
-    </div>
-</header>
-
+  {% include header.html %}
 
     <div class="overlay" style="display: block; margin-top: 5%;">
         <ul class="projects-menu">
