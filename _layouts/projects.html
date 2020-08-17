@@ -1,0 +1,51 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body id="posts" class="inner-post-page">
+  <header class="navbar navbar-expand navbar-dark flex-column flex-row-reverse bd-navbar">
+    <div class="d-flex flex-row-reverse bd-highlight pull-right">
+      <div class="p-2 bd-highlight">
+        <a title="projects" href="../../includes/overlay.html" >
+          Projects
+        </a>
+      </div>
+      <div class="p-2 bd-highlight">
+        <a href="../posts.html" title="posts">Posts</a>
+      </div>
+      <div class="p-2 bd-highlight">
+        <a href="{{ site.url }}" title="home">Home</a></div>
+      
+    </div>
+</header>
+
+
+    <div class="overlay" style="display: block; margin-top: 5%;">
+        <ul class="projects-menu">
+            {% for item in site.data.projects %}
+            {% capture image %}{{ item.image }}{% endcapture %}
+            {% unless image contains 'http://' or image contains 'https://' %}
+            {% capture image %}{{ site.url }}/{{ image }}{% endcapture %}
+            {% endunless %}
+            <li style="background:url({{ image }}) center center no-repeat;">
+                <a href="{{ item.url }}" {% unless item.completed %}class="inactive"{% endunless %}
+                target="_blank" rel="nofollow external">
+                <span>
+                    {{ item.title }}
+                    {% unless item.completed %}
+                    <br><em>in progress</em>
+                    {% endunless %}
+                </span>
+                </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% include scripts.html %}
+    {% include overlay.html %}
+</body>
+</html>

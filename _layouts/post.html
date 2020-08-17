@@ -6,13 +6,43 @@ layout: compress
 <html>
 {% include head.html %}
 <body id="posts" class="inner-post-page">
-  <div>
-    <a href="{{ site.url }}" title="home" class="home-icon"></a>
+  <header class="navbar navbar-expand navbar-dark flex-column flex-row-reverse bd-navbar">
+    <div class="d-flex flex-row-reverse bd-highlight pull-right">
+      <div class="p-2 bd-highlight">
+        <a title="projects" href="../projects.html" >
+          Projects
+        </a>
+      </div>
+      <div class="p-2 bd-highlight">
+        <a href="../posts.html" title="posts">Posts</a>
+      </div>
+      <div class="p-2 bd-highlight">
+        <a href="{{ site.url }}" title="home">Home</a></div>
+      
+    </div>
+</header>
+  
+  <!-- <div style="display:block; height:100%; overflow-y:auto">
+     <div>
+      <a href="{{ site.url }}" title="home" class="home-icon"></a>
+      <a href="../posts.html" title="posts" class="posts-menu-icon"></a>
       <a title="projects" class="projects-menu-icon">
         <span></span>
       </a>
-  </div>
-  <div style="display:block; height:100%; overflow-y:auto">
+    </div>
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <div class="p-2 bd-highlight">
+        <a title="projects" >
+          Projects
+        </a>
+      </div>
+      <div class="p-2 bd-highlight">
+        <a href="../posts.html" title="posts">Posts</a>
+      </div>
+      <div class="p-2 bd-highlight">
+        <a href="{{ site.url }}" title="home">Home</a></div>
+      
+    </div> -->
 
     <div class="block-post">
         
