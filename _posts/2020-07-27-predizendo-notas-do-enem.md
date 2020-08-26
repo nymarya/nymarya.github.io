@@ -12,9 +12,11 @@ tags:
 
 Para entrar na aceleração de Data Science do [Codenation](https://www.codenation.dev), os alunos tinham que predizer as notas de matemática do enem 2016. A "nota de corte" era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então veio também a oportunidade perfeita para refazer o modelo e usar os novos conhecimentos para melhorar a solução. O código está disponível [aqui](https://github.com/nymarya/aceleradev/blob/master/enem-2).
 
-### O básico
+### O feijão com arroz
 
 Para os 90%, fui no básico: um modelo simples, um pré-processamento mais cuidadoso.
+
+
 
 O modelo escolhido foi o LinearRegression, com os parâmetros já pre-estabelecidos.
 
@@ -22,15 +24,19 @@ No tratamento, primeiro utilizei [pandas-profiling](https://github.com/pandas-pr
 
 ### Digievoluindo a solução
 
+<div>
+<img src="https://media.giphy.com/media/nDb2WPoK832fK/giphy.gif">
+</div>
+
 Feito o básico, resta fazer um trabalho mais rebuscado de engenharias de dados. A começar por mais uma etapa de limpeza de dados, dessa vez utilizando da [correlação](https://github.com/nymarya/aceleradev/blob/master/enem-2/src/features/build_features.py#L110) para retirar algumas colunas. Para evitar redundância de dados, são retiradas as colunas numéricas que tem correlação maior que 0.5 ou menor que -0.2 com a coluna alvo `NU_NOTA_MT`.
 
 Algumas coisas simples a serem testadas seria trocar o StandardScaler por outro normalizador como MinMaxScaler, RobustScaler, ou Normalizer. Essa mudança pode ser muito importantepois o StandardScaler assume que seus dados seguem uma distribuição normal. De fato, no [desafio](https://github.com/nymarya/aceleradev/blob/master/enem-4/) da semana seguinte, a mudança de StandardScaler para RobustScaler representou uma diferença de uns 5% no desempenho, mas neste o resultado não foi tão impactante.
 
 Outra opção seria trocar o encoder por outro como CatBoost ou OrdinalEncoder. O primeiro não consegui inserir no código, mas o segundo foi testado e os resultados estão na tabela no fim da seção.
 
-Por fim, foram feitos experimentos com a redução de dimensionalidade com o [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html),  [LDA, NCA](https://scikit-learn.org/stable/auto_examples/neighbors/plot_nca_dim_reduction.html) ou [SelectKBest](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html). O segundo e o terceiro não deram certo por não funcionarem com matriz esparsa (que é no que os dados se transformam após os passos anteriores). O primeiro, por ser recursivo, acaba sendo incompatível com o OneHotEncoder pela gigantesca quantidade de colunas geradas. O SelectKBest também apresentava um problema semelhante. Testei aplicando TruncatedSVD e depois outros para reduzir, mas: muita demora, pouca mudança. Só com OrdinalEncoder que as outras funções funcionaram.
+Também foram feitos experimentos com a redução de dimensionalidade testando [RFE](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html),  [LDA, NCA](https://scikit-learn.org/stable/auto_examples/neighbors/plot_nca_dim_reduction.html) ou [SelectKBest](https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html). O segundo e o terceiro não deram certo por não funcionarem com matriz esparsa (que é no que os dados se transformam após os passos anteriores). O primeiro, por ser recursivo, acaba sendo incompatível com o OneHotEncoder pela gigantesca quantidade de colunas geradas. O SelectKBest também apresentava um problema semelhante. Testei aplicando TruncatedSVD e depois outros para reduzir, mas: muita demora, pouca mudança. As outras funções de redução mais lentas funcionaram com [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html), que, ao invés de cirar uma coluna para cada categoria como o OneHotEncoder, apenas tranforma as categorias na forma númerica.
 
-Com label encoder, e testando os diferentes redutores
+Por fim, em relação aos modelos de regressão, foram testados LinearRegression, [TheisenRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.TheilSenRegressor.html) e [RandomForestRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) e [DecisionTreeRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html).
 
 | Pre            | Scaler/Normalizer   | Encoder        | Reduce_dim      | Model                                                                                                                | Score |
 | -------------- | ------------------- | -------------- | --------------- | -------------------------------------------------------------------------------------------------------------------- | ----- |
@@ -49,35 +55,14 @@ Com label encoder, e testando os diferentes redutores
 | Sem correlação | RobustScaler        | OneHotEncoder  | SelectKBest(50) | RandomForest( n_estimators=50, max_depth=4, min_samples_split=4,                                   max_features=0.5) | 93.64 |
 | Sem correlação | RobustScaler        | OneHotEncoder  | SelectKBest(50) | DecisionTreeRegressor                                                                                                | 91    |
 
-### Inserindo resumo das linguagens
+### Avaliando as avaliações
 
-Mais uma vez, Simon utilizou uma forma um pouco mais elegante. Dessa vez, foi usando a API em GraphQl para recuperar informações do GitHub.
+Tirando o primeiro, todos os algoritmos tem algum fator aleatório, o que quer dizer que para ter uma noção boa do resultado, tem que ser feitas várias execuções para analisar estatisticamente os resultados. Por exemplo, o melhor resultado encontrado foi com RandomForestRegressor, mas ao rodar várias vezes o índice não foi observado novamente muito menos melhorou. De forma geral, os métodos mais rebuscados não tiveram uma diferença tão grande em relação à boa e velha gressão linear.
 
-Resolvi usar a API REST pela praticidade. Usei ela duas vezes: uma para recuperar os nomes dos repositórios (`https://api.github.com/users/<usuario>/repos`) e outra para recuperar as linguagens em cada repositório (`https://api.github.com/repos/<usuario>/<repo>/languages'`). A versão sem autenticação da API, além de acessar só os repositórios públicos, tem um limite de 60 requisições por hora, então para quem possui 60 repositórios públicos ou mais o recomendado é usar autenticação. Todas elas são consultadas utilizando a biblioteca requests.
+Até mais!
 
-A resposta da segunda API consiste em um dicionário com cada linguagem e sua contagem de bytes. Assim, para saber a proporção basta ir unindo essas informações e no final calcular as porcentagens. Para a exibição, é usada uma tabela onde na primeira linha ficam as logos das ferramentas (boa parte das logos vem desse [repositório](https://github.com/abranhe/programming-languages-logos) e na segunda os nome e as porcentagem de código em que são usadas. O código com todas essas funções está [aqui](https://github.com/nymarya/nymarya/blob/master/repositories.py).
-
-### Agora sim a automatização
-
-Todo o processo de escrita no arquivo é feita no arquivo [build_readme.py](https://github.com/nymarya/nymarya/blob/master/build_readme.py). Mas para fazer o preenchimento do arquivo primeiro precisamos indicar no README.md aonde os textos vão ser colocados. Isso é feito com comentários no markdown, que marcam as seções:
-
-```markdown
-<!-- <nome da seção> starts -->
-<!-- <nome da seção> ends -->
-```
-
-Daí, usando a biblioteca `re` podemos usar expressões regulares para identificar esses blocos. A expressão usada é `"<!-- <nome da seção> starts -->.*<!-- <nome da seção> ends -->"`. Na hora de inserir o texto, os comentários se mantém, para na próxima atualização a seção poder ser encontrada novamente, e os caracteres `.*` são substituídos pelo conteúdo de fato, consequentemente também reescrevendo o texto anterior.
-
-O passo final é configurar o workflow no Github Actions. Isso é feito indo para a aba específica, escolhendo "set up a workflow yourself" e então adicionando os comandos para configurar o Python e o pip, instalar dependências que estão no requeirements.txt, atualizar o README.md e finalmente dar commit no resultado, além de ajustar o cron para que a tarefa rode a cada 1 hora, entre 1:00 e 23:00. Ao salvar o `main.yml` que contém as configurações na pasta `.github/workflows`, o GitHub Actions vai identificar o arquivo. O workflow é basicamente o mesmo do Simon, a diferença é que o dele ainda inclui um comando para pegar variáveis de ambiente.
-
-### Para quem tiver mais tempo e disposição
-
-Existe uma série de coisas que poderiam ser automatizadas. Os releases mais recentes (como Simon fez), contagem de commits, interações no StackOverflow (não olhei se eles tem API, se não tiverem certamente o BeautifulSoup resolve), trabalho atual e formação do LinkedIn (se tiverem API deve ser paga, então novamente poderia usar BeautifulSoup), publicações no LinkedIn, posts do Medium, vídeos ou episódios de podcasts mais recentes para quem é desse mundo, e por aí vai.
-
-Ansiosa para ver quais ideias vão surgir. Até mais!
-
-## Links
+## Links úteis
 
 [Feature Scaling with scikit-learn](https://benalexkeen.com/feature-scaling-with-scikit-learn/)
 
-[Outro post do Simon sobre automatização do README](https://simonwillison.net/2020/Apr/20/self-rewriting-readme/)
+[Repositório](https://github.com/nymarya/aceleradev/tree/master/enem-2)
