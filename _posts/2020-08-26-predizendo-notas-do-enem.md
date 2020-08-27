@@ -22,9 +22,9 @@ Para os 90%, fui no básico: um modelo simples, um pré-processamento mais cuida
 </div>
 <br>
 
-O modelo escolhido foi o LinearRegression, com os parâmetros já pre-estabelecidos.
+O modelo escolhido foi o LinearRegression, com os parâmetros já pré-estabelecidos.
 
-No tratamento, primeiro utilizei [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling) para ter uma visão geral do banco de treinamento. A ferramente dá todas as estatísticas e já indica quais colunas tem correlação entre si. Retirei essas. Retirei também as que tinham 50% ou mais de valores nulos ou as colunas que tinham valor constante. Feita a separação entre features numericas e categoricas. As numéricas imputei os valores nulos com -1 e padronizei com Standard scaler. As categoricas imputei com a string "N/A" e usei o OneHotEncoder. Isso aumenta significativamente o numero de colunas, então tive que usar o TruncatedSVD para reduzir a dimensionalidade, que sem tratamento fica 61462.
+No tratamento, primeiro utilizei [pandas-profiling](https://github.com/pandas-profiling/pandas-profiling) para ter uma visão geral do banco de treinamento. A ferramenta dá todas as estatísticas e já indica quais colunas tem correlação entre si. Retirei essas. Retirei também as que tinham 50% ou mais de valores nulos ou as colunas que tinham valor constante. Feita a separação entre features numericas e categoricas. As numéricas imputei os valores nulos com -1 e padronizei com [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html). As categóricas imputei com a string "N/A" e usei o [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html). Isso aumenta significativamente o numero de colunas, então tive que usar o TruncatedSVD para reduzir a dimensionalidade, que sem tratamento são meras 61462 features.
 
 ### Digievoluindo a solução
 
