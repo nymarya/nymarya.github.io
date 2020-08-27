@@ -17,6 +17,37 @@
   }
 }
 
+.post {
+  height: 100%;
+  position: relative;
+  display: block;
+
+  > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .content {
+    height: 100%;
+  }
+}
+
+.post-content {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 0 15% 0 15%;
+}
+
+.block-post{
+  width: 100%;
+  margin: 0 auto 0 auto;
+  display: table;
+
+  .content {
+    height: 100%;
+    max-width: 100%;
+  }
+}
+
 .block-right {
   float: right;
   overflow-y: auto;
@@ -208,7 +239,7 @@ canvas {
     display: inline-block;
     width: calc(100%/3);
     background: $overlay-color;
-    height: 50%;
+    height: 30%;
     border: 5px solid $overlay-color;
     position: relative;
     vertical-align: top;
@@ -217,11 +248,11 @@ canvas {
     &:nth-child(8n+1),
     &:nth-child(8n+2) {
       width: 50%;
-      height: 70%;
+      height: 30%;
     }
     &:nth-child(8n+6) {
       width: calc(100%/3 + 100%/3);
-      height: 100%;
+      height: 50%;
     }
     a {
       border: 30px solid transparent;
@@ -546,7 +577,7 @@ canvas {
       color: darken($white, 40);
     }
     .date {
-      color: #399f62;
+      color: $purple;
       float: right;
       display: inline-block;
       font-size: 15px;
@@ -615,7 +646,7 @@ canvas {
     display: block;
   }
   a:not(.btn):not(.pagination_pager) {
-    color: #399f62;
+    color: $purple;
     border-bottom: 1px dotted $lilas;
 
     &:hover{
@@ -635,12 +666,13 @@ canvas {
   }
 }
 
+
 .demo {
   margin-bottom: 50px;
 }
 
 .post-title-section {
-  position: absolute;
+  // position: absolute;
   bottom: 50px;
   left: 50px;
   right: 50px;
@@ -840,6 +872,42 @@ canvas {
   }
 }
 
+//mobile
+@media screen and (max-width: 500px) {
+  .block-left{
+    width: 100%;
+    height: 60%;
+  }
+
+  .content {
+    height: 60%;
+  }
+
+  .post > div{
+    display: block;
+  }
+  .post-content{
+    padding: 0 5% 0 5%;
+  }
+
+  .post-title-section .tags>li{
+    font-size: 7pt;
+  }
+
+  .post-title-section.section-title{
+    font-size: 15pt;
+  }
+
+  .section-title{
+    font-size: 15pt;
+  }
+
+  .overlay {
+    top: 5%
+  }
+
+}
+
 // entry meta used in tags and categories page
 .entry-meta {
   font-size: .75rem;
@@ -926,10 +994,22 @@ canvas {
 }
 
 
-.block-left{
-  width:40%;
+@media screen and (min-width: 500px){
+  .block-left{
+    width:40%;
+  }
+  
 }
 
 span.muted {
   color: #aaa
 }
+
+.bd-navbar {
+  min-height: 4rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.btn.btn_google-plus{background-color:#dc4e41 !important;color:#fff !important}
+.btn.btn_twitter{background-color:#55acee;color:#fff !important}
+.btn.btn_facebook{background-color:#3b5998;color:#fff !important}

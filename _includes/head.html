@@ -49,11 +49,11 @@
   {% capture image %}{{ page.image }}{% endcapture %}
   {% unless image contains 'http://' or image contains 'https://' %}{% capture image %}{{ site.url }}/{{ image }}{% endcapture %}{% endunless %}
   <style type="text/css">
-    #posts.inner-post-page .block-left {background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ image }}) no-repeat;background-size: cover;}
+    #posts.inner-post-page .block-post {background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ image }}) no-repeat;background-size: cover;}
   </style>
   {% else %}
   <style type="text/css">
-    #posts.inner-post-page .block-left {background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ site.url }}/{{ site.background.default-post }}) no-repeat;background-size: cover;}
+    #posts.inner-post-page .block-post {background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ site.url }}/{{ site.background.default-post }}) no-repeat;background-size: cover;}
   </style>
   {% endif %}
   <!-- Left Block Images for Home and Pages -->
@@ -77,4 +77,12 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
   rel="stylesheet">
-</head>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <style>
+    a {color: black;}
+    a:hover { color: #8f6bff; }
+  </style>
+  
+  </head>

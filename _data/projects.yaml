@@ -1,26 +1,46 @@
+- title: PRF API
+  url: https://github.com/nymarya/prf_api
+  image: ../images/github.jpg
+  completed: true
+
+- title: Corvus
+  url: https://github.com/nymarya/corvus
+  image: ../images/github.jpg
+  completed: true
+
+- title: ODUFRN Downloader
+  url: https://odufrn.github.io/odufrn-downloader/
+  image: ../images/odufrn.png
+  completed: true
+
+- title: Regula RN
+  url: https://regulacao.saude.rn.gov.br
+  image:
+  completed: true
+
 - title: RETSUS
   url: https://retsus.ufrn.br
-  image: https://github.com/nymarya/nymarya.github.io/blob/master/images/retsus.png?raw=true
+  image: ../images/retsus.png
   completed: true
 
-- title: SGP
-  url:  http://sgp.lais.huol.ufrn.br
-  image: https://github.com/nymarya/nymarya.github.io/blob/master/images/sgp.png?raw=true
-  completed: true
+# - title: SGP
+#   url:  http://sgp.lais.huol.ufrn.br
+#   image: https://github.com/nymarya/nymarya.github.io/blob/master/images/sgp.png?raw=true
+#   completed: true
 
-- title: Olho Biônico
-  url: 
-  image: 
-  completed: true
+# - title: Olho Biônico
+#   url: 
+#   image: 
+#   completed: true
 
-- title: PRODOC
-  url: 
-  image: 
-  completed: true
+# - title: PRODOC
+#   url: 
+#   image: 
+#   completed: true
 
 - title: Comunica-EDU
   url: http://www.educacao.rn.gov.br/Conteudo.asp?TRAN=ITEM&TARG=176381&ACT=&PAGE=&PARM=&LBL=MAT%C9RIA
-  image: http://adcon.rn.gov.br/ACERVO/seec/IMG/IMG000000000176382.JPEG
+  image: ../images/cpnatal.jpeg
   completed: true
 
 

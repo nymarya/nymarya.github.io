@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-26T18:29:58-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Predizendo notas do ENEM</title><link href="http://localhost:4000/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-07-27T00:00:00-03:00</published><updated>2020-07-27T00:00:00-03:00</updated><id>http://localhost:4000/predizendo-notas-do-enem</id><content type="html" xml:base="http://localhost:4000/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então veio também a oportunidade perfeita para refazer o modelo e usar os novos conhecimentos para melhorar a solução. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-26T19:36:38-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Predizendo notas do ENEM</title><link href="http://localhost:4000/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-08-26T00:00:00-03:00</published><updated>2020-08-26T00:00:00-03:00</updated><id>http://localhost:4000/predizendo-notas-do-enem</id><content type="html" xml:base="http://localhost:4000/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;o-feijão-com-arroz&quot;&gt;O feijão com arroz&lt;/h3&gt;
 
 &lt;p&gt;Para os 90%, fui no básico: um modelo simples, um pré-processamento mais cuidadoso.&lt;/p&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://media.giphy.com/media/xT1XH14zaGcdC4j2bC/giphy.gif&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;O modelo escolhido foi o LinearRegression, com os parâmetros já pre-estabelecidos.&lt;/p&gt;
 
@@ -10,24 +15,27 @@
 
 &lt;h3 id=&quot;digievoluindo-a-solução&quot;&gt;Digievoluindo a solução&lt;/h3&gt;
 
-&lt;div&gt;
+&lt;div align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://media.giphy.com/media/nDb2WPoK832fK/giphy.gif&quot; /&gt;
 &lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Feito o básico, resta fazer um trabalho mais rebuscado de engenharias de dados. A começar por mais uma etapa de limpeza de dados, dessa vez utilizando da &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2/src/features/build_features.py#L110&quot;&gt;correlação&lt;/a&gt; para retirar algumas colunas. Para evitar redundância de dados, são retiradas as colunas numéricas que tem correlação maior que 0.5 ou menor que -0.2 com a coluna alvo &lt;code class=&quot;highlighter-rouge&quot;&gt;NU_NOTA_MT&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Algumas coisas simples a serem testadas seria trocar o StandardScaler por outro normalizador como MinMaxScaler, RobustScaler, ou Normalizer. Essa mudança pode ser muito importantepois o StandardScaler assume que seus dados seguem uma distribuição normal. De fato, no &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-4/&quot;&gt;desafio&lt;/a&gt; da semana seguinte, a mudança de StandardScaler para RobustScaler representou uma diferença de uns 5% no desempenho, mas neste o resultado não foi tão impactante.&lt;/p&gt;
+&lt;p&gt;Algumas coisas simples a serem testadas seria trocar o StandardScaler por outro normalizador como MinMaxScaler, RobustScaler, ou Normalizer. Essa mudança pode ser muito importante pelo fato de que o StandardScaler assume que seus dados seguem uma distribuição normal. De fato, no &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-4/&quot;&gt;desafio&lt;/a&gt; da semana seguinte, a mudança de StandardScaler para RobustScaler representou uma diferença de uns 5% no desempenho, um salto de 93% para 98%, mas neste caso o resultado não foi tão impactante.&lt;/p&gt;
 
-&lt;p&gt;Outra opção seria trocar o encoder por outro como CatBoost ou OrdinalEncoder. O primeiro não consegui inserir no código, mas o segundo foi testado e os resultados estão na tabela no fim da seção.&lt;/p&gt;
+&lt;p&gt;Outra opção seria trocar o encoder por outro como CatBoost ou &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html&quot;&gt;OrdinalEncoder&lt;/a&gt;, que, ao invés de cirar uma coluna para cada categoria como o OneHotEncoder, apenas tranforma as categorias na forma númerica. O primeiro não consegui inserir no código, mas o segundo foi testado e os resultados estão na tabela no  começo da próxima seção.&lt;/p&gt;
 
-&lt;p&gt;Também foram feitos experimentos com a redução de dimensionalidade testando &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html&quot;&gt;RFE&lt;/a&gt;,  &lt;a href=&quot;https://scikit-learn.org/stable/auto_examples/neighbors/plot_nca_dim_reduction.html&quot;&gt;LDA, NCA&lt;/a&gt; ou &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html&quot;&gt;SelectKBest&lt;/a&gt;. O segundo e o terceiro não deram certo por não funcionarem com matriz esparsa (que é no que os dados se transformam após os passos anteriores). O primeiro, por ser recursivo, acaba sendo incompatível com o OneHotEncoder pela gigantesca quantidade de colunas geradas. O SelectKBest também apresentava um problema semelhante. Testei aplicando TruncatedSVD e depois outros para reduzir, mas: muita demora, pouca mudança. As outras funções de redução mais lentas funcionaram com &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html&quot;&gt;OrdinalEncoder&lt;/a&gt;, que, ao invés de cirar uma coluna para cada categoria como o OneHotEncoder, apenas tranforma as categorias na forma númerica.&lt;/p&gt;
+&lt;p&gt;Também foram feitos experimentos com a redução de dimensionalidade testando &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html&quot;&gt;RFE&lt;/a&gt;,  &lt;a href=&quot;https://scikit-learn.org/stable/auto_examples/neighbors/plot_nca_dim_reduction.html&quot;&gt;LDA, NCA&lt;/a&gt; ou &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html&quot;&gt;SelectKBest&lt;/a&gt;. O segundo e o terceiro não deram certo por não funcionarem com matriz esparsa (que é no que os dados se transformam após os passos anteriores). O primeiro, por ser recursivo, acaba sendo incompatível com o OneHotEncoder pela gigantesca quantidade de colunas geradas. O SelectKBest também apresentava um problema semelhante. Testei aplicando TruncatedSVD e depois outros para reduzir, mas não deu bom: muita demora, pouca mudança. As outras funções de redução mais lentas funcionaram com OrdinalEncoder por não aumentar a cardinalidade das colunas.&lt;/p&gt;
 
 &lt;p&gt;Por fim, em relação aos modelos de regressão, foram testados LinearRegression, &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.TheilSenRegressor.html&quot;&gt;TheisenRegressor&lt;/a&gt; e &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html&quot;&gt;RandomForestRegressor&lt;/a&gt; e &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html&quot;&gt;DecisionTreeRegressor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;avaliando-as-avaliações&quot;&gt;Avaliando as avaliações&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
     &lt;tr&gt;
-      &lt;th&gt;Pre&lt;/th&gt;
+      &lt;th&gt;Correlação&lt;/th&gt;
       &lt;th&gt;Scaler/Normalizer&lt;/th&gt;
       &lt;th&gt;Encoder&lt;/th&gt;
       &lt;th&gt;Reduce_dim&lt;/th&gt;
@@ -37,7 +45,7 @@
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;Correlação&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
       &lt;td&gt;Normalizer&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(30)&lt;/td&gt;
@@ -45,7 +53,7 @@
       &lt;td&gt;91.72&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Correlação&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OrdinalEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(30)&lt;/td&gt;
@@ -53,7 +61,7 @@
       &lt;td&gt;93.28&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Correlação&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(10)&lt;/td&gt;
@@ -61,7 +69,7 @@
       &lt;td&gt;93.25&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Correlação&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -69,15 +77,15 @@
       &lt;td&gt;92.52&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Correlação&lt;/td&gt;
-      &lt;td&gt;QuantileTranformer&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
+      &lt;td&gt;QuantileTransformer&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
       &lt;td&gt;TheisenRegressor&lt;/td&gt;
       &lt;td&gt;93.07&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;QuantileTransformer&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -85,7 +93,7 @@
       &lt;td&gt;93.36&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -93,7 +101,7 @@
       &lt;td&gt;93.37&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;RFE(50, LR)&lt;/td&gt;
@@ -101,7 +109,7 @@
       &lt;td&gt;93.31&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;RFE(30, LR)&lt;/td&gt;
@@ -109,7 +117,7 @@
       &lt;td&gt;93.36&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;RFE(30, SVR)&lt;/td&gt;
@@ -117,7 +125,7 @@
       &lt;td&gt;93.37&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -125,7 +133,7 @@
       &lt;td&gt;93.5&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -133,7 +141,7 @@
       &lt;td&gt;93.56&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -141,7 +149,7 @@
       &lt;td&gt;93.64&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;Sem correlação&lt;/td&gt;
+      &lt;td&gt;Não&lt;/td&gt;
       &lt;td&gt;RobustScaler&lt;/td&gt;
       &lt;td&gt;OneHotEncoder&lt;/td&gt;
       &lt;td&gt;SelectKBest(50)&lt;/td&gt;
@@ -151,17 +159,21 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;avaliando-as-avaliações&quot;&gt;Avaliando as avaliações&lt;/h3&gt;
+&lt;p&gt;Tirando o primeiro, todos os algoritmos tem algum fator aleatório, o que quer dizer que para ter uma noção boa do resultado, tem que ser feitas várias execuções para analisar estatisticamente os resultados. Por exemplo, o melhor resultado encontrado foi com RandomForestRegressor, mas ao rodar várias vezes o índice não foi observado novamente muito menos melhorou. De forma geral, os métodos mais rebuscados não tiveram uma diferença tão grande em relação à boa e velha regressão linear.&lt;/p&gt;
 
-&lt;p&gt;Tirando o primeiro, todos os algoritmos tem algum fator aleatório, o que quer dizer que para ter uma noção boa do resultado, tem que ser feitas várias execuções para analisar estatisticamente os resultados. Por exemplo, o melhor resultado encontrado foi com RandomForestRegressor, mas ao rodar várias vezes o índice não foi observado novamente muito menos melhorou. De forma geral, os métodos mais rebuscados não tiveram uma diferença tão grande em relação à boa e velha gressão linear.&lt;/p&gt;
+&lt;p&gt;Concluindo, numa situação de vida real certamente o mais vantajoso, dentre os cenários vistos, seria não sair do feijão com arroz (regressão linear), apenas adicionar umas hortaliças para incrementar o PF (investir no tratamento dos dados).&lt;/p&gt;
 
-&lt;p&gt;Até mais!&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Disclaimer: os pontos mais importantes do curso, pessoalmente falando, foram as aulas sobre metodologia científica e estatística, coisas que não foram abordadas nesse post.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Enfim, é isto. Até mais!&lt;/p&gt;
 
 &lt;h2 id=&quot;links-úteis&quot;&gt;Links úteis&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://benalexkeen.com/feature-scaling-with-scikit-learn/&quot;&gt;Feature Scaling with scikit-learn&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/nymarya/aceleradev/tree/master/enem-2&quot;&gt;Repositório&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="predict" /><category term="pandas" /><category term="enem" /><summary type="html">Para entrar na aceleração de Data Science do Codenation, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então veio também a oportunidade perfeita para refazer o modelo e usar os novos conhecimentos para melhorar a solução. O código está disponível aqui.</summary></entry><entry><title type="html">Portfólio automatizado no README</title><link href="http://localhost:4000/portfolio-automatizado-no-readme/" rel="alternate" type="text/html" title="Portfólio automatizado no README" /><published>2020-07-15T00:00:00-03:00</published><updated>2020-07-15T00:00:00-03:00</updated><id>http://localhost:4000/portfolio-automatizado-no-readme</id><content type="html" xml:base="http://localhost:4000/portfolio-automatizado-no-readme/">&lt;p&gt;No dia 10 de julho de 2020, estava eu calmamente navegando pela minha timeline do Twiter, quando me aparece o tweet abaixo:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/nymarya/aceleradev/tree/master/enem-2&quot;&gt;Repositório&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="predição" /><category term="pandas" /><category term="enem" /><summary type="html">Para entrar na aceleração de Data Science do Codenation, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível aqui.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://www.provafacilnaweb.com.br/wp-content/uploads/2018/10/corrigir-prova-f%C3%A1cil.jpg" /></entry><entry><title type="html">Portfólio automatizado no README</title><link href="http://localhost:4000/portfolio-automatizado-no-readme/" rel="alternate" type="text/html" title="Portfólio automatizado no README" /><published>2020-07-15T00:00:00-03:00</published><updated>2020-07-15T00:00:00-03:00</updated><id>http://localhost:4000/portfolio-automatizado-no-readme</id><content type="html" xml:base="http://localhost:4000/portfolio-automatizado-no-readme/">&lt;p&gt;No dia 10 de julho de 2020, estava eu calmamente navegando pela minha timeline do Twiter, quando me aparece o tweet abaixo:&lt;/p&gt;
 
 &lt;div&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Made myself a self-updating GitHub personal README! It uses a GitHub Action to update itself with my latest GitHub releases, blog entries and TILs &lt;a href=&quot;https://t.co/Eve7FOrwYK&quot;&gt;https://t.co/Eve7FOrwYK&lt;/a&gt; &lt;a href=&quot;https://t.co/oJPXLtFdgM&quot;&gt;pic.twitter.com/oJPXLtFdgM&lt;/a&gt;&lt;/p&gt;&amp;mdash; Simon Willison (@simonw) &lt;a href=&quot;https://twitter.com/simonw/status/1281435464474324993?ref_src=twsrc%5Etfw&quot;&gt;July 10, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
