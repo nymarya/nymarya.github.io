@@ -42,7 +42,16 @@ Then, the calculation is done by calling `nearest_pois` and passing the max dist
 
 The dataset is ready, so it's time to use [Folium](https://github.com/python-visualization/folium), a library responsible for unifying data manipulation with Python, and maps visualizations with JavaScript's [Leaflet](https://github.com/Leaflet/Leaflet). That is all a programmer needs to show their data when already having geographical data in their hands.
 
-{% include posts/fear_the_walking_distance/bank.html %}
+<div>
+<center>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/school.html" height="400" width="500"></iframe></center>
+</div>
+
+<center>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/bank.html" height="350" width="600"></iframe>
+</center>
+
+
 
 ## Links
 
