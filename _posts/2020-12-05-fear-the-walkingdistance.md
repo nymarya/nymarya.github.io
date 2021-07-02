@@ -28,7 +28,7 @@ The next step is to calculate the distances per se. We create a network with Pan
 
 The library also provides a function to query the points of interest in the network. In this study, the search is for amenities that cover basic needs: food, education, money, health, and safety. In OSM API terms, the tags are 'hospital', 'restaurant', 'bank','school', 'police', and 'pharmacy'.
 
-Following the workflow suggested in the docs, we call `set_pois` to add the points to the network. That is done separately for each category. Here, we already specify that we only want to know the amenities within 10km. The next step will use this information.
+Following the workflow suggested in their [demo](https://github.com/UDST/pandana/blob/dev/examples/Pandana-demo.ipynb), we call `set_pois` to add the points to the network. That is done separately for each category. Here, we already specify that we only want to know the amenities within 10km. The next step will use this information.
 
 Then, the calculation is done by calling `nearest_pois` and passing the max distance and the number of items that the function must return.
 
@@ -44,12 +44,33 @@ The dataset is ready, so it's time to use [Folium](https://github.com/python-vis
 
 <div>
 <center>
-<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/school.html" height="400" width="500"></iframe></center>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/population.html" height="400" width="400"></iframe>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/income.html" height="400" width="400"></iframe> 
+<figcaption>Left: the darker the color, the greater the population. Right: The darker the color, the bigger the mean income</figcaption>   
+</center>
+
+</div>
+
+The maps show that whereas the population is more concentrated in the north, followed by the west zone, the income has an inverse tendency. The mean income increases as we go in the south direction and even more when looking east, where the districts with higher incomes are.
+
+<div>
+<center>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/school.html" height="380" width="400"></iframe>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/restaurant.html" height="380" width="400"></iframe>  
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/pharmacy.html" height="380" width="400"></iframe>  
+</center>
 </div>
 
 <center>
-<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/bank.html" height="350" width="600"></iframe>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/hospital.html" height="380" width="400"></iframe>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/police.html" height="380" width="400"></iframe>
 </center>
+
+<div>
+<center>
+<iframe src="{{ site.url }}/assets/htmls/fear_the_walking_distance/bank.html" height="380" width="400"></iframe>
+</center>
+</div>
 
 
 

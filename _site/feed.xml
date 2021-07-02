@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://127.0.0.1:4000/" rel="alternate" type="text/html" /><updated>2021-07-01T20:52:29-03:00</updated><id>http://127.0.0.1:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Self-updating portfolio on README</title><link href="http://127.0.0.1:4000/fear-the-walkingdistance/" rel="alternate" type="text/html" title="Self-updating portfolio on README" /><published>2020-12-05T00:00:00-03:00</published><updated>2020-12-05T00:00:00-03:00</updated><id>http://127.0.0.1:4000/fear-the-walkingdistance</id><content type="html" xml:base="http://127.0.0.1:4000/fear-the-walkingdistance/">&lt;p&gt;Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://127.0.0.1:4000/" rel="alternate" type="text/html" /><updated>2021-07-02T15:34:49-03:00</updated><id>http://127.0.0.1:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Self-updating portfolio on README</title><link href="http://127.0.0.1:4000/fear-the-walkingdistance/" rel="alternate" type="text/html" title="Self-updating portfolio on README" /><published>2020-12-05T00:00:00-03:00</published><updated>2020-12-05T00:00:00-03:00</updated><id>http://127.0.0.1:4000/fear-the-walkingdistance</id><content type="html" xml:base="http://127.0.0.1:4000/fear-the-walkingdistance/">&lt;p&gt;Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.&lt;/p&gt;
 
 &lt;p&gt;Urban mobility is one of the various aspects to which authorities must pay attention. Since transportation can be a substantial source of stress, planning has a direct impact on life quality. When thinking of sustainability, this discussion becomes even more complex. It claims more bike lanes and, more importantly, the opportunity for pedestrians to resolve their business in the city by walking.&lt;/p&gt;
 
@@ -16,7 +16,7 @@
 
 &lt;p&gt;The library also provides a function to query the points of interest in the network. In this study, the search is for amenities that cover basic needs: food, education, money, health, and safety. In OSM API terms, the tags are ‘hospital’, ‘restaurant’, ‘bank’,’school’, ‘police’, and ‘pharmacy’.&lt;/p&gt;
 
-&lt;p&gt;Following the workflow suggested in the docs, we call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set_pois&lt;/code&gt; to add the points to the network. That is done separately for each category. Here, we already specify that we only want to know the amenities within 10km. The next step will use this information.&lt;/p&gt;
+&lt;p&gt;Following the workflow suggested in their &lt;a href=&quot;https://github.com/UDST/pandana/blob/dev/examples/Pandana-demo.ipynb&quot;&gt;demo&lt;/a&gt;, we call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set_pois&lt;/code&gt; to add the points to the network. That is done separately for each category. Here, we already specify that we only want to know the amenities within 10km. The next step will use this information.&lt;/p&gt;
 
 &lt;p&gt;Then, the calculation is done by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nearest_pois&lt;/code&gt; and passing the max distance and the number of items that the function must return.&lt;/p&gt;
 
@@ -32,12 +32,33 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;400&quot; width=&quot;500&quot;&gt;&lt;/iframe&gt;&lt;/center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/population.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/income.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt; 
+&lt;figcaption&gt;Left: the darker the color, the greater the population. Right: The darker the color, the bigger the mean income&lt;/figcaption&gt;   
+&lt;/center&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The maps show that whereas the population is more concentrated in the north, followed by the west zone, the income has an inverse tendency. The mean income increases as we go in the south direction and even more when looking east, where the districts with higher incomes are.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;/center&gt;
 &lt;/div&gt;
 
 &lt;center&gt;
-&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;350&quot; width=&quot;600&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;/center&gt;
+
+&lt;div&gt;
+&lt;center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;/center&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
 

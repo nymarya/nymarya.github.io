@@ -60,10 +60,11 @@
             var map_a274f6b9fa4d4cc488f8bb893c8f91ac = L.map(
                 "map_a274f6b9fa4d4cc488f8bb893c8f91ac",
                 {
-                    center: [-5.806592, -35.222558],
+                    center: [-5.796592, -35.222558],
                     crs: L.CRS.EPSG3857,
                     zoom: 10.5,
                     zoomControl: true,
+                    scrollWheelZoom: false,
                     preferCanvas: false,
                 }
             );
@@ -165,12 +166,12 @@
 
     color_map_8a42276fa78e4b0c9ff53ec02614ecff.svg = d3.select(".legend.leaflet-control").append("svg")
         .attr("id", 'legend')
-        .attr("width", 450)
+        .attr("width", 400)
         .attr("height", 40);
 
     color_map_8a42276fa78e4b0c9ff53ec02614ecff.g = color_map_8a42276fa78e4b0c9ff53ec02614ecff.svg.append("g")
         .attr("class", "key")
-        .attr("transform", "translate(25,16)");
+        .attr("transform", "translate(65,16) scale(0.8)");
 
     color_map_8a42276fa78e4b0c9ff53ec02614ecff.g.selectAll("rect")
         .data(color_map_8a42276fa78e4b0c9ff53ec02614ecff.color.range().map(function(d, i) {
