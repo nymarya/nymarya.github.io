@@ -124,7 +124,7 @@
     
     let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
     let fields = ["name", "dist_bank"];
-    let aliases = ["Name:", "Distance from center to nearest bank:"];
+    let aliases = ["Name:", "Distance:"];
     let table = '<table>' +
         String(
         fields.map(
@@ -171,7 +171,7 @@
 
     color_map_8a42276fa78e4b0c9ff53ec02614ecff.g = color_map_8a42276fa78e4b0c9ff53ec02614ecff.svg.append("g")
         .attr("class", "key")
-        .attr("transform", "translate(65,16) scale(0.8)");
+        .attr("transform", "translate(65,10) scale(0.8)");
 
     color_map_8a42276fa78e4b0c9ff53ec02614ecff.g.selectAll("rect")
         .data(color_map_8a42276fa78e4b0c9ff53ec02614ecff.color.range().map(function(d, i) {
