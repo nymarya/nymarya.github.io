@@ -1,27 +1,153 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://127.0.0.1:4000/" rel="alternate" type="text/html" /><updated>2021-07-04T17:30:42-03:00</updated><id>http://127.0.0.1:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Self-updating portfolio on README</title><link href="http://127.0.0.1:4000/fear-the-walkingdistance/" rel="alternate" type="text/html" title="Self-updating portfolio on README" /><published>2020-12-05T00:00:00-03:00</published><updated>2020-12-05T00:00:00-03:00</updated><id>http://127.0.0.1:4000/fear-the-walkingdistance</id><content type="html" xml:base="http://127.0.0.1:4000/fear-the-walkingdistance/">&lt;p&gt;Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://127.0.0.1:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://127.0.0.1:4000/" rel="alternate" type="text/html" /><updated>2021-07-06T18:40:18-03:00</updated><id>http://127.0.0.1:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Caminhabilidade: existe isso em Natal?</title><link href="http://127.0.0.1:4000/caminhabilidade-existe-isso-em-natal/" rel="alternate" type="text/html" title="Caminhabilidade: existe isso em Natal?" /><published>2021-07-06T00:00:00-03:00</published><updated>2021-07-06T00:00:00-03:00</updated><id>http://127.0.0.1:4000/caminhabilidade-existe-isso-em-natal</id><content type="html" xml:base="http://127.0.0.1:4000/caminhabilidade-existe-isso-em-natal/">&lt;p&gt;A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.&lt;/p&gt;
 
-&lt;p&gt;Urban mobility is one of the various aspects to which authorities must pay attention. Since transportation can be a substantial source of stress, planning has a direct impact on life quality. When thinking of sustainability, this discussion becomes even more complex. It claims more bike lanes and, more importantly, the opportunity for pedestrians to resolve their business in the city by walking.&lt;/p&gt;
+&lt;p&gt;Mobilidade urbana é um dos vários aspectos para os quais as autoridades devem atentar. Sabendo que a locomoção pode ser uma fonte substancial de estresse, vemos que o planejamento das vias tem um impacto direto na qualidade de vida das pessoas. Se pensarmos em sustentabilidade, a discussão se torna ainda mais complexa. Surge a necessidade de ciclovias e, mais ainda, a oportunidade dos habitantes circularem pela cidade a pé. Acessibilidade para pedestres tem um impacto considerável na saúde na saúde, além de promover um impacto positivo no meio ambiente.&lt;/p&gt;
 
-&lt;p&gt;With that in mind, in this post, we try to measure the walkability in Natal, Brazil, using data science, open data, and maps. There are similar posts that were the source of great inspiration, including one from &lt;a href=&quot;https://medium.com/pizzadedados/utilizando-dados-abertos-e-ci%C3%AAncia-de-dados-na-mobilidade-urbana-371a4c591639&quot;&gt;Maceió&lt;/a&gt;, another Brazilian city, &lt;a href=&quot;https://medium.com/@matthewtenneyto/measuring-walking-times-across-toronto-to-nearest-ttc-stop-using-the-pedestrian-network-and-python-4263e0392a9b&quot;&gt;Toronto&lt;/a&gt;, and &lt;a href=&quot;https://towardsdatascience.com/measuring-pedestrian-accessibility-97900f9e4d56&quot;&gt;New York&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Sabendo disso, neste post tentaremos medir caminhabilidade, a capacidade de acessar diferentes pontos importantes da cidade a pé. A análise usa dados de Natal, sendo feita através de ciência de dados, dados abertos e mapas. Existem posts parecidos que serviram de inspiração, como esses de &lt;a href=&quot;https://medium.com/pizzadedados/utilizando-dados-abertos-e-ci%C3%AAncia-de-dados-na-mobilidade-urbana-371a4c591639&quot;&gt;Maceió&lt;/a&gt;, &lt;a href=&quot;https://medium.com/@matthewtenneyto/measuring-walking-times-across-toronto-to-nearest-ttc-stop-using-the-pedestrian-network-and-python-4263e0392a9b&quot;&gt;Toronto&lt;/a&gt;, e &lt;a href=&quot;https://towardsdatascience.com/measuring-pedestrian-accessibility-97900f9e4d56&quot;&gt;New York&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Todo o código necessário está disponível no &lt;a href=&quot;https://github.com/nymarya/fear-the-walking-distance&quot;&gt;repositório&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;primeiramente-os-dados&quot;&gt;Primeiramente, os dados&lt;/h2&gt;
+
+&lt;p&gt;O plano aqui é calcular as distâncias a pé dentro de um bairro e comparar as diferenças entre as áreas. Mas antes disso, vamos nos aprofundar um pouco e recolher informações sobre as pessoas. Isso pode ser feito bem rápido, visto que o IBGE provê dados sobre a renda e o número de habitantes pela API &lt;a href=&quot;sidra.ibge.gov.br&quot;&gt;SIDRA&lt;/a&gt;, então a biblioteca &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; será suficiente. A renda per capita e a população são descritas, respectivamente, pelas variáveis 842 e 841 da tabela 3170.&lt;/p&gt;
+
+&lt;p&gt;Agora vem a parte divertida. Como medir a acessibilidade para pedestres em um bairro? Buscando uma alternativa, pensamos nisso: escolher um ponto bem no meio da área a medir a distancia dali até o ponto de interesse mais próximo. Isso significa encontrar o centro, i.e. centróide, do polígono. Para nossa sorte, o GeoJSON que descreve a cidade tem a geometria da região que nos interessa, que consiste em um objeto do tipo Polygon, cujo centróide é um atributo.&lt;/p&gt;
+
+&lt;p&gt;O próximo passo é calcular a distâncias em si. Criamos a rede com &lt;a href=&quot;https://udst.github.io/pandana/network.html&quot;&gt;Pandana&lt;/a&gt;, que recupera os dados da &lt;a href=&quot;https://wiki.openstreetmap.org/wiki/API&quot;&gt;OpenStreetMap&lt;/a&gt; de um jeito muito eficiente.&lt;/p&gt;
+
+&lt;p&gt;A biblioteca também tem a funcionalidade de consultar os pontos de interesse da rede. Neste estudo, a busca é por estabelecimentos que cobrem as necessidades básicas: comida, educação, dinheiro, saúde e segurança. Nos termos da API OSM, as tags são ‘hospital’, ‘restaurant’, ‘bank’,’school’, ‘police’, and ‘pharmacy’. Para manter esse post mais curto, os exemplos aqui usarão apenas escolas. Por favor, acesse o repositório para o código completo.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lat1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;osm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pdna_network_from_bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;schools&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;osm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node_query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&quot;amenity&quot;=&quot;school&quot;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Seguindo o fluxo sugerido na &lt;a href=&quot;https://github.com/UDST/pandana/blob/dev/examples/Pandana-demo.ipynb&quot;&gt;demo&lt;/a&gt; disponibilizada na documentação do Pandana, chamamos &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set_pois&lt;/code&gt; para adicionar pontos à rede. Isso é feito separadamente para cada categoria. No exemplo abaixo, passamos os parâmetros de longitude e latitude das escolas, bem como o número de itens que a consulta que a função deve retornar. Aqui, também especificamos que queremos apenas os estabelecimentos dentro de um raio de 10km. O próximo passo usará essa informação.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net.set_pois(&quot;schools&quot;, 10000, 10, schools.lon, schools.lat)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Então o cálculo é feito ao chamar  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nearest_pois&lt;/code&gt; e passar a distância máxima e o número de itens que devem ser retornados pela função. O resultado é uma tabela onde cada linha é referente a um nó x e cada coluna i representa o i-ésimo estabelecimento mais próximo, de modo que cada célula contém a distância entre esses dois pontos.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nearest_pois&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;schools&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_pois&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div&gt;
+&lt;img src=&quot;/images/posts/distances_table.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Finalmente, salvamos no dataframe o valor que está na coluna 1 e na linha referente ao nó do bairro. E pronto, nossa base de dados está montada.&lt;/p&gt;
+
+&lt;h3 id=&quot;hora-de-visualizar&quot;&gt;Hora de visualizar!&lt;/h3&gt;
+
+&lt;div&gt;
+&lt;center&gt;
+&lt;img src=&quot;https://media.giphy.com/media/rOTGSPxvJJY7m/giphy.gif&quot; /&gt;
+&lt;/center&gt;
+&lt;/div&gt;
+
+&lt;p&gt;O dataset está pronto, então é hora de usar &lt;a href=&quot;https://github.com/python-visualization/folium&quot;&gt;Folium&lt;/a&gt;, uma bilbioteca capaz de unir manipulação de dados com Python e visualização de mapas com a biblioteca JavaScript &lt;a href=&quot;https://github.com/Leaflet/Leaflet&quot;&gt;Leaflet&lt;/a&gt;. Isso é tudo que uma pessoa programadora precisa para exibir seus dados geográficos.&lt;/p&gt;
+
+&lt;p&gt;Antes de prosseguir, é importante mencionar que Pandana possibilita criar visualizações bonitas, incluindo o mapa usado como capa desse post. A função &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aggregation&lt;/code&gt; conta quantos estabelecimentos estavam num raio de 10km de cada nó e o resultado é bonito, mas difícil de interpretar. Ainda que exista uma ideia de onde a maioria das escolas está (no meio da cidade, onde os pontos são mais vermelhos), mal dá para reconhecer a cidade, pior ainda se quisessemos comparar os bairros.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;img src=&quot;/images/posts/distances_cmap1.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Bom, vamos para os mapas interativos.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/population.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/income.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt; 
+&lt;figcaption&gt;Esquerda: quanto mais escura a cor, maior a população. Direita: quando mais escura a cor, maior a renda per capita&lt;/figcaption&gt;   
+&lt;/center&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Os mapas mostram que, enquanto a população está mais concentrada no norte, e em seguida na zona ao oeste, a renda segue uma tendência inversa. A renda média aumenta quando seguimos para o sul e é ainda maior se olharmos para o leste, onde estão os bairros com maior renda per capita.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;figcaption&gt;Esquerda: distância até a escola mais próxima. Centro: distância até o restaurante mais próximo. Direita: distância até a farmácia mais próxima&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Quando analisamos a distância que alguém no centro de um bairro tem que se deslocar até a escola, farmácia ou o restaurante mais próximo, vemos um padrão espacial. Bairros com menos acessibilidade, ou seja, coloridos com lilás ou roxo, estão localizados nas áreas ao norte e oeste da cidade. Destaca-se o bairro Nossa Senhora da Apresentação que possui o tom de roxo escuro em todos os três mapas. Lagoa Azul, distrito vizinho, tem caracterícticas semelhantes pois possui a cor mais escura em dois dos três mapas.&lt;/p&gt;
+
+&lt;center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;figcaption&gt;Esquerda: distância até o hospital mais próximo. Direita: distância até o posto de polícia mais próximo&lt;/figcaption&gt;
+&lt;/center&gt;
+
+&lt;p&gt;No que diz respeito a hospitais e postos de polícia, há uma diferença significativa entre os dois lados do rio Potengi. Em ambos os mapas, os bairos em roxo estão exclusivamente no norte, o que significa dizer que os habitante dessa área teriam que andar pelo menos 6km para chegar ao hospital ou posto de polícia mais próximo. Temos também alguns bairros na cor azul ao oeste e ao sul, onde a distância fica entre 2km e 6km, o que também pode ser problemático quando imaginamos ter que andar tanto para chegar a um hospital.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;center&gt;
+&lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;figcaption&gt;Distância até o banco mais próximo&lt;/figcaption&gt;
+&lt;/center&gt;
+&lt;/div&gt;
+
+&lt;p&gt;A análise das distâncias para bancos distoa um pouco das anteriores. Aqui, os bairros ao oeste possuem cores mais escuras, o que indica distâncias maiores, do que os bairros ao norte.&lt;/p&gt;
+
+&lt;p&gt;Note que em todos os mapas os bairros ao leste são coloridos com um azul claro, geralmente isso acontece em escala menor no sul,  mesmo que essa segunda região tenha um desempenho semelhante. Esse padrão condiz com a renda per capita, mais alta no sul e mais ainda em algumas partes da zona ao leste.&lt;/p&gt;
+
+&lt;h3 id=&quot;considerações-finais&quot;&gt;Considerações finais&lt;/h3&gt;
+
+&lt;p&gt;Dados abertos são uma ferramenta essencial para empoderar os cidadões através da informação, disponibilizando meios de tomar decisões e fazer cobranças às autoridades. No caso do OpenStreetMap, sua única desvantagem é a falta de confiabilidade. Por este motivo, é importante valorizar intituições como IBGE, que não apenas são responsáveis por coletar informação mas também facilitar o acesso dos dados de alta qualidade.&lt;/p&gt;
+
+&lt;p&gt;Ainda que não seja possível tirar conclusões mais definitivas, visto que há uma chance dos dados de bairros como Nossa Senhora da Apresentação, Lagoa Azul e Guarapés estarem faltando, a informação disponibilizada nos diz que existe uma falta de acessibilidade nessas áreas. Essa afirmação condiz com as reclamações dos moradores nas redes sociais e nos jornais locais. O fato de que a maioria desses bairros serem populosos implica que muitas pessoas podem sofrer com a falta de investimento. Então, respondendo a pergunta do título: Natal ainda tem um longo caminho pela frente no que diz respeito à acessibilidade para pedestres.&lt;/p&gt;
+
+&lt;p&gt;Finalmente, trabalhos futuros incluem explorar mais do Pandana. Há também um interesse em testar outra abordagem para comparar as distâncias. A alternativa seria computar as distâncias de cada nó dentro do bairro para o estabelecimento mais próximo, para então calcular a média para os nós da área e realizar as comparações.&lt;/p&gt;
+
+&lt;p&gt;E é isso! Fique à vontade para entrar em contato, fazer perguntas e sugerir novas ideias.&lt;/p&gt;
+
+&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@mayradazevedo/ate-onde-e-posivel-chegar-a-pe-em-natal-4e50d1e46685&quot;&gt;Previous version of this study (PT-BR_)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ecycle.com.br/walkability-caminhabilidade/&quot;&gt;Walkability: entenda o que é a caminhabilidade (PT-BR)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="ptbr" /><category term="python" /><category term="pandana" /><category term="mapas" /><category term="caminhabilidade" /><summary type="html">A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://127.0.0.1:4000/images/posts/distances_cmap.png" /><media:content medium="image" url="http://127.0.0.1:4000/images/posts/distances_cmap.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Walkability: is there such thing in Natal?</title><link href="http://127.0.0.1:4000/walkability-is-there-such-thing-in-natal/" rel="alternate" type="text/html" title="Walkability: is there such thing in Natal?" /><published>2021-07-06T00:00:00-03:00</published><updated>2021-07-06T00:00:00-03:00</updated><id>http://127.0.0.1:4000/walkability-is-there-such-thing-in-natal</id><content type="html" xml:base="http://127.0.0.1:4000/walkability-is-there-such-thing-in-natal/">&lt;p&gt;Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.&lt;/p&gt;
+
+&lt;p&gt;Urban mobility is one of the various aspects to which authorities must pay attention. Since transportation can be a substantial source of stress, planning has a direct impact on life quality. When thinking of sustainability, this discussion becomes even more complex. Sustainable cities claim for more bike lanes and, more importantly, for the opportunity for pedestrians to complete their business in the city by walking. Pedestrian accessibility benefits individual health, besides the good environmental impact.&lt;/p&gt;
+
+&lt;p&gt;With that in mind, in this post, we try to measure the walkability, the capacity to reach locations on foot. The analysis uses data from Natal, Brazil, and include data science, open data, and maps. There are similar posts that were the source of great inspiration, including one from &lt;a href=&quot;https://medium.com/pizzadedados/utilizando-dados-abertos-e-ci%C3%AAncia-de-dados-na-mobilidade-urbana-371a4c591639&quot;&gt;Maceió&lt;/a&gt;, another Brazilian city, &lt;a href=&quot;https://medium.com/@matthewtenneyto/measuring-walking-times-across-toronto-to-nearest-ttc-stop-using-the-pedestrian-network-and-python-4263e0392a9b&quot;&gt;Toronto&lt;/a&gt;, and &lt;a href=&quot;https://towardsdatascience.com/measuring-pedestrian-accessibility-97900f9e4d56&quot;&gt;New York&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;All the code for the steps below is available in the &lt;a href=&quot;https://github.com/nymarya/fear-the-walking-distance&quot;&gt;repository&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;data-first&quot;&gt;Data first&lt;/h2&gt;
 
-&lt;p&gt;The plan is to measure walking distance within a district and compare different neighborhoods. Before getting into that, we should go deeper and get information about the people there. That’s a quick task since IBGE provides data about the income and the number of inhabitants through the &lt;a href=&quot;sidra.ibge.gov.br&quot;&gt;SIDRA API&lt;/a&gt;, so the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; library will do all the work here. The per capita income and the number of inhabitants are described, respectively, by the variables 842 and 841 from table number 3170.&lt;/p&gt;
+&lt;p&gt;The plan is to measure walking distance within a district and then compare different neighborhoods. Before getting into that, we should go deeper and get information about the people there. That’s a quick task since IBGE provides data about the income and the number of inhabitants through the &lt;a href=&quot;sidra.ibge.gov.br&quot;&gt;SIDRA API&lt;/a&gt;, so the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; library will do all the work here. The per capita income and the population size are described, respectively, by the variables 842 and 841 from table number 3170.&lt;/p&gt;
 
-&lt;p&gt;Now, the interesting bit. How to measure pedestrian accessibility within a district? Searching for an arbitrary approach, we got to this: picking a point right in the middle of the area and calculating the distance from it to the nearest point of interest. That means finding the center, name centroid, of a polygon. Luckily, the GeoJSON that describes the city has the geometry for the region of interest, consisting of a Polygon object, which has the centroid as an attribute.&lt;/p&gt;
+&lt;p&gt;Now, the interesting bit. How to measure pedestrian accessibility within a district? Searching for an arbitrary approach, we got to this: picking a point right in the middle of the area and calculating the distance from it to the nearest point of interest. That means finding the center, a.k.a. centroid, of a polygon. Luckily for us, the GeoJSON that describes the city has the geometry for the region of interest, consisting of a Polygon object, which has the centroid as an attribute.&lt;/p&gt;
 
 &lt;p&gt;The next step is to calculate the distances per se. We create a network with Pandana, which retrieves the data from &lt;a href=&quot;https://wiki.openstreetmap.org/wiki/API&quot;&gt;OpenStreetMap&lt;/a&gt; in a very efficient way.&lt;/p&gt;
 
-&lt;p&gt;The library also provides a function to query the points of interest in the network. In this study, the search is for amenities that cover basic needs: food, education, money, health, and safety. In OSM API terms, the tags are ‘hospital’, ‘restaurant’, ‘bank’,’school’, ‘police’, and ‘pharmacy’.&lt;/p&gt;
+&lt;p&gt;Pandana also provides a function to query the points of interest in the network. In this study, the search will be for amenities that cover basic needs: food, education, money, health, and safety. In OSM API terms, the tags are ‘hospital’, ‘restaurant’, ‘bank’,’school’, ‘police’, and ‘pharmacy’. To keep this post short, the examples here will only use schools. Please, visit the repository for the whole code.&lt;/p&gt;
 
-&lt;p&gt;Following the workflow suggested in their &lt;a href=&quot;https://github.com/UDST/pandana/blob/dev/examples/Pandana-demo.ipynb&quot;&gt;demo&lt;/a&gt;, we call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set_pois&lt;/code&gt; to add the points to the network. That is done separately for each category. Here, we already specify that we only want to know the amenities within 10km. The next step will use this information.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lat1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lat2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lon2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;osm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pdna_network_from_bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;schools&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;osm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;node_query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bbox&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&quot;amenity&quot;=&quot;school&quot;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Then, the calculation is done by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nearest_pois&lt;/code&gt; and passing the max distance and the number of items that the function must return.&lt;/p&gt;
+&lt;p&gt;Following the workflow suggested in Pandana’s &lt;a href=&quot;https://github.com/UDST/pandana/blob/dev/examples/Pandana-demo.ipynb&quot;&gt;demo&lt;/a&gt;, we call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set_pois&lt;/code&gt; to add the points to the network. That is done separately for each category. In the example below, we inform the schools’ longitudes and latitudes, besides the number of items that the query must return. Here, we also specify that we only want to know the amenities within 10km. The next step will use this information.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;net.set_pois(&quot;schools&quot;, 10000, 10, schools.lon, schools.lat)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, the computation is done by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nearest_pois&lt;/code&gt; and passing as parameters the max distance and the number of items that the function must return. The result consists of a table where each line refers to a node x and each column i represents the i-th nearest amentiy to the x, so the cell contains the distance between the two points.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;net&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nearest_pois&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;schools&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_pois&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div&gt;
+&lt;img src=&quot;/images/posts/distances_table.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Finally, we save in the dataframe the value in column 1 and the corresponding line to that node of the neighborhood. And that’s it, our database is finished.&lt;/p&gt;
 
 &lt;h3 id=&quot;its-visualization-time&quot;&gt;It’s visualization time!&lt;/h3&gt;
 
@@ -31,7 +157,15 @@
 &lt;/center&gt;
 &lt;/div&gt;
 
-&lt;p&gt;The dataset is ready, so it’s time to use &lt;a href=&quot;https://github.com/python-visualization/folium&quot;&gt;Folium&lt;/a&gt;, a library responsible for unifying data manipulation with Python, and maps visualizations with JavaScript’s &lt;a href=&quot;https://github.com/Leaflet/Leaflet&quot;&gt;Leaflet&lt;/a&gt;. That is all a programmer needs to show their data when already having geographical data in their hands.&lt;/p&gt;
+&lt;p&gt;The dataset is ready, so it’s time to use &lt;a href=&quot;https://github.com/python-visualization/folium&quot;&gt;Folium&lt;/a&gt;, a library responsible for unifying data manipulation with Python, and map visualizations with JavaScript’s &lt;a href=&quot;https://github.com/Leaflet/Leaflet&quot;&gt;Leaflet&lt;/a&gt;. That is all a programmer needs to show their data when already having geographical data at hand.&lt;/p&gt;
+
+&lt;p&gt;Before continuing, it’s important to mention that Pandana also provides great visualizations, including the map used as the cover image on this page. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aggregation&lt;/code&gt; function counted how many amenities were within 10km of each node, and the result was beautiful but hard to read. Although there is a hint of where most schools are (the middle of the city, where the nodes are redder), we can barely recognize the city, even worse to compare districts.&lt;/p&gt;
+
+&lt;div&gt;
+&lt;img src=&quot;/images/posts/distances_cmap1.png&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, let’s start with our interactive maps.&lt;/p&gt;
 
 &lt;div&gt;
 &lt;center&gt;
@@ -42,46 +176,53 @@
 
 &lt;/div&gt;
 
-&lt;p&gt;The maps show that whereas the population is more concentrated in the north, followed by the west zone, the income has an inverse tendency. The mean income increases as we go in the south direction and even more when looking east, where the districts with higher incomes are.&lt;/p&gt;
+&lt;p&gt;The maps show that, while the population is more concentrated in the north (followed by the west zone), income has an inverse tendency. The mean income increases as we go southward and even more when looking east, where the higher-income districts are.&lt;/p&gt;
 
 &lt;div&gt;
 &lt;center&gt;
 &lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
 &lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;figcaption&gt;Left: distance to the nearest school. Center: distance to the nearest restaurant. Right: distance to the nearest pharmacy&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/div&gt;
 
-&lt;p&gt;There’s a pattern when seeing the distance that someone in the middle of a neighborhood would have to walk to the nearest school, pharmacy, or restaurant. Districts with less accessibility, meaning colored in light or dark purple, are in the north and west areas, highlighting the Nossa Senhora da Apresentação district, colored with the darker purple in all three maps. Lagoa Azul, the neighboring region, shows similar &lt;em&gt;performance&lt;/em&gt;, having the darker color in two out of three maps.&lt;/p&gt;
+&lt;p&gt;When lloking at the walkable distance to the nearest amenity (school, pharmacy or restaurant), we can see a spatial pattern. Districts with less accessibility, meaning colored in light or dark purple, are in the north and west areas. The most notorious example is the Nossa Senhora da Apresentação district, colored with the darkest purple in all three maps. Lagoa Azul, the neighboring region, shows similar characteristics, having the darker color in two out of three maps.&lt;/p&gt;
 
 &lt;center&gt;
 &lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;figcaption&gt;Left: distance to nearest hospital. Right: distance to nearest police station&lt;/figcaption&gt;
 &lt;/center&gt;
 
-&lt;p&gt;Regarding hospitals and police stations, there’s a significant difference between the two sides of the river. In both maps, purple-colored districts are exclusively in the north, meaning that the inhabitants usually would have to walk at least 6km to get to the nearest hospital or police stations. There are some blue-painted districts in the west and the south, where the distance is between 2km and 6km and can be problematic if we imagine having to walk this much to get to a hospital.&lt;/p&gt;
+&lt;p&gt;Regarding hospitals and police stations, there’s a significant difference between the two sides of the river. In both maps, purple-colored districts are exclusively in the north, meaning that the inhabitants usually would have to walk at least 6km to get to the nearest hospital or police station. There are some blue-painted districts in the west and the south, where the distance is between 2km and 6km and can be problematic if we imagine having to walk this much to get to a hospital.&lt;/p&gt;
 
 &lt;div&gt;
 &lt;center&gt;
 &lt;iframe src=&quot;http://127.0.0.1:4000/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;figcaption&gt;Distance to the nearest bank&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The analysis of distances to banks is a little different from the previous ones. Here, the western districts have darker colors, indicating greater distances, than the northern districts.&lt;/p&gt;
 
-&lt;p&gt;Note that in all maps, the districts in the east have a light blue coloring, usually on a smaller scale than in the south, although the second region has a similar performance. This pattern matches the income, higher in the south and ever more distinguished in some eastern neighborhoods.&lt;/p&gt;
+&lt;p&gt;Note that in all maps, the districts in the east have a light blue coloring, usually on a smaller color scale than in the south, although the second region has a similar performance. This pattern matches the income, higher in the south and even more prominent in some eastern neighborhoods.&lt;/p&gt;
 
 &lt;h3 id=&quot;final-thoughts&quot;&gt;Final thoughts&lt;/h3&gt;
 
-&lt;p&gt;Open data is an essential tool to empower citizens through information, providing ways to make decisions and ask authorities. In the OpenStreet Map case, its only fault is regarding reliability. That’s why it’s so important to celebrate institutes such as IBGE, which not only are responsible for collecting information but also facilitate access to high-quality data.&lt;/p&gt;
+&lt;p&gt;Open data is an essential tool to empower citizens through information, providing ways to make decisions and demand actions from authorities. In the OpenStreet Map case, its only fault is regarding reliability. That’s why it’s so important to celebrate institutes such as IBGE, which not only are responsible for collecting information but also facilitate access to high-quality data.&lt;/p&gt;
 
-&lt;p&gt;Even though it’s not possible to draw hard conclusions because there’s a chance that the data from districts like Nossa Senhora da Apresentação, Lagoa Azul, and Guarapés are missing, the available information tells us that there’s a lack of accessibility in these areas. This affirmation corroborates with the claims of the habitants in social media and local news. The fact that most of these neighborhoods are also populous implies that many people may suffer from the scarcity of investment.&lt;/p&gt;
+&lt;p&gt;Even though it’s not possible to draw hard conclusions because there’s a chance that some data from districts like Nossa Senhora da Apresentação, Lagoa Azul, and Guarapés is missing, the available information tells us that there’s a lack of accessibility in these areas. This affirmation corroborates with the claims from its habitants in social media and local news. The fact that most of these neighborhoods are also populous implies that many people may suffer from the scarcity of investment. So, answering the question in the title: Natal has still a long way to go when it comes to pedestrian accessbility.&lt;/p&gt;
 
-&lt;p&gt;Finally, future works include exploring more of Pandana. Also, there’s interest in testing another approach to compare the distances. The alternative would be calculating the distances from each node from the neighborhood to the nearest amenity and then calculate the mean.&lt;/p&gt;
+&lt;p&gt;Finally, future works could explore more funcionalities of Pandana. There’s interest in testing another approach to compare the walking distances. The alternative would be to calculate the distances from each node from the neighborhood to the nearest amenity, then computing the average distance for nodes in the region, and finally compare the districts.&lt;/p&gt;
+
+&lt;p&gt;That’s all!  Feel free to reach out, ask questions, and suggest new ideas.&lt;/p&gt;
 
 &lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://medium.com/@mayradazevedo/ate-onde-e-posivel-chegar-a-pe-em-natal-4e50d1e46685&quot;&gt;Previous version of this study (PT-BR_)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="eng" /><category term="python" /><category term="pandana" /><category term="maps" /><category term="walkability" /><summary type="html">Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.</summary></entry><entry><title type="html">Predizendo notas do ENEM</title><link href="http://127.0.0.1:4000/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-08-26T00:00:00-03:00</published><updated>2020-08-26T00:00:00-03:00</updated><id>http://127.0.0.1:4000/predizendo-notas-do-enem</id><content type="html" xml:base="http://127.0.0.1:4000/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@mayradazevedo/ate-onde-e-posivel-chegar-a-pe-em-natal-4e50d1e46685&quot;&gt;Previous version of this study (PT-BR_)&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ecycle.com.br/walkability-caminhabilidade/&quot;&gt;Walkability: entenda o que é a caminhabilidade (PT-BR)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="eng" /><category term="python" /><category term="pandana" /><category term="maps" /><category term="walkability" /><summary type="html">Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://127.0.0.1:4000/images/posts/distances_cmap.png" /><media:content medium="image" url="http://127.0.0.1:4000/images/posts/distances_cmap.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Predizendo notas do ENEM</title><link href="http://127.0.0.1:4000/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-08-26T00:00:00-03:00</published><updated>2020-08-26T00:00:00-03:00</updated><id>http://127.0.0.1:4000/predizendo-notas-do-enem</id><content type="html" xml:base="http://127.0.0.1:4000/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;o-feijão-com-arroz&quot;&gt;O feijão com arroz&lt;/h3&gt;
 
@@ -915,64 +1056,4 @@ sem conter nenhuma das palavras comuns aos anteriores.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://developers.google.com/drive/api/v3/search-parameters&quot;&gt;API de busca de arquivos do Google Drive&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/notebooks/io.ipynb&quot;&gt;Material do próprio Colab que contém maneiras de salvar arquivos&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="pt-br" /><category term="colab" /><category term="data science" /><category term="python" /><summary type="html">O Google Colab é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (.ipynb) mais simples até treinar um modelo de deep learning mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.</summary></entry><entry><title type="html">O absurdo no teste de hipótese</title><link href="http://127.0.0.1:4000/o-absurdo-do-teste-de-hipotese/" rel="alternate" type="text/html" title="O absurdo no teste de hipótese" /><published>2018-12-01T00:00:00-02:00</published><updated>2018-12-01T00:00:00-02:00</updated><id>http://127.0.0.1:4000/o-absurdo-do-teste-de-hipotese</id><content type="html" xml:base="http://127.0.0.1:4000/o-absurdo-do-teste-de-hipotese/">&lt;p&gt;Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo &lt;em&gt;quick sort&lt;/em&gt; tem uma complexidade de O(\(n^2\)) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente?  Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).&lt;/p&gt;
-
-&lt;p&gt;No entanto, alguns casos de estudo não são tão previsíveis como este célebre algoritmo e nem sempre é possível fazer uma análise que englobe a totalidade dos dados. Imagine tentar descobrir as chances de um candidato ganhar uma eleição analisando toda a população ao invés de fazer inferências, como as pesquisas de intenção de voto: a coleta de dados se mostraria não só um processo extremamente custoso financeiramente como demasiado lento para uma análise onde o tempo é crucial.&lt;/p&gt;
-
-&lt;h3 id=&quot;teste-de-hipótese&quot;&gt;Teste de hipótese&lt;/h3&gt;
-
-&lt;p&gt;Vê-se então a utilidade da &lt;strong&gt;inferência estatística&lt;/strong&gt;, que baseia-se em, a partir de uma amostra, estimar algum parâmetro (média, por exemplo) envolvendo toda a população. Entretanto, ao formular uma hipótese estatística é preciso estar de posse de algum mecanismo que ofereça certa garantia de que a dedução feita ao analisar uma pequena parte do todo também vale no mundo real.&lt;/p&gt;
-
-&lt;p&gt;Uma das formas de obter essa resposta é através do &lt;strong&gt;teste de hipótese&lt;/strong&gt;, cujo conceito foi forjado por &lt;a href=&quot;https://en.wikipedia.org/wiki/Ronald_Fisher&quot;&gt;Ronald Fisher&lt;/a&gt;, considerado por alguns o pai da estatística moderna. São formuladas duas hipóteses: \(H_0\), também conhecida como &lt;em&gt;hipótese nula&lt;/em&gt;; e \(H_1\), que recebe o nome de &lt;em&gt;hipótese alternativa&lt;/em&gt; e preferencialmente deve ser complementar à hipótese nula. O processo consiste em testar \(H_0\), avaliando a probabilidade dos dados observados ocorrerem assumindo que a hipótese nula seja válida.&lt;/p&gt;
-
-&lt;figure&gt;
-    &lt;a href=&quot;https://nymarya.github.io//images/posts/blue_screen.png&quot;&gt;&lt;img src=&quot;https://nymarya.github.io//images/posts/blue_screen.png&quot; /&gt;&lt;/a&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Testar uma hipótese supondo que ela é verdadeira e ainda por cima sem ter todos os dados? Parece contraditório.&lt;/p&gt;
-
-&lt;h3 id=&quot;reductio-ad-absurdum&quot;&gt;Reductio ad absurdum&lt;/h3&gt;
-
-&lt;p&gt;O argumento lógico por trás desse método é o &lt;strong&gt;reductio ad absurdum&lt;/strong&gt;. Ao supor uma proposição, é desenvolvido o pensamento até que o resultado seja algo tão absurdo que invalide a suposição inicial.&lt;/p&gt;
-
-&lt;p&gt;Digamos que você quer provar que seu programa funciona, então essa seria sua hipótese. Intuivamente, sabemos que ele deve funcionar perfeitamente em diversas situações. Para isso, você o submete a uma bateria de testes mas observa que nem todos os casos são atentidos, encontrando uma contradição com sua premissa de que deveria rodar em todos os casos. Logo, você conclui que seu programa não está funcionando.&lt;/p&gt;
-
-&lt;p&gt;Para o teste de hipótese, a linha de raciocínio começa assumindo que a hipótese nula é válida. Ao analisar os dados disponíveis é obtido o parâmetro.  Com base em um &lt;strong&gt;nível de significância&lt;/strong&gt;, é visto o quão o parâmetro se distancia de um valor razoável de acordo com um modelo, ou seja, se esse valor seria muito raro de se obter caso a hipótese nula fosse verdade. Então, ao obter um \(\alpha\) pequeno, chegamos a uma contradição, visto que ao assumir \(H_0\) como verdadeira é esperado um nível de significância alto. Se for o caso, é bem provável que nossa tese esteja errada, e podemos dizer que a rejeitamos.&lt;/p&gt;
-
-&lt;p&gt;Ao utilizar a conclusão obtida pela técnica mencionada, podemos interpretar que o parâmetro ser obtido implica que \(H_1\) é válida.&lt;/p&gt;
-
-&lt;p&gt;O valor que usamos como limiar para definir se rejeitamos a hipótese nula é p&amp;lt;0.05, ou seja: a probabilidade de ocorrência dos dados analisados uma vez que a hipótese nula seja válida deve ser menor que 5%.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Fun fact: o valor padrão de significância para um p-valor, p&amp;lt;0.05, foi apenas uma definição arbitrária do próprio Fisher em uma de suas publicações (que veio a ser adotado por toda a comunidade científica), desprovido de qualquer justificativa objetiva.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;atribuindo-valor-às-variáveis&quot;&gt;Atribuindo valor às variáveis&lt;/h3&gt;
-
-&lt;p&gt;Enumerados os termos usados, um exemplo ajuda a visualizar melhor como esses dois conhecimentos se misturam.&lt;/p&gt;
-
-&lt;p&gt;Digamos que nós queremos estudar o comportamento de acessos a um site que uma certa equipe é responsável. Depois de algum tempo, com base no retorno obtido das redes sociais, um dos integrantes acha que o percentual de usuário que possuem graduação é em média 60%, com 10 % de desvio padrão. Alguém da mesma equipe discorda, achando que a proporção deve ser diferente.&lt;/p&gt;
-
-&lt;p&gt;Para saber quem está mais próximo do resultado real, façamos com que \(H_0\) represente a hipótese de que em média o percentual dos usuários que acessam o sistema possuem graduação seja diferente de 60% e \(H_1\), a afirmação que o percentual médio é igual a 60%.&lt;/p&gt;
-
-&lt;p&gt;Existem dois modos de verificar se a hipótese nula deve ser rejeitada, depois de escolhido o nível de significância \(\alpha\), que geralmente é em torno de 0,05 e 0,1. Uma é usando &lt;em&gt;p&lt;/em&gt;-valor, onde o &lt;em&gt;p&lt;/em&gt;-valor menor que o nível de significância implica em rejeitar \(H_0\). Outra é calculando a região crítica, ou regra de decisão, que define um intervalo para o parâmetro \(\bar X\), no qual \(H_0\) será rejeitado. Ao calcular o parâmetro, é testado ele está contido na região crítica e, se for o caso, a tese é rejeitada.&lt;/p&gt;
-
-&lt;p&gt;Vamos supor que ao fazer uma simulação dos usuários, foi obtido o histograma abaixo e que ao calcular o &lt;em&gt;p&lt;/em&gt;-valor, seu valor é de 0.03:&lt;/p&gt;
-
-&lt;figure&gt;
- &lt;a href=&quot;https://nymarya.github.io//images/posts/simulation_site_access.png&quot;&gt;&lt;img src=&quot;https://nymarya.github.io//images/posts/simulation_site_access.png&quot; /&gt;&lt;/a&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;Neste caso, \(H_0\) é rejeitado, ou seja, podemos dizer que há evidências de que o percentual médio dos usuários que acessam o sistema possuem graduação é 60%.&lt;/p&gt;
-
-&lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.khanacademy.org/math/ap-statistics/tests-significance-ap/idea-significance-tests&quot;&gt;Aula do Khan Academy sobre testes de significância&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://philosophy.stackexchange.com/questions/561/what-is-the-difference-between-reductio-ad-absurdum-and-proof-by-contradiction&quot;&gt;Discussão sobre reductio ad absurdum e prova por contradição&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Null_hypothesis#Goals_of_null_hypothesis_tests&quot;&gt;Verbete sobre hipótese nula&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=bf3egy7TQ2Q&amp;amp;t=0s&amp;amp;list=PL8dPuuaLjXtNM_Y-bUAhblSAdWRnmBUcr&amp;amp;index=23&quot;&gt;Vídeo-aula sobre teste de hipótese do Crash Course Statistics&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://sites.google.com/site/sequiturquodlibet/courses/laac/dn-lcp/vi?authuser=0&quot;&gt;Estratégias de demonstração em Dedução Natural&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="pt-br" /><category term="estatistica" /><category term="matematica" /><category term="reductio ad absurdum" /><summary type="html">Uma das partes mais mágicas da Estatística é ser capaz de fazer inferência sobre alguma característica de uma população, enxergar padrões em certos comportamentos e assim conseguir tomar as decisões de forma consciente. Por exemplo, sabemos que o algoritmo quick sort tem uma complexidade de O(\(n^2\)) quando o vetor já está ordenado. Mas será que mesmo assim vale a pena usar esse algoritmo no sistema? É comum que o algoritmo entre no pior caso, se escolhermos o pivot aleatoriamente? Ao fazer a análise de complexidade média, vemos que a complexidade mais proável seria de O(n log n).</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/notebooks/io.ipynb&quot;&gt;Material do próprio Colab que contém maneiras de salvar arquivos&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="pt-br" /><category term="colab" /><category term="data science" /><category term="python" /><summary type="html">O Google Colab é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (.ipynb) mais simples até treinar um modelo de deep learning mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.</summary></entry></feed>
