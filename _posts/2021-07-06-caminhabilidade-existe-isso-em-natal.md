@@ -3,7 +3,7 @@ layout: post
 title: "Caminhabilidade: existe isso em Natal?"
 image: "../images/posts/distances_cmap.png"
 categories:
- - ptbr
+ - pt-br
 tags:
  - python
  - pandana
