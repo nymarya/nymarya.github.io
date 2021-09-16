@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Walkability: is there such thing in Natal?"
+title: "Walkability: is there such a thing in Natal?"
 image: "../images/posts/distances_cmap.png"
 categories:
  - eng
