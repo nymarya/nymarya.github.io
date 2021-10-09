@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://nymarya.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://nymarya.github.io/" rel="alternate" type="text/html" /><updated>2021-07-06T18:52:30-03:00</updated><id>https://nymarya.github.io/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Caminhabilidade: existe isso em Natal?</title><link href="https://nymarya.github.io/caminhabilidade-existe-isso-em-natal/" rel="alternate" type="text/html" title="Caminhabilidade: existe isso em Natal?" /><published>2021-07-06T00:00:00-03:00</published><updated>2021-07-06T00:00:00-03:00</updated><id>https://nymarya.github.io/caminhabilidade-existe-isso-em-natal</id><content type="html" xml:base="https://nymarya.github.io/caminhabilidade-existe-isso-em-natal/">&lt;p&gt;A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-10-09T16:21:37-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Caminhabilidade: existe isso em Natal?</title><link href="http://localhost:4000/caminhabilidade-existe-isso-em-natal/" rel="alternate" type="text/html" title="Caminhabilidade: existe isso em Natal?" /><published>2021-07-06T00:00:00-03:00</published><updated>2021-07-06T00:00:00-03:00</updated><id>http://localhost:4000/caminhabilidade-existe-isso-em-natal</id><content type="html" xml:base="http://localhost:4000/caminhabilidade-existe-isso-em-natal/">&lt;p&gt;A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.&lt;/p&gt;
 
 &lt;p&gt;Mobilidade urbana é um dos vários aspectos para os quais as autoridades devem atentar. Sabendo que a locomoção pode ser uma fonte substancial de estresse, vemos que o planejamento das vias tem um impacto direto na qualidade de vida das pessoas. Se pensarmos em sustentabilidade, a discussão se torna ainda mais complexa. Surge a necessidade de ciclovias e, mais ainda, a oportunidade dos habitantes circularem pela cidade a pé. Acessibilidade para pedestres tem um impacto considerável na saúde na saúde, além de promover um impacto positivo no meio ambiente.&lt;/p&gt;
 
@@ -58,8 +57,8 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/population.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/income.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt; 
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/population.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/income.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt; 
 &lt;figcaption&gt;Esquerda: quanto mais escura a cor, maior a população. Direita: quando mais escura a cor, maior a renda per capita&lt;/figcaption&gt;   
 &lt;/center&gt;
 
@@ -69,9 +68,9 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
 &lt;figcaption&gt;Esquerda: distância até a escola mais próxima. Centro: distância até o restaurante mais próximo. Direita: distância até a farmácia mais próxima&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/div&gt;
@@ -79,8 +78,8 @@
 &lt;p&gt;Quando analisamos a distância que alguém no centro de um bairro tem que se deslocar até a escola, farmácia ou o restaurante mais próximo, vemos um padrão espacial. Bairros com menos acessibilidade, ou seja, coloridos com lilás ou roxo, estão localizados nas áreas ao norte e oeste da cidade. Destaca-se o bairro Nossa Senhora da Apresentação que possui o tom de roxo escuro em todos os três mapas. Lagoa Azul, distrito vizinho, tem caracterícticas semelhantes pois possui a cor mais escura em dois dos três mapas.&lt;/p&gt;
 
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;figcaption&gt;Esquerda: distância até o hospital mais próximo. Direita: distância até o posto de polícia mais próximo&lt;/figcaption&gt;
 &lt;/center&gt;
 
@@ -88,7 +87,7 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;figcaption&gt;Distância até o banco mais próximo&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/div&gt;
@@ -111,7 +110,7 @@
 
 &lt;p&gt;&lt;a href=&quot;https://medium.com/@mayradazevedo/ate-onde-e-posivel-chegar-a-pe-em-natal-4e50d1e46685&quot;&gt;Previous version of this study (PT-BR_)&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.ecycle.com.br/walkability-caminhabilidade/&quot;&gt;Walkability: entenda o que é a caminhabilidade (PT-BR)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="ptbr" /><category term="python" /><category term="pandana" /><category term="mapas" /><category term="caminhabilidade" /><summary type="html">A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nymarya.github.io/images/posts/distances_cmap.png" /><media:content medium="image" url="https://nymarya.github.io/images/posts/distances_cmap.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Walkability: is there such thing in Natal?</title><link href="https://nymarya.github.io/walkability-is-there-such-thing-in-natal/" rel="alternate" type="text/html" title="Walkability: is there such thing in Natal?" /><published>2021-07-06T00:00:00-03:00</published><updated>2021-07-06T00:00:00-03:00</updated><id>https://nymarya.github.io/walkability-is-there-such-thing-in-natal</id><content type="html" xml:base="https://nymarya.github.io/walkability-is-there-such-thing-in-natal/">&lt;p&gt;Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ecycle.com.br/walkability-caminhabilidade/&quot;&gt;Walkability: entenda o que é a caminhabilidade (PT-BR)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="pandana" /><category term="mapas" /><category term="caminhabilidade" /><summary type="html">A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/posts/distances_cmap.png" /></entry><entry><title type="html">Walkability: is there such a thing in Natal?</title><link href="http://localhost:4000/walkability-is-there-such-a-thing-in-natal/" rel="alternate" type="text/html" title="Walkability: is there such a thing in Natal?" /><published>2021-07-06T00:00:00-03:00</published><updated>2021-07-06T00:00:00-03:00</updated><id>http://localhost:4000/walkability-is-there-such-a-thing-in-natal</id><content type="html" xml:base="http://localhost:4000/walkability-is-there-such-a-thing-in-natal/">&lt;p&gt;Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.&lt;/p&gt;
 
 &lt;p&gt;Urban mobility is one of the various aspects to which authorities must pay attention. Since transportation can be a substantial source of stress, planning has a direct impact on life quality. When thinking of sustainability, this discussion becomes even more complex. Sustainable cities claim for more bike lanes and, more importantly, for the opportunity for pedestrians to complete their business in the city by walking. Pedestrian accessibility benefits individual health, besides the good environmental impact.&lt;/p&gt;
 
@@ -170,8 +169,8 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/population.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/income.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt; 
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/population.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/income.html&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt; 
 &lt;figcaption&gt;Left: the darker the color, the greater the population. Right: The darker the color, the bigger the mean income&lt;/figcaption&gt;   
 &lt;/center&gt;
 
@@ -181,9 +180,9 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/school.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/restaurant.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/pharmacy.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;  
 &lt;figcaption&gt;Left: distance to the nearest school. Center: distance to the nearest restaurant. Right: distance to the nearest pharmacy&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/div&gt;
@@ -191,8 +190,8 @@
 &lt;p&gt;When lloking at the walkable distance to the nearest amenity (school, pharmacy or restaurant), we can see a spatial pattern. Districts with less accessibility, meaning colored in light or dark purple, are in the north and west areas. The most notorious example is the Nossa Senhora da Apresentação district, colored with the darkest purple in all three maps. Lagoa Azul, the neighboring region, shows similar characteristics, having the darker color in two out of three maps.&lt;/p&gt;
 
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/hospital.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/police.html&quot; height=&quot;350&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;figcaption&gt;Left: distance to nearest hospital. Right: distance to nearest police station&lt;/figcaption&gt;
 &lt;/center&gt;
 
@@ -200,7 +199,7 @@
 
 &lt;div&gt;
 &lt;center&gt;
-&lt;iframe src=&quot;https://nymarya.github.io/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
+&lt;iframe src=&quot;http://localhost:4000/assets/htmls/fear_the_walking_distance/bank.html&quot; height=&quot;380&quot; width=&quot;400&quot;&gt;&lt;/iframe&gt;
 &lt;figcaption&gt;Distance to the nearest bank&lt;/figcaption&gt;
 &lt;/center&gt;
 &lt;/div&gt;
@@ -223,10 +222,7 @@
 
 &lt;p&gt;&lt;a href=&quot;https://medium.com/@mayradazevedo/ate-onde-e-posivel-chegar-a-pe-em-natal-4e50d1e46685&quot;&gt;Previous version of this study (PT-BR_)&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.ecycle.com.br/walkability-caminhabilidade/&quot;&gt;Walkability: entenda o que é a caminhabilidade (PT-BR)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="eng" /><category term="python" /><category term="pandana" /><category term="maps" /><category term="walkability" /><summary type="html">Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://nymarya.github.io/images/posts/distances_cmap.png" /><media:content medium="image" url="https://nymarya.github.io/images/posts/distances_cmap.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Predizendo notas do ENEM</title><link href="https://nymarya.github.io/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-08-26T00:00:00-03:00</published><updated>2020-08-26T00:00:00-03:00</updated><id>https://nymarya.github.io/predizendo-notas-do-enem</id><content type="html" xml:base="https://nymarya.github.io/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
-=======
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-22T10:13:14-03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mayra Azevedo</title><subtitle>Web development | Data science | Machine Learning | Computer science</subtitle><entry><title type="html">Predizendo notas do ENEM</title><link href="http://localhost:4000/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-08-26T00:00:00-03:00</published><updated>2020-08-26T00:00:00-03:00</updated><id>http://localhost:4000/predizendo-notas-do-enem</id><content type="html" xml:base="http://localhost:4000/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
->>>>>>> 4649687e1744098190c0a17749d6437b3110a851
+&lt;p&gt;&lt;a href=&quot;https://www.ecycle.com.br/walkability-caminhabilidade/&quot;&gt;Walkability: entenda o que é a caminhabilidade (PT-BR)&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="python" /><category term="pandana" /><category term="maps" /><category term="walkability" /><summary type="html">Technology has a primordial role in civic innovation, as it is helping to diagnose problems from society to the government and bringing solutions, besides improving decision-making. Among the applications, we can think of examples that include controlling waste in the city or encouraging the population to be more politically active.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/images/posts/distances_cmap.png" /></entry><entry><title type="html">Predizendo notas do ENEM</title><link href="http://localhost:4000/predizendo-notas-do-enem/" rel="alternate" type="text/html" title="Predizendo notas do ENEM" /><published>2020-08-26T00:00:00-03:00</published><updated>2020-08-26T00:00:00-03:00</updated><id>http://localhost:4000/predizendo-notas-do-enem</id><content type="html" xml:base="http://localhost:4000/predizendo-notas-do-enem/">&lt;p&gt;Para entrar na aceleração de Data Science do &lt;a href=&quot;https://www.codenation.dev&quot;&gt;Codenation&lt;/a&gt;, os alunos tinham que predizer as notas de matemática do enem 2016. A “nota de corte” era 90% de acerto das notas e minha primeira submissão deve ter sido uns 91%. Na oitava semana veio o penúltimo desafio, que era o mesmo da inscrição. Então nada melhor do que aproveitar a oportunidade para refazer a solução e usar os novos conhecimentos para tentar melhorar a pontuação. O código está disponível &lt;a href=&quot;https://github.com/nymarya/aceleradev/blob/master/enem-2&quot;&gt;aqui&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;o-feijão-com-arroz&quot;&gt;O feijão com arroz&lt;/h3&gt;
 
@@ -1060,4 +1056,4 @@ sem conter nenhuma das palavras comuns aos anteriores.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://developers.google.com/drive/api/v3/search-parameters&quot;&gt;API de busca de arquivos do Google Drive&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/notebooks/io.ipynb&quot;&gt;Material do próprio Colab que contém maneiras de salvar arquivos&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="pt-br" /><category term="colab" /><category term="data science" /><category term="python" /><summary type="html">O Google Colab é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (.ipynb) mais simples até treinar um modelo de deep learning mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.</summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;https://colab.research.google.com/notebooks/io.ipynb&quot;&gt;Material do próprio Colab que contém maneiras de salvar arquivos&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="colab" /><category term="data science" /><category term="python" /><summary type="html">O Google Colab é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (.ipynb) mais simples até treinar um modelo de deep learning mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.</summary></entry></feed>

@@ -1,0 +1,114 @@
+I"�3<p>A tecnologia tem um papel primordial na inovação cívica, já que está ajudando a identificar problemas da sociedade para os governos e trazer soluções, além de melhorar o processo de tomadas de decisão. Dentre as aplicações, podemos citar desde o controle de gasto de água na cidade até encorajar a população a engajar mais na política.</p>
+
+<p>Mobilidade urbana é um dos vários aspectos para os quais as autoridades devem atentar. Sabendo que a locomoção pode ser uma fonte substancial de estresse, vemos que o planejamento das vias tem um impacto direto na qualidade de vida das pessoas. Se pensarmos em sustentabilidade, a discussão se torna ainda mais complexa. Surge a necessidade de ciclovias e, mais ainda, a oportunidade dos habitantes circularem pela cidade a pé. Acessibilidade para pedestres tem um impacto considerável na saúde na saúde, além de promover um impacto positivo no meio ambiente.</p>
+
+<p>Sabendo disso, neste post tentaremos medir caminhabilidade, a capacidade de acessar diferentes pontos importantes da cidade a pé. A análise usa dados de Natal, sendo feita através de ciência de dados, dados abertos e mapas. Existem posts parecidos que serviram de inspiração, como esses de <a href="https://medium.com/pizzadedados/utilizando-dados-abertos-e-ci%C3%AAncia-de-dados-na-mobilidade-urbana-371a4c591639">Maceió</a>, <a href="https://medium.com/@matthewtenneyto/measuring-walking-times-across-toronto-to-nearest-ttc-stop-using-the-pedestrian-network-and-python-4263e0392a9b">Toronto</a>, e <a href="https://towardsdatascience.com/measuring-pedestrian-accessibility-97900f9e4d56">New York</a>.</p>
+
+<p>Todo o código necessário está disponível no <a href="https://github.com/nymarya/fear-the-walking-distance">repositório</a>.</p>
+
+<h2 id="primeiramente-os-dados">Primeiramente, os dados</h2>
+
+<p>O plano aqui é calcular as distâncias a pé dentro de um bairro e comparar as diferenças entre as áreas. Mas antes disso, vamos nos aprofundar um pouco e recolher informações sobre as pessoas. Isso pode ser feito bem rápido, visto que o IBGE provê dados sobre a renda e o número de habitantes pela API <a href="sidra.ibge.gov.br">SIDRA</a>, então a biblioteca <code class="language-plaintext highlighter-rouge">requests</code> será suficiente. A renda per capita e a população são descritas, respectivamente, pelas variáveis 842 e 841 da tabela 3170.</p>
+
+<p>Agora vem a parte divertida. Como medir a acessibilidade para pedestres em um bairro? Buscando uma alternativa, pensamos nisso: escolher um ponto bem no meio da área a medir a distancia dali até o ponto de interesse mais próximo. Isso significa encontrar o centro, i.e. centróide, do polígono. Para nossa sorte, o GeoJSON que descreve a cidade tem a geometria da região que nos interessa, que consiste em um objeto do tipo Polygon, cujo centróide é um atributo.</p>
+
+<p>O próximo passo é calcular a distâncias em si. Criamos a rede com <a href="https://udst.github.io/pandana/network.html">Pandana</a>, que recupera os dados da <a href="https://wiki.openstreetmap.org/wiki/API">OpenStreetMap</a> de um jeito muito eficiente.</p>
+
+<p>A biblioteca também tem a funcionalidade de consultar os pontos de interesse da rede. Neste estudo, a busca é por estabelecimentos que cobrem as necessidades básicas: comida, educação, dinheiro, saúde e segurança. Nos termos da API OSM, as tags são ‘hospital’, ‘restaurant’, ‘bank’,’school’, ‘police’, and ‘pharmacy’. Para manter esse post mais curto, os exemplos aqui usarão apenas escolas. Por favor, acesse o repositório para o código completo.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">]</span>
+<span class="n">net</span> <span class="o">=</span> <span class="n">osm</span><span class="p">.</span><span class="n">pdna_network_from_bbox</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">)</span>
+<span class="n">schools</span> <span class="o">=</span> <span class="n">osm</span><span class="p">.</span><span class="n">node_query</span><span class="p">(</span><span class="o">*</span><span class="n">bbox</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s">'"amenity"="school"'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Seguindo o fluxo sugerido na <a href="https://github.com/UDST/pandana/blob/dev/examples/Pandana-demo.ipynb">demo</a> disponibilizada na documentação do Pandana, chamamos <code class="language-plaintext highlighter-rouge">set_pois</code> para adicionar pontos à rede. Isso é feito separadamente para cada categoria. No exemplo abaixo, passamos os parâmetros de longitude e latitude das escolas, bem como o número de itens que a consulta que a função deve retornar. Aqui, também especificamos que queremos apenas os estabelecimentos dentro de um raio de 10km. O próximo passo usará essa informação.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net.set_pois("schools", 10000, 10, schools.lon, schools.lat)
+</code></pre></div></div>
+
+<p>Então o cálculo é feito ao chamar  <code class="language-plaintext highlighter-rouge">nearest_pois</code> e passar a distância máxima e o número de itens que devem ser retornados pela função. O resultado é uma tabela onde cada linha é referente a um nó x e cada coluna i representa o i-ésimo estabelecimento mais próximo, de modo que cada célula contém a distância entre esses dois pontos.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">net</span><span class="p">.</span><span class="n">nearest_pois</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="s">"schools"</span><span class="p">,</span> <span class="n">num_pois</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div>
+<img src="/images/posts/distances_table.png" />
+</div>
+
+<p>Finalmente, salvamos no dataframe o valor que está na coluna 1 e na linha referente ao nó do bairro. E pronto, nossa base de dados está montada.</p>
+
+<h3 id="hora-de-visualizar">Hora de visualizar!</h3>
+
+<div>
+<center>
+<img src="https://media.giphy.com/media/rOTGSPxvJJY7m/giphy.gif" />
+</center>
+</div>
+
+<p>O dataset está pronto, então é hora de usar <a href="https://github.com/python-visualization/folium">Folium</a>, uma bilbioteca capaz de unir manipulação de dados com Python e visualização de mapas com a biblioteca JavaScript <a href="https://github.com/Leaflet/Leaflet">Leaflet</a>. Isso é tudo que uma pessoa programadora precisa para exibir seus dados geográficos.</p>
+
+<p>Antes de prosseguir, é importante mencionar que Pandana possibilita criar visualizações bonitas, incluindo o mapa usado como capa desse post. A função <code class="language-plaintext highlighter-rouge">aggregation</code> conta quantos estabelecimentos estavam num raio de 10km de cada nó e o resultado é bonito, mas difícil de interpretar. Ainda que exista uma ideia de onde a maioria das escolas está (no meio da cidade, onde os pontos são mais vermelhos), mal dá para reconhecer a cidade, pior ainda se quisessemos comparar os bairros.</p>
+
+<div>
+<img src="/images/posts/distances_cmap1.png" />
+</div>
+
+<p>Bom, vamos para os mapas interativos.</p>
+
+<div>
+<center>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/population.html" height="400" width="400"></iframe>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/income.html" height="400" width="400"></iframe> 
+<figcaption>Esquerda: quanto mais escura a cor, maior a população. Direita: quando mais escura a cor, maior a renda per capita</figcaption>   
+</center>
+
+</div>
+
+<p>Os mapas mostram que, enquanto a população está mais concentrada no norte, e em seguida na zona ao oeste, a renda segue uma tendência inversa. A renda média aumenta quando seguimos para o sul e é ainda maior se olharmos para o leste, onde estão os bairros com maior renda per capita.</p>
+
+<div>
+<center>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/school.html" height="350" width="400"></iframe>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/restaurant.html" height="350" width="400"></iframe>  
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/pharmacy.html" height="350" width="400"></iframe>  
+<figcaption>Esquerda: distância até a escola mais próxima. Centro: distância até o restaurante mais próximo. Direita: distância até a farmácia mais próxima</figcaption>
+</center>
+</div>
+
+<p>Quando analisamos a distância que alguém no centro de um bairro tem que se deslocar até a escola, farmácia ou o restaurante mais próximo, vemos um padrão espacial. Bairros com menos acessibilidade, ou seja, coloridos com lilás ou roxo, estão localizados nas áreas ao norte e oeste da cidade. Destaca-se o bairro Nossa Senhora da Apresentação que possui o tom de roxo escuro em todos os três mapas. Lagoa Azul, distrito vizinho, tem caracterícticas semelhantes pois possui a cor mais escura em dois dos três mapas.</p>
+
+<center>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/hospital.html" height="350" width="400"></iframe>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/police.html" height="350" width="400"></iframe>
+<figcaption>Esquerda: distância até o hospital mais próximo. Direita: distância até o posto de polícia mais próximo</figcaption>
+</center>
+
+<p>No que diz respeito a hospitais e postos de polícia, há uma diferença significativa entre os dois lados do rio Potengi. Em ambos os mapas, os bairos em roxo estão exclusivamente no norte, o que significa dizer que os habitante dessa área teriam que andar pelo menos 6km para chegar ao hospital ou posto de polícia mais próximo. Temos também alguns bairros na cor azul ao oeste e ao sul, onde a distância fica entre 2km e 6km, o que também pode ser problemático quando imaginamos ter que andar tanto para chegar a um hospital.</p>
+
+<div>
+<center>
+<iframe src="https://nymarya.github.io/assets/htmls/fear_the_walking_distance/bank.html" height="380" width="400"></iframe>
+<figcaption>Distância até o banco mais próximo</figcaption>
+</center>
+</div>
+
+<p>A análise das distâncias para bancos distoa um pouco das anteriores. Aqui, os bairros ao oeste possuem cores mais escuras, o que indica distâncias maiores, do que os bairros ao norte.</p>
+
+<p>Note que em todos os mapas os bairros ao leste são coloridos com um azul claro, geralmente isso acontece em escala menor no sul,  mesmo que essa segunda região tenha um desempenho semelhante. Esse padrão condiz com a renda per capita, mais alta no sul e mais ainda em algumas partes da zona ao leste.</p>
+
+<h3 id="considerações-finais">Considerações finais</h3>
+
+<p>Dados abertos são uma ferramenta essencial para empoderar os cidadões através da informação, disponibilizando meios de tomar decisões e fazer cobranças às autoridades. No caso do OpenStreetMap, sua única desvantagem é a falta de confiabilidade. Por este motivo, é importante valorizar intituições como IBGE, que não apenas são responsáveis por coletar informação mas também facilitar o acesso dos dados de alta qualidade.</p>
+
+<p>Ainda que não seja possível tirar conclusões mais definitivas, visto que há uma chance dos dados de bairros como Nossa Senhora da Apresentação, Lagoa Azul e Guarapés estarem faltando, a informação disponibilizada nos diz que existe uma falta de acessibilidade nessas áreas. Essa afirmação condiz com as reclamações dos moradores nas redes sociais e nos jornais locais. O fato de que a maioria desses bairros serem populosos implica que muitas pessoas podem sofrer com a falta de investimento. Então, respondendo a pergunta do título: Natal ainda tem um longo caminho pela frente no que diz respeito à acessibilidade para pedestres.</p>
+
+<p>Finalmente, trabalhos futuros incluem explorar mais do Pandana. Há também um interesse em testar outra abordagem para comparar as distâncias. A alternativa seria computar as distâncias de cada nó dentro do bairro para o estabelecimento mais próximo, para então calcular a média para os nós da área e realizar as comparações.</p>
+
+<p>E é isso! Fique à vontade para entrar em contato, fazer perguntas e sugerir novas ideias.</p>
+
+<h2 id="links">Links</h2>
+
+<p><a href="https://medium.com/@mayradazevedo/ate-onde-e-posivel-chegar-a-pe-em-natal-4e50d1e46685">Previous version of this study (PT-BR_)</a></p>
+
+<p><a href="https://www.ecycle.com.br/walkability-caminhabilidade/">Walkability: entenda o que é a caminhabilidade (PT-BR)</a></p>
+:ET

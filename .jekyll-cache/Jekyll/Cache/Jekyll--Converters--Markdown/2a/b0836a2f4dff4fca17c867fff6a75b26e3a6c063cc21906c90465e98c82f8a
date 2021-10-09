@@ -1,0 +1,218 @@
+I"�I<p>Vivemos numa época em que é necessário prestar mais atenção ao que os políticos estão fazendo. Uma forma de se manter 
+atualizado é monitorar o que eles dizem em seus discursos na Câmara.</p>
+
+<p>Para a nossa sorte, a <a href="https://dadosabertos.camara.leg.br/swagger/api.html">API  da câmara de deputados</a> disponibiliza discursos dos deputados. Para examinar esses textos,  podemos usar a teoria de grafos, conforme <a href="https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3">este artigo</a> sobre análise de redes a fim de medir 
+o viés em discursos.</p>
+
+<p>O código utilizado para esta análise pode ser encontrado neste <a href="https://github.com/nymarya/political-speeches-networks">repositório</a>.</p>
+
+<h2 id="dos-dados-aos-grafos">Dos dados aos grafos</h2>
+
+<p>Tudo se inicia na importação dos dados. Com o auxílio da biblioteca <a href="https://pypi.org/project/requests/">requests</a> do Python, podemos consultar os discursos de cada deputados
+através da url <code class="language-plaintext highlighter-rouge">deputados\{id}\discursos</code>. Os ids dos deputados, bem como seus respectivos partidos, foram recuperados consultando a url <code class="language-plaintext highlighter-rouge">deputados</code>. Para definir um limite de 
+discursos utilizados, filtramos apenas os que aconteceram este ano adicionando os parâmetros <code class="language-plaintext highlighter-rouge">dataInicio=2019-01-01</code> e<br />
+<code class="language-plaintext highlighter-rouge">dataFim=2019-06-11</code>. Finalmente, ordenamos pelo horário de início do discurso. No fim, teremos uma consulta assim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> query = 'https://dadosabertos.camara.leg.br/api/v2/deputados/'+str(dep[0])+\
+           '/discursos?dataInicio=2019-01-01&amp;dataFim=2019-06-11&amp;ordenarPor=dataHoraInicio&amp;ordem=ASC'
+</code></pre></div></div>
+
+<p>O retorno desta consulta é um json que contém a chave <code class="language-plaintext highlighter-rouge">transcricao</code>. Seu valor é justamente o discurso em si.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">speeches</span> <span class="o">=</span> <span class="p">[]</span>
+
+ <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">deputies</span><span class="p">)</span>
+ <span class="c1"># Create a dictionary that contains
+</span> <span class="c1"># id, speech, party, state
+</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dep</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">deputies</span><span class="p">):</span>
+
+   <span class="c1"># Get all speechs given by the current deputy
+</span>   <span class="n">query</span> <span class="o">=</span> <span class="s">'https://dadosabertos.camara.leg.br/api/v2/deputados/'</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">dep</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span>\
+           <span class="s">'/discursos?dataInicio=2019-01-01&amp;dataFim=2019-06-11&amp;ordenarPor=dataHoraInicio&amp;ordem=ASC'</span>
+   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+   <span class="n">speech_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+   <span class="c1"># Add each speech to the list
+</span>   <span class="n">speeches</span> <span class="o">+=</span> <span class="p">[[</span> <span class="n">dep</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">speech</span><span class="p">[</span><span class="s">'transcricao'</span><span class="p">],</span> <span class="n">dep</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dep</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">]</span> <span class="k">for</span> <span class="n">speech</span> <span class="ow">in</span> <span class="n">speech_json</span><span class="p">[</span><span class="s">'dados'</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<p>Com isso, podemos montar um dataset que terá informações como id do deputado, discurso, sigla do partido e sigla do estado.</p>
+
+<p>Criado o dataset, é hora de tratar os dados. A característica mais importante a ser notada nos discursos é a de que todos tem 
+uma introdução do locutor, como nos exemplos abaixo:</p>
+
+<blockquote>
+  <p>O SR. ABOU ANNI (PSL - SP. Sem revisão do orador.) -</p>
+</blockquote>
+
+<blockquote>
+  <p>DISCURSO NA ÍNTEGRA ENCAMINHADO PELO SR. DEPUTADO BILAC PINTO.\r\n\r\n</p>
+</blockquote>
+
+<p>Para remover esses textos que não trazem relevância para o estudo, usamos algumas funções do <code class="language-plaintext highlighter-rouge">pandas</code>. Para o primeiro caso, 
+a string é dividida pelo símbolo “-“ duas vezes, ignorando-se as duas primeiras substrings obtidas. Esse processo apaga as
+strings que não seguem o primeiro padrão, sendo então necessário aplicar o tratamento do segundo padrão em uma cópia do dataset 
+e unir ambos ao final. A segunda forma de introdução é removida ao dividir a string quando encontrar “\r\n\r\n” e manter 
+apenas a segunda substring. Ao final, ainda é necessário remover todas as ocorrências de “\r”, “\n” e “-“ para a próxima 
+etapa do desenvolvimento.</p>
+
+<p>A formação dos grafos se dá através do mapeamento das palavras usadas no discurso, sendo a frequência em que elas aparecem no 
+texto o atributo que usaremos para medir sua importância. Cada nó é uma palavra e uma aresta 
+entre duas palavras indica que elas aparecem no mesmo contexto.</p>
+
+<p>O que é contexto para nós? Bem, dada uma frase, cada palavra que a compõe é agrupada com suas vizinhas em grupos de 2 e 5 
+palavras. Por exemplo, a frase</p>
+
+<blockquote>
+  <p>Olhos de cigana oblíqua e dissimulada</p>
+</blockquote>
+
+<p>seria dividida em</p>
+
+<blockquote>
+  <p>[Olhos de ], [de cigana], [cigana oblíqua], [oblíqua e], [e dissimulada], [ Olhos de cigana oblíqua e ], [de cigana oblíqua e dissimulada]</p>
+</blockquote>
+
+<p>Esse método é o mesmo explicado no artigo mencionado na seção anterior e isso que tratamos como o contexto de uma palavra.</p>
+
+<p>Depois de divididas, são contadas quantas vezes cada conjunto ocorre no texto. Para isso, usamos a classe 
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html#sklearn.feature_extraction.text.CountVectorizer">CountVectorizer</a> do 
+<code class="language-plaintext highlighter-rouge">scikit-learn</code>, que recebe uma expressão regular na forma <code class="language-plaintext highlighter-rouge">['[A-Za-z]+(?=\\s+)']</code> para recuperar todas as palavras além dos espaços 
+em branco que a seguem. Ao receber o parâmetro <code class="language-plaintext highlighter-rouge">ngram_range=(2,5)</code>, a própria função gera todas as combinações de palavras vizinhas 
+de tamanho de 2 a 5 (sendo as de tamanho 3 e 4 removidas para formar o grafo nos próximos passos).</p>
+
+<p>Um parâmetro essencial que deve ser passado é o <code class="language-plaintext highlighter-rouge">stop_words</code>, que define quais palavras devem ser ignoradas neste processo. 
+Conjunções e artigos, por exemplo, são elementos que se repetem muito na língua portuguesa, o que traria uma frequência muito alta para estas palavras que 
+não tem significado ao serem analisadas sozinhas. Sendo assim, muitos verbos, saudações, advérbios e outros elementos são adicionados 
+nesta lista e não se tornam nós de um grafo.</p>
+
+<p>A classe é instanciada como abaixo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec_alphanumeric</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">token_pattern</span><span class="o">=</span><span class="n">TOKENS_ALPHANUMERIC</span><span class="p">,</span> 
+                                   <span class="n">decode_error</span><span class="o">=</span><span class="s">'replace'</span><span class="p">,</span>
+                                   <span class="n">stop_words</span><span class="o">=</span><span class="n">STOP_WORDS</span><span class="p">,</span> <span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span>
+                                   <span class="n">encoding</span><span class="o">=</span><span class="s">'latin1'</span><span class="p">,</span> <span class="n">strip_accents</span><span class="o">=</span><span class="s">'unicode'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>e ao acessar <code class="language-plaintext highlighter-rouge">vec_alphanumeric.vocabulary_</code> temos acesso a um dicionário no qual cada chave é um conjunto de palavras e 
+ o seu valor representa o número de ocorrências no texto.</p>
+
+<p>O grafo é gerado usando a biblioteca <a href="https://networkx.github.io">NetworkX</a>. O método responsável por sua criação recebe um par (chave, valor) do 
+ dicionário criado pelo CountVectorizer e da chave extrai todas as palavras, 
+ criando um nó para cada. Depois, forma pares dessas palavras e cria uma aresta para cada par com o peso sendo o valor recebido na entrada. 
+ Se a aresta já existir, seu  peso é somado à frequência da frase.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">generate_graph</span><span class="p">(</span><span class="n">vocabulary</span><span class="p">):</span>
+
+   <span class="c1"># Create a undirected graph
+</span>   <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">Graph</span><span class="p">()</span>
+
+   <span class="c1"># Iterate over each item of the vocabulary
+</span>   <span class="k">for</span> <span class="n">phrase</span><span class="p">,</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+     <span class="c1"># Get words in the phrase
+</span>     <span class="n">words</span> <span class="o">=</span> <span class="n">phrase</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+
+     <span class="c1"># Using only tokens of length 2 or 5
+</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">]:</span>
+       <span class="k">continue</span>
+
+     <span class="n">words_norm</span> <span class="o">=</span> <span class="p">[</span><span class="n">norm</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">is_important</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="p">]</span>
+     <span class="c1"># Extract unique words in the phrase
+</span>     <span class="n">words_unique</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">words_norm</span><span class="p">))</span>
+
+     <span class="c1"># Create a node if it does not exists already
+</span>     <span class="n">G</span><span class="p">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">words_unique</span><span class="p">)</span>
+
+     <span class="c1"># Form combinations of 2 from the words
+</span>     <span class="c1"># which will be a edge
+</span>     <span class="n">pair</span> <span class="o">=</span> <span class="n">combinations</span><span class="p">(</span><span class="n">words_unique</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> 
+
+     <span class="k">for</span> <span class="n">word1</span><span class="p">,</span> <span class="n">word2</span> <span class="ow">in</span> <span class="n">pair</span><span class="p">:</span>
+       <span class="n">edge</span> <span class="o">=</span> <span class="p">(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">)</span>
+       <span class="c1"># Increments weight of edge
+</span>       <span class="c1"># if it already exists
+</span>       <span class="c1"># Otherwise, create a new edge
+</span>       <span class="k">if</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="p">.</span><span class="n">edges</span><span class="p">:</span>
+         <span class="n">G</span><span class="p">.</span><span class="n">edges</span><span class="p">[</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">][</span><span class="s">'weight'</span><span class="p">]</span> <span class="o">+=</span> <span class="n">frequency</span>
+       <span class="k">else</span><span class="p">:</span>
+         <span class="n">G</span><span class="p">.</span><span class="n">add_weighted_edges_from</span><span class="p">([(</span><span class="n">word1</span><span class="p">,</span> <span class="n">word2</span><span class="p">,</span> <span class="n">frequency</span><span class="p">)])</span>
+
+   <span class="k">return</span> <span class="n">G</span>
+</code></pre></div></div>
+
+<p>A função <code class="language-plaintext highlighter-rouge">norm</code> é usada para evitar repetições causadas por palavras no plural ou algumas conjugações de verbos.</p>
+
+<p>Com isso, obtemos nossos lindos grafos que serão analisados na próxima seção.</p>
+
+<h2 id="ligando-os-pontos">Ligando os pontos</h2>
+
+<p>Neste estudo, são usados todos os discursos de deputados de um mesmo partido. Os partidos gerados são PSL, PT, PDT e NOVO.</p>
+
+<p>Os conceitos utilizados para extrair informações são os de cliques e centralidade. Uma clique nada mais é do que um subconjunto 
+de nós que são totalmente conectados entre si. É um conceito geralmente usado para representar um grupo (de pessoas) no qual 
+todas se conhecem, que aqui usamos para detectar um grupo de palavras que aparecem no mesmo contexto.</p>
+
+<p>Já a centralidade é uma medida que ajuda a identificar nós importantes no grafo. Usamos a centralidade de grau, que mede o número de ligações (arestas) que incidem em um nó. Como estamos lidando com um grafo não direcionado, esse número é o mesmo número de arestas que estão ligadas ao nó. Esse indicador é usado para colorir cada nó dos grafos abaixos, gerados com a biblioteca <a href="https://nxviz.readthedocs.io/en/latest/modules.html">nxviz</a>.</p>
+
+<h3 id="psl">PSL</h3>
+
+<p>A clique que obtemos com o grafo gerado com discursos de deputados do PSL comprova a intuição que temos 
+ao pensar nesse partido. Segurança e polícia, que são temas que associamos às promessas dos 
+candidatos, estão presentes.</p>
+
+<p><img src="../images/posts/graph_psl.png" alt="PSL" /></p>
+
+<p>Uma pauta recorrente no congresso e cuja aparição era esperada é a 
+reforma da previdência, que pode justificar o nó “reforma” neste grafo.</p>
+
+<h3 id="pt">PT</h3>
+
+<p>Já analisando o discurso do PT, na maior clique aparecem termos como educação, direito, social e saúde
+que são diretamente ligados às principais pautas do partido.</p>
+
+<p><img src="../images/posts/graph_pt.png" alt="PT" /></p>
+
+<p>É esperado também a presença de “defesa”, visto que “em defesa da educação” é uma frase frequentemente 
+usada para falar das greves e protestos contra os <del>cortes</del> contigenciamentos das verbas para 
+a educação. Isso também pode justificar a presença da palavra “ministro”, que foi muito criticado por falta de comunicação e por suas decisões.</p>
+
+<p>O tema de reforma da previdência também aparece neste grafo, o que não surpreende dada a posição 
+forte do partido contra a mesma.</p>
+
+<h3 id="novo">NOVO</h3>
+
+<p>O grafo do NOVO difere dos demais, sem conter palavras comuns como “estado” e “governo”, 
+mas apresenta “reforma” e “previdencia”, como seria esperado do partido que defende 
+a reforma.</p>
+
+<p><img src="../images/posts/graph_novo.png" alt="NOVO" /></p>
+
+<p>É interessante ver que assuntos como renda e déficit são temas
+que o deputados do NOVO mais gostam de citar e discutir.</p>
+
+<h3 id="pdt">PDT</h3>
+
+<p>A clique obtida a partir dos discursos do PDT  é a que mais se diferencia, 
+sem conter nenhuma das palavras comuns aos anteriores.</p>
+
+<p><img src="../images/posts/graph_pdt.png" alt="PDT" /></p>
+
+<p>É curioso aparecerem nomes próprios como “flavio” e “geovania”, além dos termos como 
+“discurso”, “pedido”, “comunicacao” e “registro”.</p>
+
+<h2 id="considerações-finais">Considerações finais</h2>
+
+<p>Como qualquer estudante de ciência da computação nota em algum ponto de sua trajetória acadêmica, os grafos possuem as mais variadas aplicações. Neste caso, serviram para trazer palavras-chave dos discursos dos deputados entre janeiro e junho de 2019.</p>
+
+<p>Com poucas métricas, já foi possível notar como os temas educação e reforma da previdência movimentaram a câmara nesses primeiros 6 meses, levando-se em consideração os 4 partidos analisados. Isso serve de estímulo para usar grafos, além de outras técnicas, para promover o monitoramento das ações dos políticos, incentivando, assim, a participação da população brasileira.</p>
+
+<h2 id="links">Links</h2>
+
+<p><a href="https://www.datacamp.com/courses/network-analysis-in-python-part-1">Curso do Datacamp sobre análise de redes (inglês)</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/Clique_(graph_theory)">Verbete sobre cliques (inglês)</a></p>
+
+<p><a href="https://pt.wikipedia.org/wiki/Centralidade">Verbete sobre centralidade</a></p>
+
+<p>Até a próxima!</p>
+:ET

@@ -6,7 +6,14 @@
 - title: Corvus
   url: https://github.com/nymarya/corvus
   image: ../images/github.jpg
+  tags: [teste, teste]
   completed: true
+
+- title: CORRELAÇÃO ENTRE A NOTIFICAÇÃO DE SÍFILIS, DISPONIBILIDADE DE PENICILINA E TESTE RÁPIDO
+  url: https://periodicos.ufrn.br/reb/article/view/23933
+  image: ../images/artigo.png
+  fontsize: 15px
+  completed: true  
 
 - title: ODUFRN Downloader
   url: https://odufrn.github.io/odufrn-downloader/
@@ -16,6 +23,11 @@
 - title: Regula RN
   url: https://regulacao.saude.rn.gov.br
   image:
+  completed: true
+
+- title: Retratos da Atenção Primária
+  url: https://retratos.navi.ifrn.edu.br/cruzamento_variaveis
+  image: ../images/retratos.png
   completed: true
 
 - title: RETSUS

@@ -1,0 +1,54 @@
+I"�<p>No dia 10 de julho de 2020, estava eu calmamente navegando pela minha timeline do Twiter, quando me aparece o tweet abaixo:</p>
+
+<div>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Made myself a self-updating GitHub personal README! It uses a GitHub Action to update itself with my latest GitHub releases, blog entries and TILs <a href="https://t.co/Eve7FOrwYK">https://t.co/Eve7FOrwYK</a> <a href="https://t.co/oJPXLtFdgM">pic.twitter.com/oJPXLtFdgM</a></p>&mdash; Simon Willison (@simonw) <a href="https://twitter.com/simonw/status/1281435464474324993?ref_src=twsrc%5Etfw">July 10, 2020</a></blockquote> <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+
+<p>Para um desenvolvedor sua existência já está resumida na própria bio do GitHub, na página <a href="https://nymarya.github.io">about</a> do site pessoal, na descrição do LinkedIn, às vezes até na descrição do Twitter, e com a possibilidade de automatizar. Depois da invenção do Simon, a feature nova pareceu mais interessante, podendo dar um diferencial em relação às outras de poder trazer informações sintetizadas que não precisam ser ajustadas manualmente (e consequentemente esquecidas de serem atualizadas).</p>
+
+<h3 id="começando-a-automatização-readme">Começando a automatização README</h3>
+
+<p>O primeiro passo é escolher quais informações devem aparecer. No meu caso, queria mostrar os posts e um resumo do que tem no meu GitHub, as linguagens que estão presentes nele.</p>
+
+<p>O próprio resumo escolhi escrever manualmente por motivos de: queria usar emoticons; queria escrever em inglês e português; algumas informações são pessoais, como os hobbies, e não encontraria lugares de onde tirar a informação; e até poderia criar um script que simplemente acrescenta o texto que eu escolhi, mas não acho que ficaria um código bonito e organizado.</p>
+
+<p>Pensado isso, é hora de colocar a mão no código.</p>
+
+<h3 id="inserindo-posts-com-beautifulsoup">Inserindo posts com BeautifulSoup</h3>
+
+<p>Simon em seu <a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">post</a> usa uma forma mais robusta e organizada para recuperar os posts, mas infelizmente meu blog no Github Pages não me dá as mesmas ferramentas. Porém, como a estrutura do HTML é bem organizada, não foi difícil recuperar o que eu queria.</p>
+
+<p>A biblioteca <a href="https://pypi.org/project/beautifulsoup4/">BeautifulSoup</a> é ótima para minerar informações de sites. Para pegar os posts separados por cada língua, recuperei o HTML da <a href="https://nymarya.github.io/categories">página</a> onde os posts já estão divididos, identifiquei onde fica cada categoria, e simplemente salvei o endereço, título e data do número de links que eu queria. O código todo, que tem aproximadamente 30 linhas) está <a href="https://github.com/nymarya/nymarya/blob/master/posts.py">aqui</a>.</p>
+
+<h3 id="inserindo-resumo-das-linguagens">Inserindo resumo das linguagens</h3>
+
+<p>Mais uma vez, Simon utilizou uma forma um pouco mais elegante. Dessa vez, foi usando a API em GraphQl para recuperar informações do GitHub.</p>
+
+<p>Resolvi usar a API REST pela praticidade. Usei ela duas vezes: uma para recuperar os nomes dos repositórios (<code class="language-plaintext highlighter-rouge">https://api.github.com/users/&lt;usuario&gt;/repos</code>) e outra para recuperar as linguagens em cada repositório (<code class="language-plaintext highlighter-rouge">https://api.github.com/repos/&lt;usuario&gt;/&lt;repo&gt;/languages'</code>). A versão sem autenticação da API, além de acessar só os repositórios públicos, tem um limite de 60 requisições por hora, então para quem possui 60 repositórios públicos ou mais o recomendado é usar autenticação. Todas elas são consultadas utilizando a biblioteca requests.</p>
+
+<p>A resposta da segunda API consiste em um dicionário com cada linguagem e sua contagem de bytes. Assim, para saber a proporção basta ir unindo essas informações e no final calcular as porcentagens. Para a exibição, é usada uma tabela onde na primeira linha ficam as logos das ferramentas (boa parte das logos vem desse <a href="https://github.com/abranhe/programming-languages-logos">repositório</a> e na segunda os nome e as porcentagem de código em que são usadas. O código com todas essas funções está <a href="https://github.com/nymarya/nymarya/blob/master/repositories.py">aqui</a>.</p>
+
+<h3 id="agora-sim-a-automatização">Agora sim a automatização</h3>
+
+<p>Todo o processo de escrita no arquivo é feita no arquivo <a href="https://github.com/nymarya/nymarya/blob/master/build_readme.py">build_readme.py</a>. Mas para fazer o preenchimento do arquivo primeiro precisamos indicar no README.md aonde os textos vão ser colocados. Isso é feito com comentários no markdown, que marcam as seções:</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- &lt;nome da seção&gt;</span> starts --&gt;
+<span class="c">&lt;!-- &lt;nome da seção&gt;</span> ends --&gt;
+</code></pre></div></div>
+
+<p>Daí, usando a biblioteca <code class="language-plaintext highlighter-rouge">re</code> podemos usar expressões regulares para identificar esses blocos. A expressão usada é <code class="language-plaintext highlighter-rouge">"&lt;!-- &lt;nome da seção&gt; starts --&gt;.*&lt;!-- &lt;nome da seção&gt; ends --&gt;"</code>. Na hora de inserir o texto, os comentários se mantém, para na próxima atualização a seção poder ser encontrada novamente, e os caracteres <code class="language-plaintext highlighter-rouge">.*</code> são substituídos pelo conteúdo de fato, consequentemente também reescrevendo o texto anterior.</p>
+
+<p>O passo final é configurar o workflow no Github Actions. Isso é feito indo para a aba específica, escolhendo “set up a workflow yourself” e então adicionando os comandos para configurar o Python e o pip, instalar dependências que estão no requeirements.txt, atualizar o README.md e finalmente dar commit no resultado, além de ajustar o cron para que a tarefa rode a cada 1 hora, entre 1:00 e 23:00. Ao salvar o <code class="language-plaintext highlighter-rouge">main.yml</code> que contém as configurações na pasta <code class="language-plaintext highlighter-rouge">.github/workflows</code>, o GitHub Actions vai identificar o arquivo. O workflow é basicamente o mesmo do Simon, a diferença é que o dele ainda inclui um comando para pegar variáveis de ambiente.</p>
+
+<h3 id="para-quem-tiver-mais-tempo-e-disposição">Para quem tiver mais tempo e disposição</h3>
+
+<p>Existe uma série de coisas que poderiam ser automatizadas. Os releases mais recentes (como Simon fez), contagem de commits, interações no StackOverflow (não olhei se eles tem API, se não tiverem certamente o BeautifulSoup resolve), trabalho atual e formação do LinkedIn (se tiverem API deve ser paga, então novamente poderia usar BeautifulSoup), publicações no LinkedIn, posts do Medium, vídeos ou episódios de podcasts mais recentes para quem é desse mundo, e por aí vai.</p>
+
+<p>Ansiosa para ver quais ideias vão surgir. Até mais!</p>
+
+<h2 id="links">Links</h2>
+
+<p><a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Post do Simon onde ele explica o que ele fez</a></p>
+
+<p><a href="https://simonwillison.net/2020/Apr/20/self-rewriting-readme/">Outro post do Simon sobre automatização do README</a></p>
+:ET

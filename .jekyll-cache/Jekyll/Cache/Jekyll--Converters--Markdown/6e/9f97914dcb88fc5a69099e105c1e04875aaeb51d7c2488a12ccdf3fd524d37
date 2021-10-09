@@ -1,0 +1,152 @@
+I"�A<p>O <a href="https://colab.research.google.com">Google Colab</a> é uma ferramenta criada pela Google que permite que qualquer pessoa consiga produzir e rodar desde os notebooks IPython (<code class="language-plaintext highlighter-rouge">.ipynb</code>) mais simples até treinar um modelo de <em>deep learning</em> mesmo sem possuir uma GPU. É só usar sua conta Google e você terá acesso a 12GB de RAM, GPU/TPU (desde que não abuse e use para ganhar criptomoedas!), além de ter todo trabalho sincronizado automaticamente no Drive.</p>
+
+<p>Um dos primeiros problemas que aparecem ao usar o Colab é: como carregar arquivos nessa ferramenta, já que ele não tem acesso ao meu HD? Nesse post irei listar 5 jeitos de fazer isso, cada um com suas vantagens e desvantagens.</p>
+
+<h3 id="1-usando-um-link">1. Usando um link</h3>
+
+<p>Basta ver a documentação do método <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html"><code class="language-plaintext highlighter-rouge">read_csv</code></a> da biblioteca <code class="language-plaintext highlighter-rouge">pandas</code> para ver que uma url pode ser usada para carregar seu dataset. O jeito mais fácil de disponibilizar um link é fazendo o upload dos dados para o GitHub, mas nesse caso existe a limitação de que o arquivo deve ter menos de 25MB (um arquivo maior não pode ser mantido em seu repositório).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="o">*</span><span class="n">link</span><span class="o">*</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Algumas alternativas ao GitHub como <a href="https://gitlab.com">GitLab</a> e <a href="http://bitbucket.org">BitBucket</a> possuem um limite mais flexível, o primeiro depende das configurações da sua organização e no segundo caso, o arquivo deve respeitar o limite de tamanho do repositório, que não pode ser maior que 2GB.</p>
+
+<h3 id="2-fazendo-upload-de-sua-máquina-via-código">2. Fazendo upload de sua máquina via código</h3>
+
+<blockquote>
+  <p>Método apresentado no post do Towards Data Science: <a href="https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92">3 Ways to load csv into colab</a></p>
+</blockquote>
+
+<p>O Colab possibilita que você insira arquivos do seu computador no notebook através do método <code class="language-plaintext highlighter-rouge">files</code> do módulo <code class="language-plaintext highlighter-rouge">google.colab</code>. Ao chamar <code class="language-plaintext highlighter-rouge">files.upload()</code>, uma caixa de seleção vai aparecer como na imagem abaixo:</p>
+
+<p><img src="../images/posts/colab_upload_file_code.png" alt="colab_upload_file_code" /></p>
+
+<p>Depois de escolher o arquivo, o objeto <code class="language-plaintext highlighter-rouge">uploaded</code> acima, que é um dicionário com os dados em formato de bytes, pode ser manipulado para virar um objeto tratado pelo <code class="language-plaintext highlighter-rouge">pandas</code>. Para isso, usamos a biblioteca <code class="language-plaintext highlighter-rouge">io</code>, como mostrado no exemplo abaixo.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">io</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">uploaded</span><span class="p">[</span><span class="s">'file.csv'</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<p>Apesar de ser prático para um estudo rápido sobre um arquivo pequeno, por exemplo, essa <em>feature</em> pode apresentar incompatibilidade com algumas versões de alguns navegadores, então nem sempre o método de leitura é aplicável.</p>
+
+<h3 id="3-fazendo-upload-de-sua-máquina-via-colab">3. Fazendo upload de sua máquina via colab</h3>
+
+<p>Uma alternativa relativamente recente, oferecida pelo próprio Colab, é usar a seção <code class="language-plaintext highlighter-rouge">Files</code> do menu lateral.</p>
+
+<p><img src="../images/posts/cola_files_tab.png" alt="cola_files_tab" /></p>
+
+<p>Ao cliclar no botão <strong>UPLOAD</strong>, uma janela de seleção semelhante à do item anterior será aberta. Depois do upload, o arquivo é listado nessa seção. Com 2 cliques é possível ainda visualizar (e filtrar!) o conteúdo do dataset.</p>
+
+<p><img src="../images/posts/colab_file_preview.png" alt="colab_file_preview" /></p>
+
+<p>No entanto, a maior mudança em relação ao <code class="language-plaintext highlighter-rouge">google.colab</code> é que, além de apresentar maior compatibilidade com os navegadores, o arquivo não precisa ser convertido. Dá pra usar <code class="language-plaintext highlighter-rouge">read_csv</code> passando o nome do arquivo e a extensão como parâmetros.</p>
+
+<hr />
+
+<p>Os dois últimos métodos apresentados possuem algumas desvantagens em comum:</p>
+
+<ul>
+  <li>
+    <p>Toda vez que o notebook for aberto, o processo de upload precisa ser repetido ( o que prejudica muito a reproducibilidade do que você fez no notebook);</p>
+  </li>
+  <li>
+    <p>Um arquivo grande vai demorar bastante, principalmente se a sua internet não for tão rápida.</p>
+  </li>
+</ul>
+
+<p>Por isso, os dois se tornam mais úteis quando se quer fazer algo rápido e que não precisa ser compartilhado com outras pessoas.</p>
+
+<h3 id="4-google-drive">4. Google Drive</h3>
+
+<p>Ao abrir uma pasta no Google Drive, você pode observar que ela possui um <em>hash</em>, um código em sua url. Bem, dá para usar esse link para ler os arquivos dessa pasta.</p>
+
+<p>O primeiro passo é a <del>aceitação</del> autenticação. Ao rodar o código abaixo e clicar no link, você vai receber um <em>token</em> para copiar e colar na caixa que é exibida no notebook.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">auth</span>
+<span class="n">auth</span><span class="p">.</span><span class="n">authenticate_user</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">googleapiclient.discovery</span> <span class="kn">import</span> <span class="n">build</span>
+<span class="n">drive_service</span> <span class="o">=</span> <span class="n">build</span><span class="p">(</span><span class="s">'drive'</span><span class="p">,</span> <span class="s">'v3'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="../images/posts/colab_drive_auth.png" alt="colab_drive_auth" /></p>
+
+<p>Depois de se autenticar, você já pode usar o objeto <code class="language-plaintext highlighter-rouge">drive_service</code> para consultar os arquivos. Com a API do Google Drive, é possível fazer a consulta especificando um parâmetro do método <code class="language-plaintext highlighter-rouge">files().list()</code>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span> <span class="o">=</span> <span class="n">drive_service</span><span class="p">.</span><span class="n">files</span><span class="p">().</span><span class="nb">list</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s">" '"</span><span class="o">+</span><span class="n">folder</span> <span class="o">+</span><span class="s">"' in parents"</span><span class="p">,</span>
+ <span class="n">spaces</span><span class="o">=</span><span class="s">'drive'</span><span class="p">,</span>
+ <span class="n">fields</span><span class="o">=</span><span class="s">'nextPageToken, files(id, name)'</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Especificando <code class="language-plaintext highlighter-rouge">'"+folder+"' in parents</code> são filtrados os arquivos que estão dentro da pasta <code class="language-plaintext highlighter-rouge">folder</code>.</p>
+
+<p>Depois de recuperados os arquivos e iterar sobre eles, vamos recuperar seus IDs e usar <code class="language-plaintext highlighter-rouge">files().get_media(fileId=id)</code> para baixar o arquivo através da API. Depois disso, os bytes podem ser traduzidos e o arquivo tratado.</p>
+
+<p>Tudo isso deve ser feito dentro de um loop.</p>
+
+<p>Abaixo, um código completo com o exemplo de arquivos de imagens:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">page_token</span> <span class="o">=</span> <span class="bp">None</span>
+  <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+      <span class="n">response</span> <span class="o">=</span> <span class="n">drive_service</span><span class="p">.</span><span class="n">files</span><span class="p">().</span><span class="nb">list</span><span class="p">(</span><span class="n">q</span><span class="o">=</span><span class="s">"mimeType='image/png' and '"</span><span class="o">+</span><span class="n">folder</span> <span class="o">+</span><span class="s">"' in parents"</span><span class="p">,</span>
+                                            <span class="n">spaces</span><span class="o">=</span><span class="s">'drive'</span><span class="p">,</span>
+                                            <span class="n">fields</span><span class="o">=</span><span class="s">'nextPageToken, files(id, name)'</span><span class="p">,</span>
+                                            <span class="n">pageToken</span><span class="o">=</span><span class="n">page_token</span><span class="p">).</span><span class="n">execute</span><span class="p">()</span>
+      <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'files'</span><span class="p">,</span> <span class="p">[]):</span>
+          <span class="c1"># Process change
+</span>          <span class="n">file_id</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'id'</span><span class="p">)</span>
+          <span class="n">request</span> <span class="o">=</span> <span class="n">drive_service</span><span class="p">.</span><span class="n">files</span><span class="p">().</span><span class="n">get_media</span><span class="p">(</span><span class="n">fileId</span><span class="o">=</span><span class="n">file_id</span><span class="p">)</span>
+          <span class="n">downloaded</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">()</span>
+          <span class="n">downloader</span> <span class="o">=</span> <span class="n">MediaIoBaseDownload</span><span class="p">(</span><span class="n">downloaded</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+          <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
+          <span class="k">while</span> <span class="n">done</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="c1"># _ is a placeholder for a progress object that we ignore.
+</span>            <span class="c1"># (Our file is small, so we skip reporting progress.)
+</span>            <span class="n">_</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">downloader</span><span class="p">.</span><span class="n">next_chunk</span><span class="p">()</span>
+
+          <span class="n">downloaded</span><span class="p">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+           <span class="k">if</span><span class="p">(</span><span class="s">'.csv'</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">)):</span>
+                <span class="n">datasets</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">downloaded</span><span class="p">.</span><span class="n">read</span><span class="p">()))</span>
+
+      <span class="n">page_token1</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'nextPageToken'</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">page_token1</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+          <span class="k">break</span>
+</code></pre></div></div>
+
+<p>Com os arquivos recuperados, para usar o dataset, podemos passar o objeto para <code class="language-plaintext highlighter-rouge">read_csv</code>. Por exemplo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dataset</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Com essa alternativa mais complexa, é preciso ter cuidado ao filtrar os arquivos, além de compartilhar toda a pasta com quem precisar reproduzir o estudo feito usando essa técnica.</p>
+
+<h3 id="5-arquivos-compactados">5. Arquivos compactados</h3>
+
+<p>O último método é na verdade um caso específico que pode acontecer ao usar qualquer um das opções anteriores.</p>
+
+<p>Alguns tipos de arquivos compactados não são lidos facilmente pelo <code class="language-plaintext highlighter-rouge">pandas</code>, como os disponilizados pelo IMDb. Para tratá-los, podemos usar a biblioteca <code class="language-plaintext highlighter-rouge">gzip</code> para descompactar e o método <code class="language-plaintext highlighter-rouge">urllib</code> do módulo <code class="language-plaintext highlighter-rouge">six.moves</code> para baixar o dataset. E <em>voilà</em>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">urllib</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+
+<span class="n">handle</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">'https://datasets.imdbws.com/title.basics.tsv.gz'</span><span class="p">)</span> <span class="c1">#download
+</span><span class="nb">file</span> <span class="o">=</span> <span class="n">gzip</span><span class="p">.</span><span class="n">GzipFile</span><span class="p">(</span><span class="n">fileobj</span><span class="o">=</span><span class="n">handle</span><span class="p">)</span> <span class="c1">#unzip
+</span>
+<span class="n">movies</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">"</span><span class="se">\t</span><span class="s">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="considerações-finais">Considerações finais</h2>
+
+<p>Cada método tem seu nível de dificuldade e uma limitação quanto ao tamanho da massa de dados que podem ser carregados de forma eficiente, cabe a cada um ver qual se encaixa melhor em cada situação.</p>
+
+<p>Nos links, referenciei uma alternativa ao passo 4 e alguns métodos para salvar arquivos a partir do Colab.</p>
+
+<p>Até a próxima!</p>
+
+<h2 id="links">Links</h2>
+
+<p><a href="https://developers.google.com/drive/api/v3/search-parameters">API de busca de arquivos do Google Drive</a></p>
+
+<p><a href="https://colab.research.google.com/notebooks/io.ipynb">Material do próprio Colab que contém maneiras de salvar arquivos</a></p>
+:ET
